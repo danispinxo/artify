@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -8,7 +7,7 @@ function App() {
 
   useEffect(() => {
     axios.get("/api")
-    .then(res => res.data)
+    .then(res => (res.data))
     .then(data => setBackendData(data))
   }, [])
   
@@ -18,7 +17,7 @@ function App() {
     <div className="App"> 
 
       <ul className="list">
-        {backendData.users && backendData.users.map((user, i) => <li key={i}>{user}</li>)}
+        {(backendData.length > 0) && backendData.map((user, i) => <li key={i}>{user.name}</li>)}
       </ul>
        
 

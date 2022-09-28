@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Separated Routes for each Resource
 //const widgetApiRoutes = require('./routes/widgets-api');
-const testRoute = require("./routes/test")
+const testRoute = require("./routes/users")
 
 
 // Mount all resource routes
