@@ -8,7 +8,7 @@ const itemQueries = require("../db/queries/users");
 router.get("/", (req, res) => {
   itemQueries.getUsers()
   .then((users) => {
-    res.json(users)
+    return res.json(users)
   })
   .catch((err) => {
     res.status(500).json({ error: err.message });

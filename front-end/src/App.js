@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 function App() {
-  const [backendData, setBackendData] = useState({})
+  const [backendData, setBackendData] = useState([{}])
 
   useEffect(() => {
     axios.get("/api")
@@ -11,7 +11,7 @@ function App() {
     .then(data => setBackendData(data))
   }, [])
   
- 
+ console.log(backendData)
 
   return (
     <div className="App"> 
