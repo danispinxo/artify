@@ -4,3 +4,11 @@
   justify-content: center;
   align-items: center;
 }
+
+h1 {
+  font-family: 'Berkshire Swash', cursive;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+}
