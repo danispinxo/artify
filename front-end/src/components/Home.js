@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 
 export const Home = () => {
@@ -19,9 +19,8 @@ export const Home = () => {
       <div className="list">
           {(backendData.length > 0) && backendData.map((user, i) => 
           <div key={i}>
-            <img src={user.avatar} alt="avatar" width="250px"/> 
-            <p>{user.name} {user.surname}</p>
-            <p>{user.email}</p>
+            <img alt={user.surname} src={user.avatar} />
+            <p>{user.name} {user.surname} : {user.email} </p>
           </div>)}
       </div>
     </div>

@@ -1,4 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import IconButton from '@mui/material/IconButton';
+import InfoIcon from '@mui/icons-material/Info';
 import axios from 'axios';
 
 export const Gallery = () => {
@@ -16,14 +21,30 @@ export const Gallery = () => {
   return (
     <div className='gallery'>
       <h1>Sample Art Gallery</h1>
-      <div className="list">
-          {(backendData.length > 0) && backendData.map((artwork, i) => 
-          <div key={i}>
-            <img src={artwork.image} alt="avatar" width="250px"/> 
-            <p>"{artwork.name}" -- Price $ {artwork.price_cents / 100.00}</p>
-            <p>{artwork.description}</p>
-          </div>)}
-      </div>
+      <ImageList sx={{ width: 700, height: 450 }}>
+        {backendData && backendData.map((artwork) => (
+          <ImageListItem key={artwork.img}>
+            <img
+              src={`${artwork.image}`}
+              alt={artwork.title}
+              loading="lazy"
+            />
+            <ImageListItemBar
+              title={artwork.name}
+              subtitle={artwork.price_cents / 100.00}
+              actionIcon={
+                <IconButton
+                  sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+                  aria-label={`info about ${artwork.name}`}
+                >
+                  <InfoIcon />
+                </IconButton>
+              }
+            />
+          </ImageListItem>
+        ))}
+      </ImageList>
+      
     </div>
 
   )
