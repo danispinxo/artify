@@ -6,7 +6,7 @@ const router = express.Router();
 const itemQueries = require("../db/queries/users");
 
 router.get("/", (req, res) => {
-  itemQueries.getUsers()
+  itemQueries.getArtByUser(2)
   .then((users) => {
     return res.json(users)
   })

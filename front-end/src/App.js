@@ -15,11 +15,12 @@ function App() {
 
   return (
     <div className="App"> 
-      <h1>Contact List</h1>
-      <div className="user-list">
-        <ul className="list">
-          {(backendData.length > 0) && backendData.map((user, i) => <li key={i}><img src={user.avatar} alt="avatar" width="100px"/> {user.name} {user.surname}: {user.email} </li>)}
-        </ul>
+      <h1>Sample Art Gallery</h1>
+      <div className="list">
+          {(backendData.length > 0) && backendData.map((artwork, i) => <div key={i}><img src={artwork.image} alt="avatar" width="250px"/> 
+          <p>"{artwork.name}" -- Price $ {artwork.price_cents / 100.00}</p>
+          <p>{artwork.description}</p>
+      </div>)}
       </div>   
     </div>
   );
