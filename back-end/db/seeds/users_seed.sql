@@ -1,5 +1,1 @@
-INSERT INTO users (first_name, last_name, email, bio)
-VALUES ('John', 'Smith', 'john@smith.com', 'I am the first user to sign up, which is nice.'),
-('Kenny', 'Yanb', 'kenny@yanb.com', 'I am the second user!'),
-('Sara', 'Dar', 'sara@dar.com', 'My name is Sara and I am an artist.'),
-('Tony', 'Jortons', 'tony@jortons.com', 'Jortons is representing the Canadians!!');
+INSERT INTO users (first_name, last_name, email, avatar_image, cover_image, password) VALUES ('John', 'Smith', 'john@mail.com', 'images/avatar/john.jpg', '/covers/john.jpg', '123'), ('Kenny', 'Yanb', 'kenny@mail.com', '/avatars/kenny.jpg', '/covers/kenny.jpg', '123'), ('Sara',  'Dar', 'sara@mail.com', 'https://ik.imagekit.io/wykltetyx/1_hki7EDvPS.jpeg?ik-sdk-version=javascript-1.4.3&updatedAt=1664549941792', '/covers/sara.jpg', '123'), ('Tony', 'Jortons', 'tony@mail.com', '/avatars/tony.jpg', '/covers/tony.jpg', '123');
