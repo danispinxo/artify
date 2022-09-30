@@ -15,10 +15,10 @@ function App() {
 
   return (
     <div className="App"> 
-      <h2>User List</h2>
+      <h2>Contact List</h2>
       <div className="user-list">
         <ul className="list">
-          {(backendData.length > 0) && backendData.map((user, i) => <li key={i}>New user: {user.surname}, {user.name} </li>)}
+          {(backendData.length > 0) && backendData.map((user, i) => <li key={i}>{user.name} {user.surname}: {user.email}</li>)}
         </ul>
       </div>   
     </div>
