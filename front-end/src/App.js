@@ -15,12 +15,12 @@ function App() {
 
   return (
     <div className="App"> 
-      <h2>User List</h2> <br/>     
-      <ul className="list">
-        {(backendData.length > 0) && backendData.map((user, i) => <li key={i}>New user: {user.name} {user.surname}</li>)}
-      </ul>
-       
-
+      <h2>User List</h2>
+      <div className="user-list">
+        <ul className="list">
+          {(backendData.length > 0) && backendData.map((user, i) => <li key={i}>New user: {user.surname}, {user.name} </li>)}
+        </ul>
+      </div>   
     </div>
   );
 }
