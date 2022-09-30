@@ -1,27 +1,36 @@
-import './App.scss';
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import "./App.scss";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Home } from "./components/Home";
+import { Gallery } from "./components/Gallery";
 
 function App() {
-  const [backendData, setBackendData] = useState([{}])
-
-  useEffect(() => {
-    axios.get("/api")
-    .then(res => (res.data))
-    .then(data => setBackendData(data))
-  }, [])
-  
- console.log(backendData)
 
   return (
     <div className="App"> 
-      <h1>Sample Art Gallery</h1>
-      <div className="list">
-          {(backendData.length > 0) && backendData.map((artwork, i) => <div key={i}><img src={artwork.image} alt="avatar" width="250px"/> 
-          <p>"{artwork.name}" -- Price $ {artwork.price_cents / 100.00}</p>
-          <p>{artwork.description}</p>
-      </div>)}
+
+      <div className="router-app">
+        <Router>
+          <div className="nav-bar">
+            <nav>
+              <ul>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/gallery">Gallery</Link>
+                </li>
+              </ul>
+            </nav>
+
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route exact path="/gallery" element={<Gallery />} />
+            </Routes>
+          </div>
+        </Router>
       </div>   
+
     </div>
   );
 }
