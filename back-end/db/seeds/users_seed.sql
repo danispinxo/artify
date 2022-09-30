@@ -1,5 +1,1 @@
-INSERT INTO users (cart_id, name, phone_number, email_address)
-VALUES (1, 'John Smith', 4368541593, 'john@smith.com'),
-(2, 'Kenny Yanb', 6535255720, 'kenny@yanb.com'),
-(3, 'Sara Dar', 1259524833, 'sara@dar.com'),
-(4, 'Tony Jortons', 1259524833, 'tony@jortons.com');
+INSERT INTO users (first_name, last_name, email, avatar_image, cover_image, password) VALUES ('John', 'Smith', 'john@mail.com', 'images/avatar/john.jpg', '/covers/john.jpg', '123'), ('Kenny', 'Yanb', 'kenny@mail.com', 'images/avatar/kenny.jpeg', '/covers/kenny.jpg', '123'), ('Sara',  'Dar', 'sara@mail.com', 'images/avatar/sara.jpg', '/covers/sara.jpg', '123'), ('Tony', 'Jortons', 'tony@mail.com', 'images/avatar/tony.jpg', '/covers/tony.jpg', '123');

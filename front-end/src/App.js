@@ -15,12 +15,12 @@ function App() {
 
   return (
     <div className="App"> 
-
-      <ul className="list">
-        {(backendData.length > 0) && backendData.map((user, i) => <li key={i}>{user.name}</li>)}
-      </ul>
-       
-
+      <h1>Contact List</h1>
+      <div className="user-list">
+        <ul className="list">
+          {(backendData.length > 0) && backendData.map((user, i) => <li key={i}><img src={user.avatar} alt="avatar" width="100px"/> {user.name} {user.surname}: {user.email} </li>)}
+        </ul>
+      </div>   
     </div>
   );
 }
