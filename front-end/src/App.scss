@@ -1,0 +1,30 @@
+@import "styles/variables.scss";
+
+.App {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-content: left;
+  margin: 0;
+
+  h1 {
+    font-family: $header-font;
+    background-color: $dark-brown;
+    color: $beige;
+    font-size: 5rem;
+    padding-left: 1rem;
+  }
+
+  .list {
+    margin: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    color: $dark-brown;
+    font-family: $body-font;
+    background-color: $beige;
+  }
+}
+
+
+
