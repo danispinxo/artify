@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 
-export const Home = () => {
+export const Gallery = () => {
   const [backendData, setBackendData] = useState([{}]);
 
   useEffect(() => {
     axios
-      .get("/api")
+      .get("/gallery")
       .then((res) => res.data)
       .then((data) => setBackendData(data));
   }, []);
@@ -14,16 +14,17 @@ export const Home = () => {
   console.log(backendData);
 
   return (
-    <div className='user=list'>
-      <h1>List of Artists!</h1>
+    <div className='gallery'>
+      <h1>Sample Art Gallery</h1>
       <div className="list">
-          {(backendData.length > 0) && backendData.map((user, i) => 
+          {(backendData.length > 0) && backendData.map((artwork, i) => 
           <div key={i}>
-            <img src={user.avatar} alt="avatar" width="250px"/> 
-            <p>{user.name} {user.surname}</p>
-            <p>{user.email}</p>
+            <img src={artwork.image} alt="avatar" width="250px"/> 
+            <p>"{artwork.name}" -- Price $ {artwork.price_cents / 100.00}</p>
+            <p>{artwork.description}</p>
           </div>)}
       </div>
     </div>
+
   )
 }
