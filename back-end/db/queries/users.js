@@ -1,4 +1,4 @@
-const db = require("../connection");
+const db = require('../../configs/db.config');
 
 const getUsers = () => {
   return db
