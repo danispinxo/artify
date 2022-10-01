@@ -1,30 +1,9 @@
-// @import "styles/variables.scss";
+@import "styles/variables.scss";
 
-// .App {
-//   height: 200px;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: left;
-//   align-content: left;
-//   margin: 0;
+.App {
 
-//   h1 {
-//     font-family: $header-font;
-//     background-color: $dark-brown;
-//     color: $beige;
-//     font-size: 5rem;
-//     padding-left: 1rem;
-//   }
+  margin-top: 60px;
 
-//   .list {
-//     margin: 2rem;
-//     padding-top: 1rem;
-//     padding-left: 1rem;
-//     padding-bottom: 1rem;
-//     color: $dark-brown;
-//     font-family: $body-font;
-//     background-color: $beige;
-//   }
-// }
+}
 
 
