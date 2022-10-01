@@ -1,12 +1,10 @@
 // Example file to see how to get users from DB 
 
-
-const express = require("express");
-const router = express.Router();
-const itemQueries = require("../db/queries/users");
+const router = require('express').Router();
+const userQueries = require("../db/queries/users");
 
 router.get("/", (req, res) => {
-  itemQueries.getUsers()
+  userQueries.getUsers()
   .then((users) => {
     return res.json(users)
   })
@@ -17,3 +15,5 @@ router.get("/", (req, res) => {
 
 
 module.exports = router;
+
+
