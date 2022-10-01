@@ -1,4 +1,4 @@
-const db = require("../connection");
+const db = require('../../configs/db.config');
 
 const getUsers = () => {
   return db
@@ -9,4 +9,13 @@ const getUsers = () => {
     });
 };
 
-module.exports = { getUsers };
+const getArtByUser = (user_id) => {
+  return db
+    .query(
+      'SELECT * FROM artworks WHERE user_id = $1;', [user_id])
+    .then((data) => {
+      return data.rows;
+    });
+};
+
+module.exports = { getUsers, getArtByUser };
