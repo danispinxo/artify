@@ -1,33 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "../styles/homepage.scss";
+
+import { Pagination, Navigation } from "swiper";
 
 export const Home = () => {
-  const [backendData, setBackendData] = useState([{}]);
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
     axios
-      .get("/users")
+      .get("/homepage")
       .then((res) => res.data)
-      .then((data) => setBackendData(data));
+      .then((data) => setImages(data));
   }, []);
 
-  console.log(backendData);
-
   return (
-    <div className="user=list">
-      <h1>List of Artists!</h1>
-      <div className="list">
-        {backendData.length > 0 &&
-          backendData.map((user, i) => (
-            <div key={i}>
-              <img src={user.avatar} alt="avatar" width="250px" />
-              <p>
-                {user.name} {user.surname}
-              </p>
-              <p>{user.email}</p>
-            </div>
+    <>
+      {images.length > 0 && (
+        <Swiper
+        slidesPerView={4}
+        spaceBetween={10}
+        slidesPerGroup={3}
+        loop={true}
+        loopFillGroupWithBlank={true}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Pagination, Navigation]}
+        className="mySwiper"
+      >
+          {images.map((image, i) => (
+            <SwiperSlide key={i}>
+              <img className="artwork" src={image.image} alt={image.image} />
+            </SwiperSlide>
           ))}
-      </div>
-    </div>
+        </Swiper>
+      )}
+    </>
   );
 };

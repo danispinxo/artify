@@ -11,7 +11,7 @@ export const Gallery = () => {
       .then((data) => setBackendData(data));
   }, []);
 
-  console.log(backendData);
+  
 
   return (
     <div className='gallery'>
