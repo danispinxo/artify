@@ -3,12 +3,13 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { Home } from "./components/Home";
 import { Gallery } from "./components/Gallery";
+import Button from "./components/Button";
 
 function App() {
 
   return (
     <div className="App"> 
-
+      <Button />
       <div className="router-app">
         <Router>
           <div className="nav-bar">
@@ -30,7 +31,7 @@ function App() {
           </div>
         </Router>
       </div>   
-
+      
     </div>
   );
 }
