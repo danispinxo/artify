@@ -6,11 +6,11 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
-import '../styles/navbar.scss';
+import "../styles/navbar.scss";
 
 export const Header = () => {
   return (
-    <Navbar className="navbar"  expand="lg">
+    <Navbar className="navbar" expand="lg">
       <Container fluid>
         <Navbar.Brand>
           <Link className="text-decoration-none text-black" to="/">
@@ -24,17 +24,22 @@ export const Header = () => {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link>
-              <Link className="text-decoration-none text-black" to="/">
-                Home
-              </Link>
+            <Nav.Link
+              as={Link}
+              className="text-decoration-none text-black"
+              to="/"
+            >
+              Home
             </Nav.Link>
-            <Nav.Link>
-              <Link className="text-decoration-none text-black" to="/gallery">
-                Gallery
-              </Link>
+            <Nav.Link
+              as={Link}
+              className="text-decoration-none text-black"
+              to="/gallery"
+            >
+              Gallery
             </Nav.Link>
-            <Form className="d-flex">
+          </Nav>
+          <Form className="d-flex">
             <Form.Control
               type="search"
               placeholder="Search"
@@ -43,8 +48,6 @@ export const Header = () => {
             />
             <Button variant="outline-success">Search</Button>
           </Form>
-          </Nav>
-         
         </Navbar.Collapse>
       </Container>
     </Navbar>
