@@ -1,9 +1,7 @@
 import "./App.scss";
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-// import { Gallery } from "./components/Gallery";
-// import Button from "./components/Button";
-import { Homepage } from "./components/Homepage";
+import { Navbar } from "./components/Navbar";
+
 
 function App() {
 
@@ -13,6 +11,10 @@ function App() {
       <Homepage />
      
       
+      <Navbar />
+   
+         
+
     </div>
   );
 }
