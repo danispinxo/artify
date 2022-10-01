@@ -32,8 +32,10 @@
   object-fit: cover;
 }
 
-.artwork {
-  border-radius: 10px;
+.artwork-container {
+  border-radius: 15px;
+    overflow: hidden;
+    perspective: 1px;
 }
 
 h1 {
@@ -41,3 +43,14 @@ h1 {
   justify-content: center;
   font-family: $body-font;
 }
+
+.shrink img {
+  transition: 1s ease;
+  }
+  
+  .shrink img:hover{
+  -webkit-transform: scale(1.0);
+  -ms-transform: scale(0);
+  transform: scale(1.1);
+  transition: 1s ease;
+  }
