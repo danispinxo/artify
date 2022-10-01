@@ -6,7 +6,7 @@ export const Gallery = () => {
 
   useEffect(() => {
     axios
-      .get("/gallery")
+      .get("/gallery/api")
       .then((res) => res.data)
       .then((data) => setBackendData(data));
   }, []);

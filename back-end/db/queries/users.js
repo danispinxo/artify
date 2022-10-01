@@ -18,12 +18,4 @@ const getArtByUser = (user_id) => {
     });
 };
 
-const getArtworkByRandom = () => {
-  return db
-    .query(
-      'SELECT artworks.image FROM artworks order by random() LIMIT 20;')
-    .then((data) => {
-      return data.rows;
-    });
-};
-module.exports = { getUsers, getArtByUser, getArtworkByRandom };
+module.exports = { getUsers, getArtByUser };

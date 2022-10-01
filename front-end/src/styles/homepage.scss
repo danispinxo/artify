@@ -54,3 +54,15 @@ h1 {
   transform: scale(1.1);
   transition: 1s ease;
   }
+
+  .categories-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 90%;
+    justify-content: center;
+  }
+
+  .homepage-container {
+    width: 100%;
+  }

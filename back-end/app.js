@@ -13,12 +13,14 @@ app.use(bodyParser.json());
 // Separated Routes for each Resource
 //const widgetApiRoutes = require('./routes/widgets-api');
 const galleryRoute = require("./routes/gallery");
-const homepageRoute = require("./routes/homepage");
+const homepageCarousel = require("./routes/homepage");
+const homepageCategories = require("./routes/category");
 
 // Mount all resource routes
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
-app.use("/gallery", galleryRoute);
-app.use("/homepage", homepageRoute);
+app.use("/gallery/api", galleryRoute);
+app.use("/homepage/api", homepageCarousel);
+app.use("/categories/api", homepageCategories);
 
 //Home page
 app.get("/", (req, res) => {
