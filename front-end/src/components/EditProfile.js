@@ -4,7 +4,7 @@ import Image from 'react-bootstrap/Image';
 import Button from "./Button";
 import Form from 'react-bootstrap/Form';
 
-export default function EditProfile() {
+export default function EditProfile({user}) {
   return (
     <div className="edit-profile">
       <h1>Edit Your Profile</h1>
@@ -12,18 +12,23 @@ export default function EditProfile() {
         <Form>
           <Form.Group className="mb-3" controlId="change-avatar">
             <Form.Label>Your Avatar</Form.Label>
-            <Image src={"images/avatar/frankis.jpeg"} alt="Frankis Avatar" roundedCircle="true" width="100px" />
+            <Image src={user.avatar_image} alt={user.first_name + user.last_name} roundedCircle="true" width="100px" />
             <Button message="Change Avatar" />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="change-name">
-            <Form.Label>Your Name</Form.Label>
-            <Form.Control type="name" placeholder="*SAMPLE USER'S NAME*" />
+          <Form.Group className="mb-3" controlId="change-first-name">
+            <Form.Label>Your First Name</Form.Label>
+            <Form.Control type="name" placeholder={user.first_name} />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="change-last-name">
+            <Form.Label>Your Last Name</Form.Label>
+            <Form.Control type="name" placeholder={user.last_name} />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="change-name">
             <Form.Label>Your Bio</Form.Label>
-            <Form.Control as="textarea" placeholder="*SAMPLE USER'S BIO*" />
+            <Form.Control as="textarea" placeholder={user.bio ? user.bio : "You have not included a bio yet."} />
           </Form.Group>
 
           <Button message="Submit Changes" variant="primary" type="submit" />

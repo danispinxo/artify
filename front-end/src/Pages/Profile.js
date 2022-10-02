@@ -41,7 +41,7 @@ export const Profile = () => {
         <Button message="Edit Profile" onClick={() => setMode(EDIT)}/>
       </div>
       {mode === VIEW && <ViewProfile gallery={userGallery}/>}
-      {mode === EDIT && <EditProfile />}
+      {mode === EDIT && <EditProfile user={userData}/>}
       {mode === ADD && <AddArtwork />}
       {mode === HISTORY && <OrderHistory />}
     </div>
