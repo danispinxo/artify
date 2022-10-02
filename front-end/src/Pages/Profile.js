@@ -1,10 +1,20 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
-import "./Profile.scss";
-import Button from '../components/Button';
+import "../styles/profile.scss";
+import ViewProfile from '../components/ViewProfile';
+import EditProfile from '../components/EditProfile';
+import AddArtwork from '../components/AddArtwork';
 
 export const Profile = () => {
+  const VIEW = 'VIEW';
+  const EDIT = 'EDIT';
+  const ADD = 'ADD';
+  const HISTORY = 'HISTORY';
+
   const [userData, setUserData] = useState([{}]);
+  const [mode, setMode] = useState(HISTORY)
+
+
 
   useEffect(() => {
     axios
@@ -15,23 +25,9 @@ export const Profile = () => {
 
   return (
     <div className='profile'>
-      <h1>*SAMPLE NAME*'s Profile</h1>
-      <div className='user-info'>
-      </div>
-      <div className='profile-buttons'>
-        <Button message="Add to Gallery" />
-        <Button message="Order History" />
-        <Button message="Edit Profile" />
-      </div>
-      <div className="user-gallery">
-        <p>This is where the user's artwork will go</p>
-          {/* {(userData.length > 0) && userData.map((artwork, i) => 
-          <div key={i}>
-            <img src={artwork.image} alt="avatar" width="250px"/> 
-            <p>"{artwork.name}" -- Price $ {artwork.price_cents / 100.00}</p>
-            <p>{artwork.description}</p>
-          </div>)} */}
-      </div>
+      {mode === VIEW && <ViewProfile />}
+      {mode === EDIT && <EditProfile />}
+      {mode === ADD && <AddArtwork />}
     </div>
   )
 }
