@@ -4,6 +4,7 @@ import "../styles/profile.scss";
 import ViewProfile from '../components/ViewProfile';
 import EditProfile from '../components/EditProfile';
 import AddArtwork from '../components/AddArtwork';
+import OrderHistory from '../components/OrderHistory';
 
 export const Profile = () => {
   const VIEW = 'VIEW';
@@ -13,8 +14,6 @@ export const Profile = () => {
 
   const [userData, setUserData] = useState([{}]);
   const [mode, setMode] = useState(HISTORY)
-
-
 
   useEffect(() => {
     axios
@@ -28,6 +27,7 @@ export const Profile = () => {
       {mode === VIEW && <ViewProfile />}
       {mode === EDIT && <EditProfile />}
       {mode === ADD && <AddArtwork />}
+      {mode === HISTORY && <OrderHistory />}
     </div>
   )
 }
