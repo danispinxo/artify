@@ -25,6 +25,19 @@ const getUserById = (id) => {
     .then((data) => {
       return data.rows;
     });
+};
+
+const editUser = (editedUser) => {
+  return db
+    .query(`
+    UPDATE users
+    SET first_name = $2, last_name = $3, bio = $4
+    WHERE users.id = $1
+    RETURNING *;
+    `, [editedUser.id, editedUser.first_name, editedUser.last_name, editedUser.bio])
+    .then((data) => {
+      return data.rows;
+    });
 }
 
-module.exports = { getUsers, getArtByUser, getUserById };
+module.exports = { getUsers, getArtByUser, getUserById, editUser };

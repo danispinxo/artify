@@ -26,14 +26,16 @@ export const Profile = () => {
       setUserData(all[0].data[0])
       setUserGallery(all[1].data)
     })
-  },[])
+  },[mode])
 
   return (
     <div className='profile'>
       <div className='profile-header'>
-      <Image src={userData.avatar_image} alt={userData.first_name + " " + userData.last_name} roundedCircle="true" width="75px" />
-      <h1>{userData.first_name} {userData.last_name}'s Profile</h1>
-      {userData.bio && <p>{userData.bio}</p>}
+        <Image src={userData.avatar_image} alt={userData.first_name + " " + userData.last_name} roundedCircle="true" width="75px" />
+        <h1>{userData.first_name} {userData.last_name}'s Profile</h1>
+      </div>
+      <div className='user-bio'>
+        {userData.bio && <p>{userData.bio}</p>}
       </div>
       <div className='profile-buttons'>
         <Button message="Add to Gallery" onClick={() => setMode(ADD)}/>
@@ -41,7 +43,7 @@ export const Profile = () => {
         <Button message="Edit Profile" onClick={() => setMode(EDIT)}/>
       </div>
       {mode === VIEW && <ViewProfile gallery={userGallery}/>}
-      {mode === EDIT && <EditProfile user={userData}/>}
+      {mode === EDIT && <EditProfile user={userData} setMode={setMode}/>}
       {mode === ADD && <AddArtwork />}
       {mode === HISTORY && <OrderHistory />}
     </div>
