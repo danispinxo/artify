@@ -3,7 +3,7 @@ const db = require('../../configs/db.config');
 const getArtworkByRandom = () => {
   return db
     .query(
-      'SELECT artworks.image FROM artworks order by random() LIMIT 20;')
+      'SELECT artworks.image FROM artworks order by random() LIMIT 40;')
     .then((data) => {
       return data.rows;
     });

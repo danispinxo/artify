@@ -39,7 +39,7 @@ export const Home = () => {
           delay: 2500,
           disableOnInteraction: false,
         }}
-        loopFillGroupWithBlank={true}
+        loopFillGroupWithBlank={false}
         pagination={{
           clickable: true,
         }}
