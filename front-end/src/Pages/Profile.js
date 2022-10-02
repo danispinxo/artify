@@ -31,7 +31,7 @@ export const Profile = () => {
   return (
     <div className='profile'>
       <div className='profile-header'>
-      <Image src={userData.avatar_image} alt={userData.first_name + userData.last_name} roundedCircle="true" width="75px" />
+      <Image src={userData.avatar_image} alt={userData.first_name + " " + userData.last_name} roundedCircle="true" width="75px" />
       <h1>{userData.first_name} {userData.last_name}'s Profile</h1>
       {userData.bio && <p>{userData.bio}</p>}
       </div>

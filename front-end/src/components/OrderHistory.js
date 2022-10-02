@@ -1,32 +1,23 @@
-import React from "react";
-import '../styles/button.scss';
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
+import React, { useState } from "react";
+import "../styles/button.scss";
+import Button from "./Button";
+import Sold from "./Sold";
+import Purchases from "./Purchases";
 
 export default function OrderHistory() {
+  const SOLD = 'SOLD';
+  const PURCHASES = 'PURCHASES';
+
+  const [orderType, setOrderType] = useState(SOLD);
+
   return (
     <div className="order-history">
       <h1>Your Order History</h1>
-      <div className="order-list">
-        <h2>COULD HAVE TWO BUTTONS HERE: PURCHASED || SOLD</h2>
-        <Card style={{ width: '14rem' }}>
-          <Card.Img variant="top" src="images/artwork/8-7.jpeg" />
-          <Card.Body>
-            <Card.Title>Order No. #</Card.Title>
-            <Card.Text>
-              Date of Purchase
-            </Card.Text>
-          </Card.Body>
-          <ListGroup className="list-group-flush">
-            <ListGroup.Item>Name of Painting</ListGroup.Item>
-            <ListGroup.Item>Price of Painting</ListGroup.Item>
-          </ListGroup>
-          <Card.Body>
-            <Card.Text><b>Painting Description:</b> This would be done in here with a map over the array of the user's purchases, which means somewhere along the line we will have to add the user's purchases to the route and pass it to this component as props</Card.Text>
-            <Card.Link href="#">View Artist's Gallery</Card.Link>
-          </Card.Body>
-        </Card>
-      </div>
+      <Button message={"Sold Artworks"} onClick={() => setOrderType(SOLD)}/>
+      <Button message={"Purchased Artworks"} onClick={() => setOrderType(PURCHASES)}/> 
+
+      {orderType === SOLD && <Sold />}
+      {orderType === PURCHASES && <Purchases />}
     </div>
   )
 }
