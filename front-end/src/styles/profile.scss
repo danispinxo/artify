@@ -1,0 +1,36 @@
+@import "../styles/variables.scss";
+
+.profile {
+  font-family: $body-font;
+
+  .profile-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  h1 {
+    font-family: $header-font;
+  }
+  
+  .profile-buttons {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .user-gallery {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+.mb-3 {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-artwork-preview {
+  width: 10rem;
+  margin-left: 1rem;
+}

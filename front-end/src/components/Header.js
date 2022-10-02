@@ -38,6 +38,13 @@ export const Header = () => {
             >
               Gallery
             </Nav.Link>
+            <Nav.Link
+              as={Link}
+              className="text-decoration-none text-black"
+              to="/profile"
+            >
+              Profile
+            </Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Form.Control

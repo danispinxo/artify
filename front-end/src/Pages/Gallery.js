@@ -11,11 +11,10 @@ export const Gallery = () => {
       .then((data) => setBackendData(data));
   }, []);
 
-  
-
   return (
     <div className='gallery'>
       <h1>Sample Art Gallery</h1>
+      
       <div className="list">
           {(backendData.length > 0) && backendData.map((artwork, i) => 
           <div key={i}>
@@ -25,6 +24,5 @@ export const Gallery = () => {
           </div>)}
       </div>
     </div>
-
   )
 }
