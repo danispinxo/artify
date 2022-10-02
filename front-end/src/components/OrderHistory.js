@@ -8,6 +8,7 @@ export default function OrderHistory() {
     <div className="order-history">
       <h1>Your Order History</h1>
       <div className="order-list">
+        <h2>COULD HAVE TWO BUTTONS HERE: PURCHASED || SOLD</h2>
         <Card style={{ width: '14rem' }}>
           <Card.Img variant="top" src="images/artwork/8-7.jpeg" />
           <Card.Body>
