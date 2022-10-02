@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const itemQueries = require("../db/queries/users");
+const itemQueries = require("../db/queries/artwork");
 
 router.get("/", (req, res) => {
-  itemQueries.getArtByUser(5)
-  .then((users) => {
-    return res.json(users)
+  itemQueries.getCategories()
+  .then((categories) => {
+    return res.json(categories)
   })
   .catch((err) => {
     res.status(500).json({ error: err.message });

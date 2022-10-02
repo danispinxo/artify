@@ -1,0 +1,26 @@
+.categoryitem-container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  width: 200px;
+  flex: 1 0 21%;
+  align-items: center;
+/* From https://css.glass */
+background: rgba(242, 239, 233, 0.91);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(8.6px);
+-webkit-backdrop-filter: blur(8.6px);
+border: 1px solid rgba(242, 239, 233, 0.27);
+}
+.category-image{
+  padding: 5px;
+}
+.category-image img{
+  border-radius: 8px;
+  
+}
+
+
+
+
