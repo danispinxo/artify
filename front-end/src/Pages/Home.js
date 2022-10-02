@@ -4,9 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "../styles/homepage.scss";
-import { Pagination, Navigation } from "swiper";
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
+import { Autoplay, Pagination, Navigation } from "swiper";
 import CategoryItem from "../components/CategoryItem";
 
 
@@ -27,20 +25,26 @@ export const Home = () => {
   
   return (
     <div className="homepage-container">
-    <h1>LETS BUY ART!</h1>
-
-      {images.length > 0 && (
+      
+        <h1>LETS BUY ART!</h1>
+      
+      
+        {images.length > 0 && (
         <Swiper
         slidesPerView={5}
         spaceBetween={5}
         slidesPerGroup={5}
         loop={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
         loopFillGroupWithBlank={true}
         pagination={{
           clickable: true,
         }}
         navigation={true}
-        modules={[Pagination, Navigation]}
+        modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
 
@@ -54,10 +58,11 @@ export const Home = () => {
 
         </Swiper>
       )}
-
+      
+      <h1>Browse by Category</h1>
       <div className="categories-container">
       {categories.map((category, i) => 
-        <CategoryItem name={category.name} image={category.image} />
+        <CategoryItem key={i} name={category.name} image={category.image} />
         )}
       </div>
     </div>
