@@ -18,15 +18,13 @@ const getArtByUser = (user_id) => {
     });
 };
 
-const getUserAndArt = (user_id) => {
+const getUserById = (id) => {
   return db
     .query(
-      `SELECT * FROM users
-      JOIN artworks ON users.id = artworks.user_id
-      WHERE user_id = $1;`, [user_id])
+      'SELECT * FROM users WHERE users.id = $1;', [id])
     .then((data) => {
       return data.rows;
     });
-};
+}
 
-module.exports = { getUsers, getArtByUser, getUserAndArt };
+module.exports = { getUsers, getArtByUser, getUserById };

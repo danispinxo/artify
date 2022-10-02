@@ -14,28 +14,33 @@ export const Profile = () => {
   const ADD = 'ADD';
   const HISTORY = 'HISTORY';
 
-  const [userData, setUserData] = useState([{}]);
+  const [userData, setUserData] = useState({});
+  const [userGallery, setUserGallery] = useState([])
   const [mode, setMode] = useState(VIEW)
 
   useEffect(() => {
-    axios
-      .get("/profile/api")
-      .then((res) => res.data)
-      .then((data) => setUserData(data))
-  }, []);
+    Promise.all([
+      axios.get("/profile/api"),
+      axios.get("/gallery/api")
+    ]).then((all) => {
+      setUserData(all[0].data[0])
+      setUserGallery(all[1].data)
+    })
+  },[])
 
   return (
     <div className='profile'>
       <div className='profile-header'>
-      <Image src={"images/avatar/frankis.jpeg"} alt="Frankis Avatar" roundedCircle="true" width="75px" />
-      <h1>Frankis's Profile</h1>
+      <Image src={userData.avatar_image} alt={userData.first_name + userData.last_name} roundedCircle="true" width="75px" />
+      <h1>{userData.first_name} {userData.last_name}'s Profile</h1>
+      {userData.bio && <p>{userData.bio}</p>}
       </div>
       <div className='profile-buttons'>
         <Button message="Add to Gallery" onClick={() => setMode(ADD)}/>
         <Button message="Order History" onClick={() => setMode(HISTORY)}/>
         <Button message="Edit Profile" onClick={() => setMode(EDIT)}/>
       </div>
-      {mode === VIEW && <ViewProfile />}
+      {mode === VIEW && <ViewProfile gallery={userGallery}/>}
       {mode === EDIT && <EditProfile />}
       {mode === ADD && <AddArtwork />}
       {mode === HISTORY && <OrderHistory />}
