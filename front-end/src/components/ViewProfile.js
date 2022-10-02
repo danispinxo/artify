@@ -1,24 +1,24 @@
 import React from "react";
 import '../styles/button.scss';
-import Button from "./Button";
+import Card from 'react-bootstrap/Card';
 
 export default function ViewProfile() {
+
+  const sampleArtArray = ["images/artwork/8-7.jpeg", "images/artwork/8-6.jpeg", "images/artwork/8-5.jpeg", "images/artwork/8-4.jpeg", "images/artwork/8-3.jpeg", "images/artwork/8-2.jpeg", "images/artwork/8-1.jpeg"];
+
   return (
     <div className="view-profile">
-      <h1>*SAMPLE NAME*'s Profile</h1>
-      <div className='profile-buttons'>
-        <Button message="Add to Gallery" />
-        <Button message="Order History" />
-        <Button message="Edit Profile" />
-      </div>
+      <p>Images Currently in Your Gallery:</p>
       <div className="user-gallery">
-        <p>This is where the user's artwork will go</p>
-          {/* {(userData.length > 0) && userData.map((artwork, i) => 
-          <div key={i}>
-            <img src={artwork.image} alt="avatar" width="250px"/> 
-            <p>"{artwork.name}" -- Price $ {artwork.price_cents / 100.00}</p>
-            <p>{artwork.description}</p>
-          </div>)} */}
+        {sampleArtArray.map(art => 
+          <Card style={{ width: '14rem' }}>
+            <Card.Img variant="top" src={art}/>
+            <Card.Body>
+              <Card.Title>Painting Title</Card.Title>
+            </Card.Body>
+          </Card>
+        )}
+
       </div>
     </div>
   )
