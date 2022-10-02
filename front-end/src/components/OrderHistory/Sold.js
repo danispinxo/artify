@@ -1,0 +1,36 @@
+import React from "react";
+import "./OrderHistory.scss"
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
+import SimpleDateTime  from 'react-simple-timestamp-to-date';
+
+export default function Sold({orders}) {
+
+  return (
+    <div className="order-history">
+      <h1>Your Sold Artworks</h1>
+      <div className="order-list">
+        {orders.map((order, index) => 
+        <Card style={{ width: '14rem' }} key={index}>
+          <Card.Img variant="top" src={order.image} alt={order.name}/>
+          <Card.Body>
+            <Card.Title>Order No. {order.order_id}</Card.Title>
+            <Card.Text>
+              <SimpleDateTime dateSeparator="-" format="MYD" timeSeparator=":" meridians="1">{order.order_date}</SimpleDateTime>
+            </Card.Text>
+          </Card.Body>
+          <ListGroup className="list-group-flush">
+            <ListGroup.Item>{order.name}</ListGroup.Item>
+            <ListGroup.Item>$ {order.price_cents / 100}</ListGroup.Item>
+          </ListGroup>
+          <Card.Body>
+            <Card.Text>
+              {order.description}
+            </Card.Text>
+          </Card.Body>
+        </Card>        
+        )}
+      </div>
+    </div>
+  )
+}

@@ -19,6 +19,7 @@ const getAllPurchasedByUser = (user_id) => {
     .query(`
       SELECT * FROM orders
       JOIN line_items ON orders.id = line_items.order_id
+      JOIN artworks ON line_items.artwork_id = artworks.id
       WHERE orders.customer_id = $1
     `, [user_id])
     .then((data) => {

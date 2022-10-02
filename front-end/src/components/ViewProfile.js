@@ -6,7 +6,7 @@ export default function ViewProfile({gallery}) {
 
   return (
     <div className="view-profile">
-      <p>Images Currently in Your Gallery:</p>
+      <h1>Artworks Currently in Your Gallery</h1>
       <div className="user-gallery">
         {gallery.map((art, index) => 
           <div key={index}>
