@@ -1,0 +1,10 @@
+@import "../styles/variables.scss";
+
+.profile {
+  font-family: $body-font;
+
+  .profile-buttons {
+    display: flex;
+    flex-direction: column;
+  }
+}
