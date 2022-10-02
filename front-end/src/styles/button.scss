@@ -2,11 +2,13 @@
 
 
 .button {
-  padding: 1.5em 5em;
+  // padding: 1.5em 5em;
+  padding-top: 5px;
+  padding-bottom: 5px;
   background: #efefef;
   border: none;
   border-radius: .5rem;
-  width: 300px;
+  width: 200px;
   color: #444;
   font-size: 1rem;
   font-weight: 700;
@@ -14,7 +16,7 @@
   letter-spacing: .05rem;
   text-align: center;
   outline: none;
-  margin-top: 32px;
+  margin-top: 15px;
   cursor: pointer;
   transition: .2s ease-in-out;
   box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
