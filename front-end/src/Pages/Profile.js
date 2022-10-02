@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 
-export const Gallery = () => {
+export const Profile = () => {
   const [backendData, setBackendData] = useState([{}]);
 
   useEffect(() => {
@@ -12,9 +12,8 @@ export const Gallery = () => {
   }, []);
 
   return (
-    <div className='gallery'>
-      <h1>Sample Art Gallery</h1>
-      
+    <div className='profile'>
+      <h1>*SAMPLE NAME*'s Profile</h1>
       <div className="list">
           {(backendData.length > 0) && backendData.map((artwork, i) => 
           <div key={i}>
