@@ -38,16 +38,47 @@ router.put("/", (req, res) => {
 router.put("/avatar", upload.single('avatar'), (req, res) => {
   const userID = req.body.userID;
   const avatarPath = req.file.path;
+
   (async () => {
+
+    try {
     // Upload the image
     const publicId = await uploadImage(avatarPath);
 
     // Get the image (returns the secure_url)
     const imageURL = await getAssetInfo(publicId);
 
-    userQueries.updateAvatar(userID, imageURL)
+    userQueries.updateAvatar(userID, imageURL);
 
-})();
+    res.send("Okay!")
+    } catch (error) {
+      console.log(error);
+    }
+
+  })();
+
+});
+
+router.put("/cover", upload.single('cover'), (req, res) => {
+  const userID = req.body.userID;
+  const coverPath = req.file.path;
+  (async () => {
+
+    try {
+    // Upload the image
+    const publicId = await uploadImage(coverPath);
+
+    // Get the image (returns the secure_url)
+    const imageURL = await getAssetInfo(publicId);
+
+    userQueries.updateCover(userID, imageURL)
+  
+    res.send("Okay!")
+    } catch (error) {
+        console.log(error);
+    }
+
+  })();
 
 });
 

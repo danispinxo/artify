@@ -46,7 +46,7 @@ export default function Profile(props) {
         <Button message="Preview Your Gallery" />
       </div>
       {mode === VIEW && <ViewProfile gallery={userGallery}/>}
-      {mode === EDIT && <EditProfile user={userData} mode={mode} setMode={setMode}/>}
+      {mode === EDIT && <EditProfile user={userData} setMode={setMode}/>}
       {mode === ADD && <AddArtwork user={userData} />}
       {mode === HISTORY && <OrderHistory />}
     </div>

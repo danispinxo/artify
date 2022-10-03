@@ -51,6 +51,19 @@ const updateAvatar = (user_id, avatar_image) => {
     .then((data) => {
       return data.rows;
     });
-}
+};
 
-module.exports = { getUsers, getArtByUser, getUserById, editUser, updateAvatar };
+const updateCover = (user_id, cover_image) => {
+  return db
+    .query(`
+    UPDATE users
+    SET cover_image = $2
+    WHERE users.id = $1
+    RETURNING *;
+    `, [user_id, cover_image])
+    .then((data) => {
+      return data.rows;
+    });
+};
+
+module.exports = { getUsers, getArtByUser, getUserById, editUser, updateAvatar, updateCover };

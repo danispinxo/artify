@@ -5,7 +5,7 @@ import Image from 'react-bootstrap/Image';
 import Button from "./Button";
 import Form from 'react-bootstrap/Form';
 
-export default function EditProfile({mode, setMode, user}) {
+export default function EditProfile({setMode, user}) {
 
   const [edits, setEdits] = useState({});
   const userEdits = {};
@@ -31,7 +31,7 @@ export default function EditProfile({mode, setMode, user}) {
   }, [edits, setMode]); 
 
 
-  const handleSubmit = event => {
+  const submitAvatar = event => {
     event.preventDefault();
 
     const form = event.currentTarget;
@@ -41,32 +41,66 @@ export default function EditProfile({mode, setMode, user}) {
 
     formData.append("userID", user.id);
     formData.append("avatar", fileUpload);
-
+    console.log("Before axios", formData);
+    
     axios.put("/api/profile/avatar", formData)
-      .then((all) => {});
+      .then((all) => {
+        console.log("Axios complete");
+        setMode(VIEW);
+      });
+  };
 
-    setMode(VIEW);
+  const submitCover = event => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const fileUploadInput = form.querySelector("#change-cover");
+    const fileUpload = fileUploadInput.files[0];
+    const formData = new FormData();
+
+    formData.append("userID", user.id);
+    formData.append("cover", fileUpload);
+    console.log("Before axios", formData);
+    axios.put("/api/profile/cover", formData)
+      .then((all) => {
+        console.log("Axios complete");
+        setMode(VIEW);
+      });
   };
 
   return (
     <div className="edit-profile">
       <h1>Edit Your Profile</h1>
-      <div className="edit-avatar-form">
 
-        <Form onSubmit={handleSubmit}>
+      <div className="edit-avatar-form">
+        <Form onSubmit={submitAvatar}>
           <Form.Group className="mb-3" controlId="change-avatar">
-            <Form.Label>Edit Your Avatar</Form.Label>
+            <h2>Edit Your Avatar</h2>
             <Image src={user.avatar_image} alt={user.first_name + user.last_name} roundedCircle="true" width="100px" />
             <Form.Control type="file" />
           </Form.Group>
 
           <Button message="Upload New Avatar" variant="primary" type="submit" />
         </Form>
-
       </div>
+
+      <div className="edit-cover-form">
+        <Form onSubmit={submitCover}>
+          <Form.Group className="mb-3" controlId="change-cover">
+            <h2>Edit Your Cover Image</h2>
+            {user.cover_image && 
+              <Image src={user.cover_image} alt={user.first_name + "cover image"} width="200px" />
+            }
+            <Form.Control type="file" />
+          </Form.Group>
+
+          <Button message="Upload New Cover" variant="primary" type="submit" />
+        </Form>
+      </div>
+
       <div className="edit-form">
         <Form onSubmit={event => event.preventDefault()}>
-
+        <h2>Edit Your Profile Information</h2>
           <Form.Group className="mb-3" controlId="change-first-name">
             <Form.Label>Your First Name</Form.Label>
             <Form.Control name="first_name" type="name" placeholder={user.first_name} onChange={(event) => userEdits.first_name = event.target.value} />
