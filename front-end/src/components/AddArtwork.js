@@ -20,23 +20,29 @@ export default function AddArtwork({setMode, user}) {
   const submitArtwork = event => {
     event.preventDefault();
 
-    console.log(event);
     // This part retrieves the file from the change-avatar form
-    // const form = event.currentTarget;
-    // const fileUploadInput = form.querySelector("#change-avatar");
-    // const fileUpload = fileUploadInput.files[0];
+    const form = event.currentTarget;
+    const categoryID = form.querySelector("#category").value;
+    const name = form.querySelector("#title").value;
+    const priceCents = form.querySelector("#price").value * 100;
+    const description = form.querySelector("#description").value;
+    const fileUpload = form.querySelector("#add-artwork").files[0];
     
-    // // This part creates a FormData object, it includes 2 things: 1. text (the user.id), 2. the file
-    // const formData = new FormData();
-    // formData.append("userID", user.id);
-    // formData.append("avatar", fileUpload);
+    // This part creates a FormData object, it includes 2 things: 1. text (the user.id), 2. the file
+    const formData = new FormData();
+    formData.append("userID", user.id);
+    formData.append("categoryID", categoryID);
+    formData.append("name", name);
+    formData.append("priceCents", priceCents);
+    formData.append("description", description);
+    formData.append("artwork", fileUpload);
 
-    // // Makes put request with second arg., the form data with the above info
-    // axios.put("/api/profile/add", formData)
-    //   .then((all) => {
-    //     // Then once complete
-    //     setMode(VIEW);
-    //   });
+    // Makes put request with second arg., the form data with the above info
+    axios.put("/api/profile/add", formData)
+      .then((all) => {
+        // Then once complete
+        setMode(VIEW);
+      });
   };
 
 
@@ -54,7 +60,7 @@ export default function AddArtwork({setMode, user}) {
             <Form.Label>Category</Form.Label>
             <Form.Select id="category">
               {categories.map((category) => 
-                <option key={category.id}>{category.name}</option>
+                <option key={category.id} value={category.id}>{category.name}</option>
               )}
             </Form.Select>
           </Form.Group>
@@ -66,7 +72,7 @@ export default function AddArtwork({setMode, user}) {
 
           <Form.Group className="mb-3" controlId="price">
             <Form.Label>Price:</Form.Label>
-            <Form.Control name="price" type="currency" />
+            <Form.Control name="price" type="number" min="0.00" max="10000.00" step="0.01" defaultValue="10.00" />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="description">
@@ -74,7 +80,7 @@ export default function AddArtwork({setMode, user}) {
             <Form.Control as="textarea" />
           </Form.Group>
 
-          <Button message="Add Artwork to Gallery" variant="primary" type="submit" onClick={() => console.log(dataState)}/>
+          <Button message="Add Artwork to Gallery" variant="primary" type="submit" />
         </Form>
       </div>
     </div>
