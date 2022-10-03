@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -21,9 +20,10 @@ export const Home = () => {
     }
   }, [dataState]);
 
+
   return (
     <div className="homepage-container">
-      <h1>LETS BUY ART!</h1>
+      <h1>Featured Artworks</h1>
 
       {artworks.length > 0 && (
         <Swiper
@@ -46,13 +46,13 @@ export const Home = () => {
           {artworks.map((artwork, i) => (
             <SwiperSlide className="shrink" key={i}>
               <div className="artwork-container">
-                <Link to={`/product/description/${artwork.id}`} state={artwork}>
-                  {" "}
+                <Link to={`/product/${artwork.id}`} state={artwork}>
+                  
                   <img
                     className="artwork"
                     src={artwork.image}
                     alt={artwork.image}
-                  />{" "}
+                  />
                 </Link>
               </div>
             </SwiperSlide>
@@ -63,7 +63,7 @@ export const Home = () => {
       <h1>Browse by Category</h1>
       <div className="categories-container">
         {categories.map((category, i) => (
-          <CategoryItem key={i} name={category.name} image={category.image} />
+          <CategoryItem key={i} id={category.id} name={category.name} image={category.image} />
         ))}
       </div>
     </div>

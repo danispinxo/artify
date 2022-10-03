@@ -7,6 +7,7 @@ import { Gallery } from "./Pages/Gallery";
 import { Profile } from "./Pages/Profile";
 import { DataContextProvider }from "./context/dataContext";
 import Product_description from "./Pages/Product_description";
+import Category from "./Pages/Category";
 
 function App() {
   return (
@@ -19,9 +20,10 @@ function App() {
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/profile" element={<Profile />} />
             <Route
-              path="/product/description/:id"    
+              path="/product/:id"    
               element={<Product_description />}
             />
+            <Route path="/category/:id" element={<Category />} />
           </Routes>
         </BrowserRouter>
       </div>

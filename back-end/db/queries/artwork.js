@@ -12,7 +12,7 @@ const getArtworkByRandom = () => {
 const getCategories = () => {
   return db
     .query(
-      'SELECT categories.name, categories.image FROM categories;')
+      'SELECT * FROM categories;')
     .then((data) => {
       return data.rows;
     });
@@ -28,4 +28,14 @@ const getArtworkById= (artwork_id) => {
     });
 }
 
-module.exports = { getArtworkByRandom, getCategories, getArtworkById };
+const getArtworkByCategoryId= (category_id) => {
+  return db
+    .query(
+      `SELECT categories.name as categoryName, artworks.user_id, artworks.name as artworkName, artworks.description, artworks.image as artworkImage, artworks.price_cents FROM artworks JOIN categories ON category_id = categories.id WHERE categories.id = $1;`, [category_id])
+    .then((data) => {
+      return data.rows;
+    });
+}
+
+
+module.exports = { getArtworkByRandom, getCategories, getArtworkById, getArtworkByCategoryId };

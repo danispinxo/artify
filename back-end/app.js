@@ -18,6 +18,7 @@ const homepageCategories = require("./routes/category");
 const profileInformation = require("./routes/profile");
 const orderRoutes = require("./routes/order");
 const artworkRoutes = require("./routes/artwork");
+const categoryItemRoutes = require("./routes/categoryItem");
 
 // Mount all resource routes
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
@@ -27,6 +28,7 @@ app.use("/categories/api", homepageCategories);
 app.use("/profile/api", profileInformation);
 app.use("/order/api", orderRoutes);
 app.use("/api/product", artworkRoutes);
+app.use("/api/categoryItem", categoryItemRoutes);
 
 
 //Home page
