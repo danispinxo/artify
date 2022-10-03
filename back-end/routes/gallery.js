@@ -2,7 +2,7 @@ const router = require('express').Router();
 const itemQueries = require("../db/queries/users");
 
 router.get("/", (req, res) => {
-  itemQueries.getArtByUser(5)
+  itemQueries.getArtByUser(req.query.id)
   .then((users) => {
     return res.json(users)
   })

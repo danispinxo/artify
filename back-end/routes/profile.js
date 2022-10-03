@@ -2,7 +2,7 @@ const router = require('express').Router();
 const userQueries = require("../db/queries/users");
 
 router.get("/", (req, res) => {
-  userQueries.getUserById(5)
+  userQueries.getUserById(req.query.id)
   .then((users) => {
     return res.json(users)
   })
