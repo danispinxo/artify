@@ -33,19 +33,20 @@ export default function EditProfile({setMode, user}) {
 
   const submitAvatar = event => {
     event.preventDefault();
-
+    // This part retrieves the file from the change-avatar form
     const form = event.currentTarget;
     const fileUploadInput = form.querySelector("#change-avatar");
     const fileUpload = fileUploadInput.files[0];
+    
+    // This part creates a FormData object, it includes 2 things: 1. text (the user.id), 2. the file
     const formData = new FormData();
-
     formData.append("userID", user.id);
     formData.append("avatar", fileUpload);
-    console.log("Before axios", formData);
-    
+
+    // Makes put request with second arg., the form data with the above info
     axios.put("/api/profile/avatar", formData)
       .then((all) => {
-        console.log("Axios complete");
+        // Then once complete
         setMode(VIEW);
       });
   };

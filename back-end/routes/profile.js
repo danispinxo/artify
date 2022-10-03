@@ -36,6 +36,7 @@ router.put("/", (req, res) => {
 });
 
 router.put("/avatar", upload.single('avatar'), (req, res) => {
+  //Takes info. sent with the image, parcels it with multer, then runs these cloudinary functions to add the new images to the db
   const userID = req.body.userID;
   const avatarPath = req.file.path;
 
