@@ -1,69 +1,70 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect, useContext } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "../styles/homepage.scss";
 import { Autoplay, Pagination, Navigation } from "swiper";
 import CategoryItem from "../components/CategoryItem";
-
+import { Link } from "react-router-dom";
+import { DataContext } from "../context/dataContext";
 
 export const Home = () => {
-  const [images, setImages] = useState([]);
-  const [categories, setCategories] = useState([])
+  const dataState = useContext(DataContext);
+  const [artworks, setArtworks] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    Promise.all([
-      axios.get("/homepage/api"),
-      axios.get("/categories/api")
-    ]).then((all) => {
-      setImages(all[0].data)
-      setCategories(all[1].data)
-    })
-  },[])
+    if (dataState.artworks) {
+      setArtworks(dataState.artworks);
+      setCategories(dataState.categories);
+    }
+  }, [dataState]);
 
-  
+
   return (
     <div className="homepage-container">
-      
-        <h1>LETS BUY ART!</h1>
-      
-      
-        {images.length > 0 && (
+      <h1>Featured Artworks</h1>
+
+      {artworks.length > 0 && (
         <Swiper
-        slidesPerView={5}
-        spaceBetween={5}
-        slidesPerGroup={5}
-        loop={true}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        loopFillGroupWithBlank={true}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
-      >
-
-      {images.map((image, i) => (
-        <SwiperSlide className="shrink" key={i}>
-          <div className="artwork-container">
-            <img className="artwork" src={image.image} alt={image.image} />
-          </div>
-        </SwiperSlide>
+          slidesPerView={5}
+          spaceBetween={5}
+          slidesPerGroup={5}
+          loop={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          loopFillGroupWithBlank={false}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          modules={[Autoplay, Pagination, Navigation]}
+          className="mySwiper"
+        >
+          {artworks.map((artwork, i) => (
+            <SwiperSlide className="shrink" key={i}>
+              <div className="artwork-container">
+                <Link to={`/product/${artwork.id}`} state={artwork}>
+                  
+                  <img
+                    className="artwork"
+                    src={artwork.image}
+                    alt={artwork.image}
+                  />
+                </Link>
+              </div>
+            </SwiperSlide>
           ))}
-
         </Swiper>
       )}
-      
+
       <h1>Browse by Category</h1>
       <div className="categories-container">
-      {categories.map((category, i) => 
-        <CategoryItem key={i} name={category.name} image={category.image} />
-        )}
+        {categories.map((category, i) => (
+          <CategoryItem key={i} id={category.id} name={category.name} image={category.image} />
+        ))}
       </div>
     </div>
   );

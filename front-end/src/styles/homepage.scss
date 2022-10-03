@@ -24,6 +24,12 @@
   -ms-flex-align: center;
   -webkit-align-items: center;
   align-items: center;
+  background-color: rgba(243, 236, 236, 0.95);
+  border-radius: 10px;
+  // border: 1px solid rgb(235, 222, 222);
+
+
+  
 }
 
 .swiper-slide img {
@@ -49,6 +55,7 @@ h1 {
 
 .shrink img {
   transition: 1s ease;
+  
   }
   
   .shrink img:hover{
@@ -62,8 +69,7 @@ h1 {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 80%;
-    
+    width: 100%;  
     
   }
 
@@ -73,5 +79,7 @@ h1 {
     width: 100%;
     flex-direction: column;
     align-items: center;
+    background-image: linear-gradient($beige 50%, $light-brown);
+    
     
   }
