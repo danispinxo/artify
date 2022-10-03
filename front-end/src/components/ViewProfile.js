@@ -1,5 +1,6 @@
 import React from "react";
 import '../styles/button.scss';
+import '../styles/profile.scss';
 import Card from 'react-bootstrap/Card';
 
 export default function ViewProfile({gallery}) {
@@ -15,6 +16,13 @@ export default function ViewProfile({gallery}) {
             <Card.Body>
               <Card.Title>{art.name}</Card.Title>
             </Card.Body>
+
+            {art.sold && 
+              <Card.Text className="sold">
+                SOLD!           
+              </Card.Text>
+            }
+
           </Card>
           </div>
         )}

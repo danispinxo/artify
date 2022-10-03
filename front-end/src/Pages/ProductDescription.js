@@ -31,10 +31,15 @@ export default function ProductDescription(props) {
       <div className="product-price-container">
         <h3>${product.price_cents/100.00}</h3>
       </div>
-
+      {!product.sold &&
       <div className="add-to-cart-button-container">
         <Button message="Add to cart" />
-      </div>
+      </div>      
+      }
+      {product.sold &&
+        <h2>This image has already been purchased!</h2>
+      }
+
     </div>
   );
 }
