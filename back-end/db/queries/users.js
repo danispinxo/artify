@@ -41,7 +41,6 @@ const editUser = (editedUser) => {
 }
 
 const addUser = (user) => {
-  console.log(user)
   return db
     .query(`
     INSERT INTO users (first_name, last_name, email, password) VALUES 
@@ -52,4 +51,15 @@ const addUser = (user) => {
     });
 }
 
-module.exports = { getUsers, getArtByUser, getUserById, editUser, addUser };
+
+const authenticateUser = (email) => {
+  return db
+    .query(`
+    SELECT * FROM users WHERE users.email = $1;`, 
+    [email])
+    .then((data) => {
+      return data.rows;
+    });
+}
+
+module.exports = { getUsers, getArtByUser, getUserById, editUser, addUser, authenticateUser };
