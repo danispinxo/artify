@@ -51,6 +51,20 @@ export const Header = () => {
             >
               Profile
             </Nav.Link>
+            <Nav.Link
+              as={Link}
+              className="text-decoration-none text-black"
+              to="/login"
+            >
+              Login
+            </Nav.Link>
+            <Nav.Link
+              as={Link}
+              className="text-decoration-none text-black"
+              to="/register"
+            >
+              Register
+            </Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Form.Control

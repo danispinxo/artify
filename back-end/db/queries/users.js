@@ -66,4 +66,25 @@ const updateCover = (user_id, cover_image) => {
     });
 };
 
-module.exports = { getUsers, getArtByUser, getUserById, editUser, updateAvatar, updateCover };
+const addUser = (user) => {
+  return db
+    .query(`
+    INSERT INTO users (first_name, last_name, email, password) VALUES 
+  ($1, $2, $3, $4);`, 
+    [user.firstName, user.lastName, user.email, user.password])
+    .then((data) => {
+      return data.rows;
+    });
+};
+
+const authenticateUser = (email) => {
+  return db
+    .query(`
+    SELECT * FROM users WHERE users.email = $1;`, 
+    [email])
+    .then((data) => {
+      return data.rows;
+    });
+};
+
+module.exports = { getUsers, getArtByUser, getUserById, editUser, addUser, authenticateUser, updateAvatar, updateCover };

@@ -37,7 +37,7 @@ const getArtworkByCategoryId= (category_id) => {
     });
 };
 
-const addNewArtwork = () => {
+const addNewArtwork = (user_id, category_id, name, price_cents, description, image, sold) => {
   return db
   .query(`
   INSERT INTO artworks (user_id, category_id, name, price_cents, description, image, sold) 
