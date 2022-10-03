@@ -35,7 +35,20 @@ const getArtworkByCategoryId= (category_id) => {
     .then((data) => {
       return data.rows;
     });
+};
+
+const addNewArtwork = () => {
+  return db
+  .query(`
+  INSERT INTO artworks (user_id, category_id, name, price_cents, description, image, sold) 
+  VALUES
+  ($1, $2, $3, $4, $5, $6, $7)
+  RETURNING *;
+  `, [user_id, category_id, name, price_cents, description, image, sold])
+  .then((data) => {
+    return data.rows;
+  });
 }
 
 
-module.exports = { getArtworkByRandom, getCategories, getArtworkById, getArtworkByCategoryId };
+module.exports = { getArtworkByRandom, getCategories, getArtworkById, getArtworkByCategoryId, addNewArtwork };
