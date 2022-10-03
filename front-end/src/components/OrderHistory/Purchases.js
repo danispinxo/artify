@@ -12,7 +12,7 @@ export default function Purchases({orders}) {
       <div className="order-list">
       {orders.length >= 1 && orders.map((order, index) => 
         <Card style={{ width: '14rem' }} key={index} >
-          <Card.Img variant="top" src={"/" + order.image} alt={order.name} />
+          <Card.Img variant="top" src={order.image} alt={order.name} />
           <Card.Body>
             <Card.Title>Order No. {order.order_id}</Card.Title>
             <Card.Text>
