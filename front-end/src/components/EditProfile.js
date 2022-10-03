@@ -5,7 +5,7 @@ import Image from 'react-bootstrap/Image';
 import Button from "./Button";
 import Form from 'react-bootstrap/Form';
 
-export default function EditProfile({setMode, user}) {
+export default function EditProfile({mode, setMode, user}) {
 
   const [edits, setEdits] = useState({});
   const userEdits = {};
@@ -43,9 +43,9 @@ export default function EditProfile({setMode, user}) {
     formData.append("avatar", fileUpload);
 
     axios.put("/api/profile/avatar", formData)
-      .then((all) => {
-        console.log(all);
-      });
+      .then((all) => {});
+
+    setMode(VIEW);
   };
 
   return (
