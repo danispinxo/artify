@@ -3,7 +3,7 @@ const db = require('../../configs/db.config');
 const getArtworkByRandom = () => {
   return db
     .query(
-      'SELECT artworks.image FROM artworks order by random() LIMIT 40;')
+      'SELECT * FROM artworks order by random() LIMIT 40;')
     .then((data) => {
       return data.rows;
     });
@@ -18,4 +18,14 @@ const getCategories = () => {
     });
 };
 
-module.exports = { getArtworkByRandom, getCategories };
+
+const getArtworkById= (artwork_id) => {
+  return db
+    .query(
+      `SELECT * FROM artworks WHERE artworks.id = $1;`, [artwork_id])
+    .then((data) => {
+      return data.rows[0];
+    });
+}
+
+module.exports = { getArtworkByRandom, getCategories, getArtworkById };
