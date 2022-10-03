@@ -38,10 +38,35 @@ const editUser = (editedUser) => {
     .then((data) => {
       return data.rows;
     });
-}
+};
+
+const updateAvatar = (user_id, avatar_image) => {
+  return db
+    .query(`
+    UPDATE users
+    SET avatar_image = $2
+    WHERE users.id = $1
+    RETURNING *;
+    `, [user_id, avatar_image])
+    .then((data) => {
+      return data.rows;
+    });
+};
+
+const updateCover = (user_id, cover_image) => {
+  return db
+    .query(`
+    UPDATE users
+    SET cover_image = $2
+    WHERE users.id = $1
+    RETURNING *;
+    `, [user_id, cover_image])
+    .then((data) => {
+      return data.rows;
+    });
+};
 
 const addUser = (user) => {
-  console.log(user)
   return db
     .query(`
     INSERT INTO users (first_name, last_name, email, password) VALUES 
@@ -50,6 +75,16 @@ const addUser = (user) => {
     .then((data) => {
       return data.rows;
     });
-}
+};
 
-module.exports = { getUsers, getArtByUser, getUserById, editUser, addUser };
+const authenticateUser = (email) => {
+  return db
+    .query(`
+    SELECT * FROM users WHERE users.email = $1;`, 
+    [email])
+    .then((data) => {
+      return data.rows;
+    });
+};
+
+module.exports = { getUsers, getArtByUser, getUserById, editUser, addUser, authenticateUser, updateAvatar, updateCover };

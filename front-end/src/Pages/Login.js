@@ -1,21 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import "../styles/userAuth.scss"
+import axios from 'axios'
 
 
 export default function Login() {
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  
   const onSubmit = (data) => {
-    console.log(data);
+    axios.post('/login', {
+      data
+    })
+    .then((res) => console.log('Logged in successfully!', res.data))
+    .catch((err) => console.log(err.response.data.message))
   };
 
   return (
- 
   <section className="text-center text-lg-start">
   <div className="container py-4">
     <div className="row g-0 align-items-center">

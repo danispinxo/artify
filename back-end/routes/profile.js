@@ -1,5 +1,19 @@
 const router = require('express').Router();
+const multer = require('multer');
 const userQueries = require("../db/queries/users");
+const { uploadImage, getAssetInfo } = require('../configs/cloudinary');
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '/tmp/')
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    cb(null, file.fieldname + '-' + uniqueSuffix)
+  }
+})
+
+const upload = multer({ storage: storage })
 
 router.get("/", (req, res) => {
   userQueries.getUserById(req.query.id)
@@ -19,6 +33,54 @@ router.put("/", (req, res) => {
   .catch((err) => {
     res.status(500).json({ error: err.message });
   })
+});
+
+router.put("/avatar", upload.single('avatar'), (req, res) => {
+  //Takes info. sent with the image, parcels it with multer, then runs these cloudinary functions to add the new images to the db
+  const userID = req.body.userID;
+  const avatarPath = req.file.path;
+
+  (async () => {
+
+    try {
+    // Upload the image
+    const publicId = await uploadImage(avatarPath);
+
+    // Get the image (returns the secure_url)
+    const imageURL = await getAssetInfo(publicId);
+
+    userQueries.updateAvatar(userID, imageURL);
+
+    res.send("Okay!")
+    } catch (error) {
+      console.log(error);
+    }
+
+  })();
+
+});
+
+router.put("/cover", upload.single('cover'), (req, res) => {
+  const userID = req.body.userID;
+  const coverPath = req.file.path;
+  (async () => {
+
+    try {
+    // Upload the image
+    const publicId = await uploadImage(coverPath);
+
+    // Get the image (returns the secure_url)
+    const imageURL = await getAssetInfo(publicId);
+
+    userQueries.updateCover(userID, imageURL)
+  
+    res.send("Okay!")
+    } catch (error) {
+        console.log(error);
+    }
+
+  })();
+
 });
 
 module.exports = router;
