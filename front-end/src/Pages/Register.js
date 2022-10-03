@@ -18,7 +18,7 @@ export default function Register() {
     axios.post('/register', {
       data
     })
-    .then(() => navigate('/') )
+    // .then(() => navigate('/') )
   };
 
   return (
