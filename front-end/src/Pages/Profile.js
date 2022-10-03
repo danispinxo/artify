@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
 import axios from 'axios';
 import "../styles/profile.scss";
 import Image from 'react-bootstrap/Image';
@@ -8,30 +9,31 @@ import EditProfile from '../components/EditProfile';
 import AddArtwork from '../components/AddArtwork';
 import OrderHistory from '../components/OrderHistory';
 
-export const Profile = () => {
+export default function Profile(props) {
   const VIEW = 'VIEW';
   const EDIT = 'EDIT';
   const ADD = 'ADD';
   const HISTORY = 'HISTORY';
 
-  const [userData, setUserData] = useState({});
+  const { id } = useParams()
+  const [userData, setUserData] = useState({})
   const [userGallery, setUserGallery] = useState([])
   const [mode, setMode] = useState(VIEW)
 
   useEffect(() => {
     Promise.all([
-      axios.get("/profile/api"),
-      axios.get("/gallery/api")
+      axios.get(`/api/profile`,  { params: { id: id } }),
+      axios.get(`/api/gallery`,  { params: { id: id } })
     ]).then((all) => {
       setUserData(all[0].data[0])
       setUserGallery(all[1].data)
     })
-  },[mode])
+  }, [id])
 
   return (
     <div className='profile'>
       <div className='profile-header'>
-        <Image src={userData.avatar_image} alt={userData.first_name + " " + userData.last_name} roundedCircle="true" width="75px" />
+        <Image src={"/" + userData.avatar_image} alt={userData.first_name + " " + userData.last_name} roundedCircle="true" width="75px" />
         <h1>{userData.first_name} {userData.last_name}'s Profile</h1>
       </div>
       <div className='user-bio'>
@@ -48,4 +50,4 @@ export const Profile = () => {
       {mode === HISTORY && <OrderHistory />}
     </div>
   )
-}
+};

@@ -24,7 +24,7 @@ export default function EditProfile({setMode, user}) {
   const VIEW = 'VIEW';
 
   useEffect(() => {
-    axios.put("/profile/api", edits)
+    axios.put("/api/profile", edits)
       .then((all) => {
         edits.id && setMode(VIEW);
       })
@@ -41,7 +41,7 @@ export default function EditProfile({setMode, user}) {
             <Form.Control type="file" />
           </Form.Group>
 
-          <Button message="Upload New Avatar" variant="primary" type="submit" onClick={() => console.log("Adding new avatar!")}/>
+          <Button message="Upload New Avatar" variant="primary" type="submit" onClick={() => console.log("Adding new")}/>
         </Form>
       </div>
       <div className="edit-form">

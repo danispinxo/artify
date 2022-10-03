@@ -10,7 +10,7 @@ export default function ProductDescription(props) {
 
   useEffect(() => {
     axios
-      .get(`/api/product`, {params: {id:id}})
+      .get(`/api/product`, { params: { id: id } })
       .then((res) => setProduct(res.data))
   }, [id]);
 
@@ -29,7 +29,7 @@ export default function ProductDescription(props) {
       </div>
 
       <div className="product-price-container">
-        <h3>${product.price_cents/100}</h3>
+        <h3>${product.price_cents/100.00}</h3>
       </div>
 
       <div className="add-to-cart-button-container">

@@ -11,7 +11,7 @@ export default function ViewProfile({gallery}) {
         {gallery.map((art, index) => 
           <div key={index}>
           <Card style={{ width: '14rem' }}>
-            <Card.Img variant="top" src={art.image} alt={art.name}/>
+            <Card.Img variant="top" src={"/" + art.image} alt={art.name}/>
             <Card.Body>
               <Card.Title>{art.name}</Card.Title>
             </Card.Body>
