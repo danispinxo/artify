@@ -27,14 +27,15 @@ export default function Login() {
              
               <div className="form-outline mb-4">
                 <input placeholder="Email" type="email" id="form3Example3" className="form-control" {...register("email", { required: true })} />
+                {errors.email && <p className="error-message">Email is required</p>}
               </div>
 
               <div className="form-outline mb-4">
                 <input placeholder="Password" type="password" id="form3Example4" className="form-control" {...register("password", { required: true })}/>              
+                {errors.password && <p className="error-message">Password is required</p>}
               </div>
-  
               <button type="submit" className="btn btn-primary btn-block mb-4">
-                Sign up
+                Login
               </button>
 
             </form>

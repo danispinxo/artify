@@ -40,4 +40,16 @@ const editUser = (editedUser) => {
     });
 }
 
-module.exports = { getUsers, getArtByUser, getUserById, editUser };
+const addUser = (user) => {
+  console.log(user)
+  return db
+    .query(`
+    INSERT INTO users (first_name, last_name, email, password) VALUES 
+  ($1, $2, $3, $4);`, 
+    [user.firstName, user.lastName, user.email, user.password])
+    .then((data) => {
+      return data.rows;
+    });
+}
+
+module.exports = { getUsers, getArtByUser, getUserById, editUser, addUser };
