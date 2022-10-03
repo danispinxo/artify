@@ -5,13 +5,21 @@ const morgan = require("morgan");
 const bodyParser = require('body-parser');
 const {ENVIROMENT, PORT} = process.env;
 const app = express();
+const cloudinary = require('cloudinary').v2;
 
 // Middleware
 app.use(morgan(ENVIROMENT));
 app.use(bodyParser.json());
 
+// Return "https" URLs by setting secure: true
+cloudinary.config({
+  secure: true
+});
+
+// Log the configuration
+console.log(cloudinary.config());
+
 // Separated Routes for each Resource
-//const widgetApiRoutes = require('./routes/widgets-api');
 const galleryRoute = require("./routes/gallery");
 const homepageCarousel = require("./routes/homepage");
 const homepageCategories = require("./routes/category");
@@ -38,4 +46,3 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
-

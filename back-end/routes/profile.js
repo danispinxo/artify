@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const multer = require('multer');
 const userQueries = require("../db/queries/users");
+const { uploadImage, getAssetInfo } = require('../configs/cloudinary');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -36,8 +37,25 @@ router.put("/", (req, res) => {
 
 router.put("/avatar", upload.single('avatar'), (req, res) => {
   const userID = req.body.userID;
-  const avatar = req.file;
+  const avatarPath = req.file.path;
 
+  console.log("User ID:", userID);
+  console.log("File path:", avatarPath);
+
+  (async () => {
+
+    // Set the image to upload
+    const imagePath = avatarPath;
+
+    // Upload the image
+    const publicId = await uploadImage(imagePath);
+
+    // Get the image (returns the secure_url)
+    const image = await getAssetInfo(publicId);
+
+    console.log(image);
+
+  })();
 
 });
 
