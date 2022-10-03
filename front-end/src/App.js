@@ -5,7 +5,7 @@ import { Home } from "./Pages/Home";
 import { Header } from "./components/Header";
 import { Gallery } from "./Pages/Gallery";
 import { Profile } from "./Pages/Profile";
-import { DataContextProvider }from "./context/dataContext";
+import { DataContextProvider } from "./context/dataContext";
 import Product_description from "./Pages/Product_description";
 import Category from "./Pages/Category";
 
