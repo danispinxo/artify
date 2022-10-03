@@ -38,6 +38,19 @@ const editUser = (editedUser) => {
     .then((data) => {
       return data.rows;
     });
+};
+
+const updateAvatar = (user_id, avatar_image) => {
+  return db
+    .query(`
+    UPDATE users
+    SET avatar_image = $2
+    WHERE users.id = $1
+    RETURNING *;
+    `, [user_id, avatar_image])
+    .then((data) => {
+      return data.rows;
+    });
 }
 
-module.exports = { getUsers, getArtByUser, getUserById, editUser };
+module.exports = { getUsers, getArtByUser, getUserById, editUser, updateAvatar };

@@ -38,11 +38,14 @@ export default function EditProfile({setMode, user}) {
     const fileUploadInput = form.querySelector("#change-avatar");
     const fileUpload = fileUploadInput.files[0];
     const formData = new FormData();
-    
+
     formData.append("userID", user.id);
     formData.append("avatar", fileUpload);
 
-    axios.put("/api/profile/avatar", formData);
+    axios.put("/api/profile/avatar", formData)
+      .then((all) => {
+        console.log(all);
+      });
   };
 
   return (

@@ -38,24 +38,16 @@ router.put("/", (req, res) => {
 router.put("/avatar", upload.single('avatar'), (req, res) => {
   const userID = req.body.userID;
   const avatarPath = req.file.path;
-
-  console.log("User ID:", userID);
-  console.log("File path:", avatarPath);
-
   (async () => {
-
-    // Set the image to upload
-    const imagePath = avatarPath;
-
     // Upload the image
-    const publicId = await uploadImage(imagePath);
+    const publicId = await uploadImage(avatarPath);
 
     // Get the image (returns the secure_url)
-    const image = await getAssetInfo(publicId);
+    const imageURL = await getAssetInfo(publicId);
 
-    console.log(image);
+    userQueries.updateAvatar(userID, imageURL)
 
-  })();
+})();
 
 });
 
