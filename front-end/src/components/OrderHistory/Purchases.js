@@ -10,9 +10,9 @@ export default function Purchases({orders}) {
     <div className="order-history">
       <h1>Your Purchased Artworks</h1>
       <div className="order-list">
-      {orders.map((order, index) => 
+      {orders.length >= 1 && orders.map((order, index) => 
         <Card style={{ width: '14rem' }} key={index} >
-          <Card.Img variant="top" src={order.image} alt={order.name} />
+          <Card.Img variant="top" src={"/" + order.image} alt={order.name} />
           <Card.Body>
             <Card.Title>Order No. {order.order_id}</Card.Title>
             <Card.Text>
@@ -29,6 +29,10 @@ export default function Purchases({orders}) {
           </Card.Body>
         </Card>
       )}
+
+      {orders.length === 0 && <p>
+        It doesn't look like you've made any purchases yet! Why not check out some of our featured artists on the homepage!?
+      </p>}
       </div>
     </div>
   )

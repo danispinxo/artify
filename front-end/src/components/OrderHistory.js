@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../styles/button.scss";
 import Button from "./Button";
@@ -9,19 +10,20 @@ export default function OrderHistory() {
   const SOLD = 'SOLD';
   const PURCHASES = 'PURCHASES';
 
+  const { id } = useParams();
   const [orderType, setOrderType] = useState(SOLD);
   const [soldArtworks, setSoldArtworks] = useState([]);
   const [purchasedArtworks, setPurchasedArtworks] = useState([]);
 
   useEffect(() => {
     Promise.all([
-      axios.get("/order/api/sold"),
-      axios.get("/order/api/purchased")
+      axios.get("/order/api/sold", { params: { id: id } }),
+      axios.get("/order/api/purchased",  { params: { id: id } })
     ]).then((all) => {
       setSoldArtworks(all[0].data);
       setPurchasedArtworks(all[1].data)
     })
-  },[])
+  },[id])
 
   return (
     <div className="order-history">
