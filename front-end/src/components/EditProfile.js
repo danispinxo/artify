@@ -12,7 +12,7 @@ export default function EditProfile({setMode, user}) {
 
   const editProfile = (edits, user) => {
     const editedUser = {};
-
+    // this creates an edited user to submit with the put request, either with the old or the new information
     editedUser.id = user.id;
     edits.first_name ? editedUser.first_name = edits.first_name : editedUser.first_name = user.first_name;
     edits.last_name ? editedUser.last_name = edits.last_name : editedUser.last_name = user.last_name;
@@ -30,19 +30,35 @@ export default function EditProfile({setMode, user}) {
       })
   }, [edits, setMode]); 
 
+
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const fileUploadInput = form.querySelector("#change-avatar");
+    const fileUpload = fileUploadInput.files[0];
+    const formData = new FormData();
+    formData.append("userID", user.id);
+    formData.append("avatar", fileUpload);
+
+    axios.put("/api/profile/avatar", formData);
+  };
+
   return (
     <div className="edit-profile">
       <h1>Edit Your Profile</h1>
       <div className="edit-avatar-form">
-        <Form onSubmit={event => event.preventDefault()}>
+
+        <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="change-avatar">
             <Form.Label>Edit Your Avatar</Form.Label>
             <Image src={"/" + user.avatar_image} alt={user.first_name + user.last_name} roundedCircle="true" width="100px" />
             <Form.Control type="file" />
           </Form.Group>
 
-          <Button message="Upload New Avatar" variant="primary" type="submit" onClick={() => console.log("Changing Avatar")}/>
+          <Button message="Upload New Avatar" variant="primary" type="submit" />
         </Form>
+
       </div>
       <div className="edit-form">
         <Form onSubmit={event => event.preventDefault()}>
