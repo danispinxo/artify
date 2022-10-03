@@ -47,7 +47,7 @@ export default function Profile(props) {
       </div>
       {mode === VIEW && <ViewProfile gallery={userGallery}/>}
       {mode === EDIT && <EditProfile user={userData} setMode={setMode}/>}
-      {mode === ADD && <AddArtwork user={userData} />}
+      {mode === ADD && <AddArtwork user={userData} setMode={setMode}/>}
       {mode === HISTORY && <OrderHistory />}
     </div>
   )
