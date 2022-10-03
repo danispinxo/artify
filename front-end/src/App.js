@@ -4,9 +4,9 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Home } from "./Pages/Home";
 import { Header } from "./components/Header";
 import { Gallery } from "./Pages/Gallery";
-import { Profile } from "./Pages/Profile";
-import { DataContextProvider }from "./context/dataContext";
-import Product_description from "./Pages/Product_description";
+import Profile from "./Pages/Profile";
+import { DataContextProvider } from "./context/dataContext";
+import ProductDescription from "./Pages/ProductDescription";
 import Category from "./Pages/Category";
 
 function App() {
@@ -18,12 +18,18 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/gallery" element={<Gallery />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route 
+              path="/profile/:id" 
+              element={<Profile />} 
+            />
             <Route
               path="/product/:id"    
-              element={<Product_description />}
+              element={<ProductDescription />}
             />
-            <Route path="/category/:id" element={<Category />} />
+            <Route 
+              path="/category/:id" 
+              element={<Category />} 
+            />
           </Routes>
         </BrowserRouter>
       </div>

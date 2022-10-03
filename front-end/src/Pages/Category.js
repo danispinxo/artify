@@ -11,7 +11,7 @@ export default function Category(props) {
     axios
       .get(`/api/categoryItem`, { params: { id: id } })
       .then((res) => setCategoryArtwork(res.data));
-  }, []);
+  }, [id]);
 
   return (
     <div className="category-page-container">
@@ -24,7 +24,7 @@ export default function Category(props) {
             <div className="artwork-category-info-container">
               <p>{artwork.artworkname}</p>
               <p>{artwork.description}</p>
-              <p>${artwork.price_cents / 100}</p>
+              <p>${artwork.price_cents / 100.00}</p>
             </div>
           </div>
         ))}

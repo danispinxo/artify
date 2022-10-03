@@ -24,7 +24,7 @@ export default function EditProfile({setMode, user}) {
   const VIEW = 'VIEW';
 
   useEffect(() => {
-    axios.put("/profile/api", edits)
+    axios.put("/api/profile", edits)
       .then((all) => {
         edits.id && setMode(VIEW);
       })
@@ -33,13 +33,19 @@ export default function EditProfile({setMode, user}) {
   return (
     <div className="edit-profile">
       <h1>Edit Your Profile</h1>
-      <div className="edit-form">
+      <div className="edit-avatar-form">
         <Form onSubmit={event => event.preventDefault()}>
           <Form.Group className="mb-3" controlId="change-avatar">
-            <Form.Label>Your Avatar</Form.Label>
-            <Image src={user.avatar_image} alt={user.first_name + user.last_name} roundedCircle="true" width="100px" />
-            <Button message="Change Avatar" />
+            <Form.Label>Edit Your Avatar</Form.Label>
+            <Image src={"/" + user.avatar_image} alt={user.first_name + user.last_name} roundedCircle="true" width="100px" />
+            <Form.Control type="file" />
           </Form.Group>
+
+          <Button message="Upload New Avatar" variant="primary" type="submit" onClick={() => console.log("Changing Avatar")}/>
+        </Form>
+      </div>
+      <div className="edit-form">
+        <Form onSubmit={event => event.preventDefault()}>
 
           <Form.Group className="mb-3" controlId="change-first-name">
             <Form.Label>Your First Name</Form.Label>

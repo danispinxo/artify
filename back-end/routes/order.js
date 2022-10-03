@@ -2,7 +2,7 @@ const router = require('express').Router();
 const orderQueries = require("../db/queries/orders");
 
 router.get("/sold", (req, res) => {
-  orderQueries.getAllSoldByUser(5)
+  orderQueries.getAllSoldByUser(req.query.id)
   .then((users) => {
     return res.json(users)
   })
@@ -12,7 +12,7 @@ router.get("/sold", (req, res) => {
 });
 
 router.get("/purchased", (req, res) => {
-  orderQueries.getAllPurchasedByUser(5)
+  orderQueries.getAllPurchasedByUser(req.query.id)
   .then((users) => {
     return res.json(users)
   })
