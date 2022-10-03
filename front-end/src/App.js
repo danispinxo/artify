@@ -17,19 +17,10 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route 
-              path="/profile/:id" 
-              element={<Profile />} 
-            />
-            <Route
-              path="/product/:id"    
-              element={<ProductDescription />}
-            />
-            <Route 
-              path="/category/:id" 
-              element={<Category />} 
-            />
+            <Route path="/gallery/:id" element={<Gallery />} />
+            <Route path="/profile/:id" element={<Profile />} />
+            <Route path="/product/:id" element={<ProductDescription />} />
+            <Route path="/category/:id" element={<Category />} />
           </Routes>
         </BrowserRouter>
       </div>
