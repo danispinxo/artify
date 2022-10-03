@@ -8,6 +8,8 @@ import { Profile } from "./Pages/Profile";
 import { DataContextProvider }from "./context/dataContext";
 import Product_description from "./Pages/Product_description";
 import Category from "./Pages/Category";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
               element={<Product_description />}
             />
             <Route path="/category/:id" element={<Category />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
         </BrowserRouter>
       </div>
