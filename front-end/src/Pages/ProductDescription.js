@@ -4,7 +4,7 @@ import axios from "axios";
 import Button from "../components/Button";
 import "../styles/productInfo.scss";
 
-export default function Product_description(props) {
+export default function ProductDescription(props) {
   const { id } = useParams()
   const [product, setProduct] = useState({})
 
@@ -12,7 +12,7 @@ export default function Product_description(props) {
     axios
       .get(`/api/product`, {params: {id:id}})
       .then((res) => setProduct(res.data))
-  }, []);
+  }, [id]);
 
   return (
     <div className="product-description-container">
