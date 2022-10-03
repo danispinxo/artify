@@ -1,26 +1,42 @@
 import React, {useEffect, useState} from 'react'
+import { useParams } from "react-router-dom";
 import axios from 'axios';
+import Image from 'react-bootstrap/Image';
 
 export const Gallery = () => {
-  const [backendData, setBackendData] = useState([{}]);
+  const {id} = useParams();
+  const [userData, setUserData] = useState({});
+  const [userGallery, setUserGallery] = useState([])
 
   useEffect(() => {
-    axios
-      .get("/gallery/api")
-      .then((res) => res.data)
-      .then((data) => setBackendData(data));
-  }, []);
+    Promise.all([
+      axios.get("/profile/api"),
+      axios.get("/gallery/api", {params: {id:id}})
+    ]).then((all) => {
+      setUserData(all[0].data[0])
+      setUserGallery(all[1].data)
+    })
+  },[id])
+  
 
   return (
     <div className='gallery'>
       <h1>Sample Art Gallery</h1>
+      <div className='profile'>
+      <div className='profile-header'>
+        <Image src={"/" + userData.avatar_image} alt={userData.first_name + " " + userData.last_name} roundedCircle="true" width="75px" />
+        <h1>{userData.first_name} {userData.last_name}'s Profile</h1>
+      </div>
+      <div className='user-bio'>
+        {userData.bio && <p>{userData.bio}</p>}
+      </div>
+      </div>
       
       <div className="list">
-          {(backendData.length > 0) && backendData.map((artwork, i) => 
+          {(userGallery.length > 0) && userGallery.map((artwork, i) => 
           <div key={i}>
-            <img src={artwork.image} alt="avatar" width="250px"/> 
+            <img src={"/" + artwork.image} alt="avatar" width="250px"/> 
             <p>"{artwork.name}" -- Price $ {artwork.price_cents / 100.00}</p>
-            <p>{artwork.description}</p>
           </div>)}
       </div>
     </div>

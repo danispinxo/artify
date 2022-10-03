@@ -11,7 +11,7 @@ export default function Category(props) {
     axios
       .get(`/api/categoryItem`, { params: { id: id } })
       .then((res) => setCategoryArtwork(res.data));
-  }, []);
+  }, [id]);
 
   return (
     <div className="category-page-container">

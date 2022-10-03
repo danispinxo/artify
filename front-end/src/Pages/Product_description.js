@@ -12,7 +12,7 @@ export default function Product_description(props) {
     axios
       .get(`/api/product`, {params: {id:id}})
       .then((res) => setProduct(res.data))
-  }, []);
+  }, [id]);
 
   return (
     <div className="product-description-container">
