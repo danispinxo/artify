@@ -12,7 +12,7 @@ export default function EditProfile({setMode, user}) {
 
   const editProfile = (edits, user) => {
     const editedUser = {};
-
+    // this creates an edited user to submit with the put request, either with the old or the new information
     editedUser.id = user.id;
     edits.first_name ? editedUser.first_name = edits.first_name : editedUser.first_name = user.first_name;
     edits.last_name ? editedUser.last_name = edits.last_name : editedUser.last_name = user.last_name;
@@ -30,23 +30,78 @@ export default function EditProfile({setMode, user}) {
       })
   }, [edits, setMode]); 
 
+
+  const submitAvatar = event => {
+    event.preventDefault();
+    // This part retrieves the file from the change-avatar form
+    const form = event.currentTarget;
+    const fileUploadInput = form.querySelector("#change-avatar");
+    const fileUpload = fileUploadInput.files[0];
+    
+    // This part creates a FormData object, it includes 2 things: 1. text (the user.id), 2. the file
+    const formData = new FormData();
+    formData.append("userID", user.id);
+    formData.append("avatar", fileUpload);
+
+    // Makes put request with second arg., the form data with the above info
+    axios.put("/api/profile/avatar", formData)
+      .then((all) => {
+        // Then once complete
+        setMode(VIEW);
+      });
+  };
+
+  const submitCover = event => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const fileUploadInput = form.querySelector("#change-cover");
+    const fileUpload = fileUploadInput.files[0];
+    const formData = new FormData();
+
+    formData.append("userID", user.id);
+    formData.append("cover", fileUpload);
+    console.log("Before axios", formData);
+    axios.put("/api/profile/cover", formData)
+      .then((all) => {
+        console.log("Axios complete");
+        setMode(VIEW);
+      });
+  };
+
   return (
     <div className="edit-profile">
       <h1>Edit Your Profile</h1>
+
       <div className="edit-avatar-form">
-        <Form onSubmit={event => event.preventDefault()}>
+        <Form onSubmit={submitAvatar}>
           <Form.Group className="mb-3" controlId="change-avatar">
-            <Form.Label>Edit Your Avatar</Form.Label>
-            <Image src={"/" + user.avatar_image} alt={user.first_name + user.last_name} roundedCircle="true" width="100px" />
+            <h2>Edit Your Avatar</h2>
+            <Image src={user.avatar_image} alt={user.first_name + user.last_name} roundedCircle="true" width="100px" />
             <Form.Control type="file" />
           </Form.Group>
 
-          <Button message="Upload New Avatar" variant="primary" type="submit" onClick={() => console.log("Changing Avatar")}/>
+          <Button message="Upload New Avatar" variant="primary" type="submit" />
         </Form>
       </div>
+
+      <div className="edit-cover-form">
+        <Form onSubmit={submitCover}>
+          <Form.Group className="mb-3" controlId="change-cover">
+            <h2>Edit Your Cover Image</h2>
+            {user.cover_image && 
+              <Image src={user.cover_image} alt={user.first_name + "cover image"} width="200px" />
+            }
+            <Form.Control type="file" />
+          </Form.Group>
+
+          <Button message="Upload New Cover" variant="primary" type="submit" />
+        </Form>
+      </div>
+
       <div className="edit-form">
         <Form onSubmit={event => event.preventDefault()}>
-
+        <h2>Edit Your Profile Information</h2>
           <Form.Group className="mb-3" controlId="change-first-name">
             <Form.Label>Your First Name</Form.Label>
             <Form.Control name="first_name" type="name" placeholder={user.first_name} onChange={(event) => userEdits.first_name = event.target.value} />

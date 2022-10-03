@@ -24,9 +24,14 @@ export const Gallery = () => {
     <div className='gallery'>
       
       <div className='profile'>
+<<<<<<< HEAD
+      <div className='profile-header'>
+        <Image src={userData.avatar_image} alt={userData.first_name + " " + userData.last_name} roundedCircle="true" width="75px" />
+=======
       <Image src={"/" + userData.cover_image} width={"1440px"} height= {"480px"}/>
       <div className='profile-header'> 
         <Image src={"/" + userData.avatar_image} alt={userData.first_name + " " + userData.last_name} roundedCircle="true" width="75px" />
+>>>>>>> master
         <h1>{userData.first_name} {userData.last_name}'s Profile</h1>
       </div>
       <div className='user-bio'>
@@ -37,7 +42,7 @@ export const Gallery = () => {
       <div className="list">
           {(userGallery.length > 0) && userGallery.map((artwork, i) => 
           <div key={i}>
-            <img src={"/" + artwork.image} alt="avatar" width="250px"/> 
+            <img src={artwork.image} alt="avatar" width="250px"/> 
             <p>"{artwork.name}" -- Price $ {artwork.price_cents / 100.00}</p>
           </div>)}
       </div>
