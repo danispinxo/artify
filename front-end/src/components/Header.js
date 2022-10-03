@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaintBrush } from '@fortawesome/free-solid-svg-icons';
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -13,11 +15,14 @@ export const Header = () => {
   return (
     <Navbar className="navbar" expand="lg">
       <Container fluid>
+        <div className="brand">
         <Navbar.Brand>
-          <Link className="text-decoration-none text-black" to="/">
+          <FontAwesomeIcon icon={faPaintBrush} />
+          <Link id="nav-logo" className="text-decoration-none text-black" to="/">
             Artify
           </Link>
-        </Navbar.Brand>
+        </Navbar.Brand>          
+        </div>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
