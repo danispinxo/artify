@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
 import "../styles/profile.scss";
@@ -43,10 +43,11 @@ export default function Profile(props) {
         <Button message="Add to Gallery" onClick={() => setMode(ADD)}/>
         <Button message="Order History" onClick={() => setMode(HISTORY)}/>
         <Button message="Edit Profile" onClick={() => setMode(EDIT)}/>
+        <Button message="Preview Your Gallery" />
       </div>
       {mode === VIEW && <ViewProfile gallery={userGallery}/>}
       {mode === EDIT && <EditProfile user={userData} setMode={setMode}/>}
-      {mode === ADD && <AddArtwork />}
+      {mode === ADD && <AddArtwork user={userData} />}
       {mode === HISTORY && <OrderHistory />}
     </div>
   )
