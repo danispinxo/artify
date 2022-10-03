@@ -1,11 +1,11 @@
-INSERT INTO users (first_name, last_name, email, avatar_image, cover_image, password) VALUES 
-('John', 'Smith', 'john@mail.com', 'images/avatar/john.jpg', '/covers/john.jpg', '123'), 
-('Kenny', 'Yanb', 'kenny@mail.com', 'images/avatar/kenny.jpeg', '/covers/kenny.jpg', '123'), 
-('Sara',  'Dar', 'sara@mail.com', 'images/avatar/sara.jpg', '/covers/sara.jpg', '123'), 
-('Tony', 'Jortons', 'tony@mail.com', 'images/avatar/tony.jpg', '/covers/tony.jpg', '123'),
-('Frankis', 'Potato', 'frankis@mail.com', 'images/avatar/frankis.jpeg', '/covers/tony.jpg', 123),
-('Maria', 'Kane', 'maria@mail.com', 'images/avatar/maria.jpg', 'images/covers/maria.jpg', 123),
-('Louella', 'Ingram', 'louella@mail.com', 'images/avatar/louella.jpg', 'images/covers/louella.jpg', 123),
-('Myron', 'Short', 'myron@mail.com', 'images/avatar/myron.jpg', 'images/covers/myron.jpg', 123),
-('Polly', 'Griffith', 'polly@mail.com', 'images/avatar/polly.jpg', 'images/covers/polly.jpg', 123),
-('Laura', 'Carpenter', 'laura@mail.com', 'images/avatar/laura.jpg', 'images/covers/laura.jpg', 123);
+INSERT INTO users (first_name, last_name, email, avatar_image, cover_image, password, bio) VALUES 
+('John', 'Smith', 'john@mail.com', 'images/avatar/john.jpg', 'images/covers/john.jpg', 123, 'Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Lorem Ipsum best not make any more threats to your website'), 
+('Kenny', 'Yanb', 'kenny@mail.com', 'images/avatar/kenny.jpeg', 'images/covers/kenny.jpg', 123, 'Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Lorem Ipsum best not make any more threats to your website'), 
+('Sara',  'Dar', 'sara@mail.com', 'images/avatar/sara.jpg', 'images/covers/sara.jpg', 123, 'Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Lorem Ipsum best not make any more threats to your website'), 
+('Tony', 'Jortons', 'tony@mail.com', 'images/avatar/tony.jpg', 'images/covers/tony.jpg', 123, 'Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Lorem Ipsum best not make any more threats to your website'),
+('Frankis', 'Potato', 'frankis@mail.com', 'images/avatar/frankis.jpeg', 'images/covers/frankis.jpg', 123, 'Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Lorem Ipsum best not make any more threats to your website'),
+('Maria', 'Kane', 'maria@mail.com', 'images/avatar/maria.jpg', 'images/covers/maria.jpg', 123, 'Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Lorem Ipsum best not make any more threats to your website'),
+('Louella', 'Ingram', 'louella@mail.com', 'images/avatar/louella.jpg', 'images/covers/louella.jpg', 123, 'Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Lorem Ipsum best not make any more threats to your website'),
+('Myron', 'Short', 'myron@mail.com', 'images/avatar/myron.jpg', 'images/covers/myron.jpg', 123, 'Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Lorem Ipsum best not make any more threats to your website'),
+('Polly', 'Griffith', 'polly@mail.com', 'images/avatar/polly.jpg', 'images/covers/polly.jpg', 123, 'Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Lorem Ipsum best not make any more threats to your website'),
+('Laura', 'Carpenter', 'laura@mail.com', 'images/avatar/laura.jpg', 'images/covers/laura.jpg', 123, 'Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Lorem Ipsum best not make any more threats to your website');

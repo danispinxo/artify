@@ -10,20 +10,21 @@ export const Gallery = () => {
 
   useEffect(() => {
     Promise.all([
-      axios.get("/profile/api"),
-      axios.get("/gallery/api", {params: {id:id}})
+      axios.get(`/api/profile`,  { params: { id: id } }),
+      axios.get(`/api/gallery`,  { params: { id: id } })
     ]).then((all) => {
       setUserData(all[0].data[0])
       setUserGallery(all[1].data)
     })
-  },[id])
+  }, [id])
   
 
   return (
     <div className='gallery'>
-      <h1>Sample Art Gallery</h1>
+      
       <div className='profile'>
-      <div className='profile-header'>
+      <Image src={"/" + userData.cover_image} width={"1440px"} height= {"480px"}/>
+      <div className='profile-header'> 
         <Image src={"/" + userData.avatar_image} alt={userData.first_name + " " + userData.last_name} roundedCircle="true" width="75px" />
         <h1>{userData.first_name} {userData.last_name}'s Profile</h1>
       </div>
