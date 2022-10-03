@@ -7,5 +7,6 @@ CREATE TABLE artworks (
   name VARCHAR(255), 
   price_cents INTEGER, 
   description TEXT, 
-  image VARCHAR(255)
+  image VARCHAR(255), 
+  sold BOOLEAN
 );
