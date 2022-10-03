@@ -28,7 +28,7 @@ export default function Profile(props) {
       setUserData(all[0].data[0])
       setUserGallery(all[1].data)
     })
-  }, [id])
+  }, [mode, id])
 
   return (
     <div className='profile'>
