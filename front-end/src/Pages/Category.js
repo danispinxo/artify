@@ -20,7 +20,7 @@ export default function Category(props) {
       {categoryArtwork.length > 0 &&
         categoryArtwork.map((artwork, i) => (
           <div className="category-unit" key={i}>
-            <img src={`/${artwork.artworkimage}`} alt={artwork.artworkimage} />
+            <img src={artwork.artworkimage} alt={artwork.artworkimage} />
             <div className="artwork-category-info-container">
               <p>{artwork.artworkname}</p>
               <p>{artwork.description}</p>
