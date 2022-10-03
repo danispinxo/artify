@@ -1,11 +1,11 @@
 INSERT INTO users (first_name, last_name, email, avatar_image, cover_image, password) VALUES 
-('John', 'Smith', 'john@mail.com', 'images/avatar/john.jpg', '/covers/john.jpg', '123'), 
-('Kenny', 'Yanb', 'kenny@mail.com', 'images/avatar/kenny.jpeg', '/covers/kenny.jpg', '123'), 
-('Sara',  'Dar', 'sara@mail.com', 'images/avatar/sara.jpg', '/covers/sara.jpg', '123'), 
-('Tony', 'Jortons', 'tony@mail.com', 'images/avatar/tony.jpg', '/covers/tony.jpg', '123'),
-('Frankis', 'Potato', 'frankis@mail.com', 'images/avatar/frankis.jpeg', '/covers/tony.jpg', 123),
-('Maria', 'Kane', 'maria@mail.com', 'images/avatar/maria.jpg', 'images/covers/maria.jpg', 123),
-('Louella', 'Ingram', 'louella@mail.com', 'images/avatar/louella.jpg', 'images/covers/louella.jpg', 123),
-('Myron', 'Short', 'myron@mail.com', 'images/avatar/myron.jpg', 'images/covers/myron.jpg', 123),
-('Polly', 'Griffith', 'polly@mail.com', 'images/avatar/polly.jpg', 'images/covers/polly.jpg', 123),
-('Laura', 'Carpenter', 'laura@mail.com', 'images/avatar/laura.jpg', 'images/covers/laura.jpg', 123);
+('John', 'Smith', 'john@mail.com', 'https://res.cloudinary.com/dckcnn64n/image/upload/v1664824256/avatars/john_u8nwuz.jpg', 'https://res.cloudinary.com/dckcnn64n/image/upload/v1664824072/covers/john_gdytav.jpg', '123'), 
+('Kenny', 'Yanb', 'kenny@mail.com', 'https://res.cloudinary.com/dckcnn64n/image/upload/v1664824256/avatars/kenny_b7jr4t.jpg', 'https://res.cloudinary.com/dckcnn64n/image/upload/v1664824067/covers/kenny_kelqfp.jpg', '123'), 
+('Sara',  'Dar', 'sara@mail.com', 'https://res.cloudinary.com/dckcnn64n/image/upload/v1664824256/avatars/sara_plrv5c.jpg', 'https://res.cloudinary.com/dckcnn64n/image/upload/v1664824069/covers/sara_ogz5ud.jpg', '123'), 
+('Tony', 'Jortons', 'tony@mail.com', 'https://res.cloudinary.com/dckcnn64n/image/upload/v1664824256/avatars/tony_c6vhxu.jpg', 'https://res.cloudinary.com/dckcnn64n/image/upload/v1664824073/covers/tony_yerhcv.jpg', '123'),
+('Frankis', 'Potato', 'frankis@mail.com', 'https://res.cloudinary.com/dckcnn64n/image/upload/v1664824256/avatars/frankis_zpckhi.jpg', 'https://res.cloudinary.com/dckcnn64n/image/upload/v1664824073/covers/frankis_sfgzsq.jpg', 123),
+('Maria', 'Kane', 'maria@mail.com', 'https://res.cloudinary.com/dckcnn64n/image/upload/v1664824256/avatars/maria_rr19tp.jpg', 'https://res.cloudinary.com/dckcnn64n/image/upload/v1664824073/covers/maria_xvqk0r.jpg', 123),
+('Louella', 'Ingram', 'louella@mail.com', 'https://res.cloudinary.com/dckcnn64n/image/upload/v1664824256/avatars/louella_o5o9br.jpg', 'https://res.cloudinary.com/dckcnn64n/image/upload/v1664824065/covers/louella_tapetr.jpg', 123),
+('Myron', 'Short', 'myron@mail.com', 'https://res.cloudinary.com/dckcnn64n/image/upload/v1664824256/avatars/myron_wqztyv.jpg', 'https://res.cloudinary.com/dckcnn64n/image/upload/v1664824073/covers/myron_bh37qq.jpg', 123),
+('Polly', 'Griffith', 'polly@mail.com', 'https://res.cloudinary.com/dckcnn64n/image/upload/v1664824256/avatars/polly_cvxvbh.jpg', 'https://res.cloudinary.com/dckcnn64n/image/upload/v1664824072/covers/polly_fc1dlt.jpg', 123),
+('Laura', 'Carpenter', 'laura@mail.com', 'https://res.cloudinary.com/dckcnn64n/image/upload/v1664824256/avatars/laura_gbmjca.jpg', 'https://res.cloudinary.com/dckcnn64n/image/upload/v1664824070/covers/laura_mcfdoy.jpg', 123);
