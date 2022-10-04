@@ -4,6 +4,8 @@ import axios from "axios";
 import Image from "react-bootstrap/Image";
 import "../styles/gallery.scss";
 import Card from "react-bootstrap/Card";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTag } from '@fortawesome/free-solid-svg-icons';
 
 export const Gallery = () => {
   const { id } = useParams();
@@ -49,12 +51,21 @@ export const Gallery = () => {
           userGallery.map((artwork, i) => (
             <div className="list-item" key={i}>
               <Card>
-                <Card.Img
-                  variant="top"
-                  src={artwork.image}
-                  alt="avatar"
-                  width="350px"
-                />
+                <div className="card-image">
+                  <a href={"/product/" + artwork.id}>
+                    <Card.Img
+                      variant="top"
+                      src={artwork.image}
+                      alt="avatar"
+                      width="350px"
+                    />
+                    {artwork.sold && 
+                    <div className="after">
+                      <FontAwesomeIcon icon={faTag} />  SOLD
+                    </div>            
+                    }
+                  </a>
+                </div>
                 <Card.Body>
                   <Card.Title>{artwork.name}</Card.Title>
                   <Card.Text>$ {artwork.price_cents / 100.0}</Card.Text>

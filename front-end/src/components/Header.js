@@ -50,14 +50,14 @@ export const Header = () => {
             <Nav.Link
               as={Link}
               className="text-decoration-none text-black"
-              to="/gallery"
+              to="/gallery/3"
             >
               Gallery
             </Nav.Link>
             <Nav.Link
               as={Link}
               className="text-decoration-none text-black"
-              to="/profile"
+              to="/profile/3"
             >
               Profile
             </Nav.Link>
