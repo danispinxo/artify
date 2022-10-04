@@ -21,11 +21,9 @@ export default function Register() {
     })
     .then((res) => 
     {dataState.setUser(res.data)
-    console.log(res.data, 'fdsfdsfdsafsadfdsa')
     navigate('/') })
   };
 
-  
   return (
  
   <section className="text-center text-lg-start">
