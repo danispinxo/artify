@@ -20,10 +20,12 @@ export default function Register() {
       data
     })
     .then((res) => 
-    {dataState.setUser({})
+    {dataState.setUser(res.data)
+    console.log(res.data, 'fdsfdsfdsafsadfdsa')
     navigate('/') })
   };
 
+  
   return (
  
   <section className="text-center text-lg-start">
