@@ -10,6 +10,7 @@ import ProductDescription from "./Pages/ProductDescription";
 import Category from "./Pages/Category";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
+import { Footer } from "./components/Footer";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>
+          <Footer />
         </BrowserRouter>
       </div>
     </DataContextProvider>
