@@ -57,4 +57,14 @@ router.put("/add", (req, res) => {
   })
 });
 
+router.post("/remove", (req, res) => {
+  orderQueries.deleteLineItem(req.body.lineItemID)
+  .then((order) => {
+    return res.json(order)
+  })
+  .catch((err) => {
+    res.status(500).json({ error: err.message });
+  })
+});
+
 module.exports = router;

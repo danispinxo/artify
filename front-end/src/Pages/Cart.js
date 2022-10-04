@@ -43,15 +43,30 @@ export default function Cart(props) {
   const HST = showSubtotal * 0.13;
   const total = showSubtotal + HST;
 
+  const handleDelete = (lineItemID) => {
+    const itemInfo = {};
+    itemInfo.lineItemID = lineItemID;
+    axios.post(`order/api/remove`, itemInfo)
+    .then((res) => {
+      const orderInfo = {};
+      orderInfo.userID = user.id;
+      axios.post(`order/api/cart`, orderInfo)
+        .then((res) => {
+          setCart(res.data);
+        })
+    })
+  };
 
   return (
     <div className='cart'>
       {user.id && 
       <div className='logged-in-user-cart'>
+
         <div className='cart-header'>
           <Image src={user.avatar_image} alt="User's Name" roundedCircle="true" width="75px" />
           <h1>{user.first_name} Cart</h1>        
         </div>
+
         <div className='cart-content'>
           <div className='cart-line-items'>
             <Table striped>
@@ -63,13 +78,8 @@ export default function Cart(props) {
                       <Image src={item.image} alt={item.name} width="50px" />
                     </td>
                     <td>{item.name}</td>
-                    <td>
-                      <Currency
-                        value={item.price_cents /100}
-                        currency="CAD"
-                      />
-                    </td>
-                    <td><Button message="Remove" /></td>
+                    <td> <Currency value={item.price_cents /100} currency="CAD" /> </td>
+                    <td><Button message="Remove" onClick={() => handleDelete(item.line_id)}/></td>
                   </tr>      
                 ))}
               </tbody>
