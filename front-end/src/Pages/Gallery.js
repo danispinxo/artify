@@ -54,10 +54,10 @@ export const Gallery = () => {
                 <div className="card-image">
                   <a href={"/product/" + artwork.id}>
                     <Card.Img
+                      className="card-img"
                       variant="top"
                       src={artwork.image}
                       alt="avatar"
-                      width="350px"
                     />
                     {artwork.sold && 
                     <div className="after">
