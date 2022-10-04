@@ -1,8 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaintBrush } from '@fortawesome/free-solid-svg-icons';
-import Button from "react-bootstrap/Button";
+import { faPaintBrush, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
@@ -51,7 +50,7 @@ export const Header = () => {
         <div className="brand">
         <Navbar.Brand>
           <FontAwesomeIcon icon={faPaintBrush} />
-          <Link id="nav-logo" className="text-decoration-none text-black" to="/">
+          <Link className="text-decoration-none text-black" to="/">
             Artify
           </Link>
         </Navbar.Brand>          
@@ -73,16 +72,27 @@ export const Header = () => {
             <Nav.Link
               as={Link}
               className="text-decoration-none text-black"
-              to="/gallery"
+              to="/gallery/3"
             >
               Gallery
             </Nav.Link>
+
+          </Nav>
+          <Form className="d-flex">
+            
+            <Form.Control
+              type="search"
+              placeholder="Search"
+              className="me-2"
+              aria-label="Search"
+            />
+          </Form>
+          <Nav>
             <Nav.Link
               as={Link}
-              className="text-decoration-none text-black"
-              to="/profile"
+              to="/cart"
             >
-              Profile
+              <FontAwesomeIcon icon={faCartShopping} />
             </Nav.Link>
             {!dataState.user.id && <Nav.Link
               as={Link}
@@ -99,7 +109,17 @@ export const Header = () => {
               Register
             </Nav.Link>}
 
-            {dataState.user.id && <Nav.Link
+            {dataState.user.id &&
+            <Nav.Link
+              as={Link}
+              className="text-decoration-none text-black"
+              to={"/profile/" + dataState.user.id}
+            >
+              {dataState.user.first_name}'s Profile
+            </Nav.Link>
+            }
+            {dataState.user.id && 
+            <Nav.Link
               as={Link}
               className="text-decoration-none text-black"
               to="/login"

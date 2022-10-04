@@ -25,7 +25,7 @@ export default function Purchases({orders}) {
           </ListGroup>
           <Card.Body>
             <Card.Text>{order.description}</Card.Text>
-            <Card.Link href="#">View Artist's Gallery</Card.Link>
+            <Card.Link href={"/gallery/" + order.user_id}>View Artist's Gallery</Card.Link>
           </Card.Body>
         </Card>
       )}

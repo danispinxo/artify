@@ -1,0 +1,17 @@
+@import "variables.scss";
+.footer{
+  background-color: #F2E6D0;
+  color: $darkest-brown;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  
+}
+.footer a{
+  text-decoration: none;
+}
+.d-flex.justify-content-center.p-4{
+  border-bottom: 2px solid $dark-red; 
+}
+#nav-logo{
+  font-family: $logo-font;
+  font-size: 25px;
+}

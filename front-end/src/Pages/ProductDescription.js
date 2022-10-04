@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import Button from "../components/Button";
 import "../styles/productInfo.scss";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 
 export default function ProductDescription(props) {
   const { id } = useParams()
@@ -13,6 +14,20 @@ export default function ProductDescription(props) {
       .get(`/api/product`, { params: { id: id } })
       .then((res) => setProduct(res.data))
   }, [id]);
+
+  const handleAddToCart = event => {
+    event.preventDefault();
+
+    const orderInfo = {};
+    orderInfo.userID = 9;
+    orderInfo.artworkID = product.id;
+    orderInfo.price = product.price_cents;
+
+    axios.put("/order/api/add", orderInfo)
+    .then((all) => {
+      console.log(all);
+    });
+  }
 
   return (
     <div className="product-description-container">
@@ -33,7 +48,10 @@ export default function ProductDescription(props) {
       </div>
       {!product.sold &&
       <div className="add-to-cart-button-container">
-        <Button message="Add to cart" />
+        <button onClick={handleAddToCart}>
+          <FontAwesomeIcon icon={faCartPlus} />
+          Add to Cart
+        </button>
       </div>      
       }
       {product.sold &&
