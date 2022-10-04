@@ -33,8 +33,11 @@ router.get("/cart", (req, res) => {
 
 router.put("/add", (req, res) => {
   // check if an in_progress order exists
-  orderQueries.getOrderInProgress(req.body.userID)
+  if (!req.session.user) {
+    return res.status(403).send({message:"You gotta log in or register.", errorCode:"Unauthorized Access" })
+  }
 
+  orderQueries.getOrderInProgress(req.body.userID)
   .then((order) => {
     // if no, create new order
     if (!order) {
