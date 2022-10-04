@@ -45,7 +45,7 @@ const getOrderByUserID = (user_id) => {
       JOIN line_items ON orders.id = line_items.order_id
       JOIN artworks ON line_items.artwork_id = artworks.id
       WHERE orders.customer_id = $1
-      AND orders.in_progress = TRUE
+      AND orders.in_progress = TRUE;
     `, [user_id])
     .then((data) => {
       return data.rows;

@@ -21,6 +21,16 @@ router.get("/purchased", (req, res) => {
   })
 });
 
+router.get("/cart", (req, res) => {
+  orderQueries.getOrderByUserID(5)
+  .then((order) => {
+    return res.json(order)
+  })
+  .catch((err) => {
+    res.status(500).json({ error: err.message });
+  })
+});
+
 router.put("/add", (req, res) => {
   // check if an in_progress order exists
   orderQueries.getOrderInProgress(req.body.userID)
