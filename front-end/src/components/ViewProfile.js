@@ -30,6 +30,10 @@ export default function ViewProfile({gallery}) {
           </Card>
           </div>
         )}
+
+        {gallery.length === 0 &&
+        <p>You do not currently have any artworks in your gallery.</p>
+        }
       </div>
     </div>
   )

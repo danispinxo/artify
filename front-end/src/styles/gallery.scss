@@ -81,12 +81,13 @@
 
     &:hover {
       opacity: 1;
-      color: $beige;
+      padding: 1rem;
+      color: $dark-brown;
       font-family: $header-font;
-      font-size: 1rem;
+      font-size: 1.4rem;
       display: flex;
-      justify-content: baseline;
-      align-items: center;
+      justify-content: end;
+      align-items: flex-end;
     }
   }
 }

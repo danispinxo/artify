@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import Button from "../components/Button";
 import "../styles/productInfo.scss";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 
 export default function ProductDescription(props) {
   const { id } = useParams()
@@ -33,7 +34,10 @@ export default function ProductDescription(props) {
       </div>
       {!product.sold &&
       <div className="add-to-cart-button-container">
-        <Button message="Add to cart" />
+        <button>
+          <FontAwesomeIcon icon={faCartPlus} />
+          Add to Cart
+        </button>
       </div>      
       }
       {product.sold &&

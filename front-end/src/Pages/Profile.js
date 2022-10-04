@@ -33,7 +33,9 @@ export default function Profile(props) {
   return (
     <div className='profile'>
       <div className='profile-header'>
-        <Image src={userData.avatar_image} alt={userData.first_name + " " + userData.last_name} roundedCircle="true" width="75px" />
+        {userData.avatar_image && 
+          <Image src={userData.avatar_image} alt={userData.first_name + " " + userData.last_name} roundedCircle="true" width="75px" />        
+        }
         <h1>{userData.first_name} {userData.last_name}'s Profile</h1>
       </div>
       <div className='user-bio'>
@@ -43,7 +45,7 @@ export default function Profile(props) {
         <Button message="Add to Gallery" onClick={() => setMode(ADD)}/>
         <Button message="Order History" onClick={() => setMode(HISTORY)}/>
         <Button message="Edit Profile" onClick={() => setMode(EDIT)}/>
-        <Button message="Preview Your Gallery" />
+        <a href={"/gallery/" + userData.id}><Button message="View Your Gallery" /></a>
       </div>
       {mode === VIEW && <ViewProfile gallery={userGallery}/>}
       {mode === EDIT && <EditProfile user={userData} setMode={setMode}/>}

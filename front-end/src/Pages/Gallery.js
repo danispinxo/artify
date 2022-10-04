@@ -5,7 +5,7 @@ import Image from "react-bootstrap/Image";
 import "../styles/gallery.scss";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTag } from '@fortawesome/free-solid-svg-icons';
+import { faTag, faCartPlus } from '@fortawesome/free-solid-svg-icons';
 
 export const Gallery = () => {
   const { id } = useParams();
@@ -66,7 +66,7 @@ export const Gallery = () => {
                     }
                     {!artwork.sold && 
                     <div className="add-to-cart">
-                      Add to Cart
+                      <FontAwesomeIcon icon={faCartPlus} />
                     </div>            
                     }
                   </a>
