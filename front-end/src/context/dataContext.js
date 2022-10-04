@@ -8,6 +8,7 @@ export function DataContextProvider(props) {
   const [artworks, setArtworks] = useState([]);
   const [categories, setCategories] = useState([]);
   const [user, setUser] = useState({})
+  const [artResults, setArtResults] = useState([]);
 
   useEffect(() => {
     Promise.all([
@@ -27,6 +28,8 @@ export function DataContextProvider(props) {
       artworks:artworks,
       categories:categories,
       user: user,
+      artResults: artResults,
+      setArtResults:setArtResults,
       setUser: setUser,
       setArtworks:setArtworks,
       setCategories:setCategories
