@@ -18,6 +18,10 @@ export default function ProductDescription(props) {
   const handleAddToCart = event => {
     event.preventDefault();
 
+    //axios request to see IF THERE IS A USER SESSION CURRENTLY PRESENT
+    //use promise.all too link up all axios requests. 
+    //if there is then implement add to cart function
+    //else redirect to please log in/register page
     const orderInfo = {};
     orderInfo.userID = 9;
     orderInfo.artworkID = product.id;

@@ -1,16 +1,20 @@
-import React, {useState, useEffect} from 'react';
-import { Currency } from 'react-tender';
+import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import "../styles/cart.scss";
 import Image from 'react-bootstrap/Image';
 import Button from '../components/Button';
 import Table from 'react-bootstrap/Table';
+import { DataContext } from "../context/dataContext";
+import { Currency } from 'react-tender';
 
 export default function Cart(props) {
 
   const [cart, setCart] = useState({});
   const [subtotal, setSubtotal] = useState(0);
+  const dataState = useContext(DataContext);
+  const user = dataState.user; // context for current user
 
+  console.log(dataState.user, 'fdsafadsfdsafds')
   const orderTotal = (cart) => {
     let total = 0;
     if (cart.length > 0) {
@@ -43,7 +47,7 @@ export default function Cart(props) {
     <div className='cart'>
       <div className='cart-header'>
         <Image src="https://res.cloudinary.com/dckcnn64n/image/upload/v1664824256/avatars/sara_plrv5c.jpg" alt="User's Name" roundedCircle="true" width="75px" />
-        <h1>User Number 5's Cart</h1>
+        <h1>{user.first_name} Cart</h1>
       </div>
       <div className='cart-content'>
 

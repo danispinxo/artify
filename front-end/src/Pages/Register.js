@@ -20,7 +20,7 @@ export default function Register() {
       data
     })
     .then((res) => 
-    {dataState.setUser({})
+    {dataState.setUser(res.data)
     navigate('/') })
   };
 

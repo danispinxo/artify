@@ -78,6 +78,16 @@ export const Header = () => {
             </Nav.Link>
 
           </Nav>
+          {/* <Form className="d-flex">
+            
+            <Form.Control
+              type="search"
+              placeholder="Search"
+              className="me-2"
+              aria-label="Search"
+            />
+          </Form> */}
+    
           <Nav>
             <Nav.Link
               as={Link}
