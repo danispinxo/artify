@@ -11,7 +11,7 @@ export const Home = () => {
       .then((data) => setBackendData(data));
   }, []);
 
-  console.log(backendData);
+  
 
   return (
     <div className='user=list'>

@@ -24,12 +24,12 @@ export const Gallery = () => {
     <div className="gallery">
       <div className="profile">
         <div className="profile-cover">
-          <Image className="image" src={"/" + userData.cover_image} />
+          <Image className="image" src={userData.cover_image} />
         </div>
 
         <div className="profile-header">
           <Image
-            src={"/" + userData.avatar_image}
+            src={userData.avatar_image}
             alt={userData.first_name + " " + userData.last_name}
             roundedCircle="true"
             width="150px"
@@ -51,7 +51,7 @@ export const Gallery = () => {
               <Card>
                 <Card.Img
                   variant="top"
-                  src={"/" + artwork.image}
+                  src={artwork.image}
                   alt="avatar"
                   width="350px"
                 />
