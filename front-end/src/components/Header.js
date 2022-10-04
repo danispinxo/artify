@@ -1,9 +1,8 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaintBrush, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -11,6 +10,7 @@ import "../styles/navbar.scss";
 import { DataContext } from "../context/dataContext";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import Button from "./Button";
 
 
 export const Header = () => {
@@ -42,7 +42,7 @@ export const Header = () => {
     setSearchInput(data)
   }
 
-  
+  console.log(returnResult);
 
   return (
     <Navbar className="navbar" expand="lg">
@@ -78,15 +78,6 @@ export const Header = () => {
             </Nav.Link>
 
           </Nav>
-          <Form className="d-flex">
-            
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-          </Form>
           <Nav>
             <Nav.Link
               as={Link}
