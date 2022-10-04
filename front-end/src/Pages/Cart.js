@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { Currency } from 'react-tender';
 import axios from 'axios';
 import "../styles/cart.scss";
 import Image from 'react-bootstrap/Image';
@@ -56,7 +57,12 @@ export default function Cart(props) {
                     <Image src={item.image} alt={item.name} width="50px" />
                   </td>
                   <td>{item.name}</td>
-                  <td>${item.price_cents /100}</td>
+                  <td>
+                    <Currency
+                      value={item.price_cents /100}
+                      currency="CAD"
+                    />
+                  </td>
                   <td><Button message="Remove" /></td>
                 </tr>      
               ))}
@@ -69,15 +75,31 @@ export default function Cart(props) {
             <tbody>
               <tr className='line-item'>
                 <th>Subtotal</th>
-                <td>${showSubtotal}</td>
+                <td>
+                <Currency
+                  value={showSubtotal}
+                  currency="CAD"
+                />
+                </td>
               </tr>
               <tr>
-                <th>HST</th>
-                <td>${HST}</td>
+                <th>HST (13%)</th>
+                <td>
+                <Currency
+                  value={HST}
+                  currency="CAD"
+                />
+                </td>
               </tr>
               <tr>
                 <th>Order Total</th>
-                <td>${total}</td>
+
+                <td>
+                <Currency
+                  value={total}
+                  currency="CAD"
+                />
+                </td>
               </tr>
             </tbody>
           </Table>

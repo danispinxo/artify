@@ -1,8 +1,6 @@
 const router = require('express').Router();
 const itemQueries = require("../db/queries/users");
 
-
-
 router.get("/", (req, res) => {
   
   if (req.session.user) {
