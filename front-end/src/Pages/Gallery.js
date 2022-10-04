@@ -64,6 +64,11 @@ export const Gallery = () => {
                       <FontAwesomeIcon icon={faTag} />  SOLD
                     </div>            
                     }
+                    {!artwork.sold && 
+                    <div className="add-to-cart">
+                      Add to Cart
+                    </div>            
+                    }
                   </a>
                 </div>
                 <Card.Body>
