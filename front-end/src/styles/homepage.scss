@@ -34,8 +34,8 @@
 
 .swiper-slide img {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 450px;
+  height: 550px;
   object-fit: cover;
 }
 
@@ -51,6 +51,7 @@ h1 {
   font-family: $body-font;
   padding-top: 50px;
   padding-bottom: 50px;
+  color: $dark-red;
 }
 
 .shrink img {
@@ -79,7 +80,6 @@ h1 {
     width: 100%;
     flex-direction: column;
     align-items: center;
-    
-    
+    margin-top: 50px;
     
   }
