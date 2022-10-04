@@ -11,6 +11,7 @@ import "../styles/navbar.scss";
 import { DataContext } from "../context/dataContext";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import Button from "./Button";
 
 
 export const Header = () => {
@@ -78,7 +79,7 @@ export const Header = () => {
             </Nav.Link>
 
           </Nav>
-          <Form className="d-flex">
+          {/* <Form className="d-flex">
             
             <Form.Control
               type="search"
@@ -86,7 +87,7 @@ export const Header = () => {
               className="me-2"
               aria-label="Search"
             />
-          </Form>
+          </Form> */}
           <Nav>
             <Nav.Link
               as={Link}
