@@ -21,8 +21,8 @@ router.get("/purchased", (req, res) => {
   })
 });
 
-router.get("/cart", (req, res) => {
-  orderQueries.getOrderByUserID(5)
+router.post("/cart", (req, res) => {
+  orderQueries.getOrderByUserID(req.body.userID)
   .then((order) => {
     return res.json(order)
   })

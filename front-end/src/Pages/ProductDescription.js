@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../styles/productInfo.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { DataContext } from "../context/dataContext";
 
 export default function ProductDescription(props) {
   const { id } = useParams()
   const [product, setProduct] = useState({})
+  const dataState = useContext(DataContext);
+  const user = dataState.user; // context for current user
 
   useEffect(() => {
     axios
@@ -18,12 +21,8 @@ export default function ProductDescription(props) {
   const handleAddToCart = event => {
     event.preventDefault();
 
-    //axios request to see IF THERE IS A USER SESSION CURRENTLY PRESENT
-    //use promise.all too link up all axios requests. 
-    //if there is then implement add to cart function
-    //else redirect to please log in/register page
     const orderInfo = {};
-    orderInfo.userID = 9;
+    orderInfo.userID = user.id;
     orderInfo.artworkID = product.id;
     orderInfo.price = product.price_cents;
 
