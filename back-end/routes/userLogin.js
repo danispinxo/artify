@@ -22,6 +22,7 @@ router.post("/", (req, res) => {
       }
     })
   }).then((user) => {
+    req.session.user = user[0].id
     return res.json(user[0])
   })
   .catch((error) => {
