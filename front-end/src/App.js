@@ -11,7 +11,9 @@ import Category from "./Pages/Category";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 
+
 function App() {
+  
   return (
     <DataContextProvider>
       <div className="App">

@@ -3,7 +3,9 @@ const itemQueries = require("../db/queries/users");
 const bcrypt =require('bcrypt');
 
 
+
 router.post("/", async (req, res) => {
+
 
   try{
     const salt = await bcrypt.genSalt()

@@ -1,5 +1,4 @@
 require("dotenv").config();
-
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require('body-parser');
@@ -7,11 +6,20 @@ const upload = require("express-fileupload");
 const AWS = require("aws-sdk");
 const {ENVIROMENT, PORT} = process.env;
 const app = express();
+const cookieSession = require('cookie-session');
 
 // Middleware
 app.use(upload());
-app.use(morgan(ENVIROMENT));
+app.use(morgan('dev'));
 app.use(bodyParser.json());
+app.use(cookieSession({
+  name: 'session',
+  keys: ['totallynotasecretkey'],
+
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}))
+
 
 // s3 config
 const s3 = new AWS.S3({
@@ -30,6 +38,7 @@ const artworkRoutes = require("./routes/artwork");
 const categoryItemRoutes = require("./routes/categoryItem");
 const userRegistrationRoutes = require("./routes/userRegistration");
 const userLogin = require("./routes/userLogin");
+const userSession = require("./routes/userSession");
 
 // Mount all resource routes
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
@@ -42,11 +51,17 @@ app.use("/api/product", artworkRoutes);
 app.use("/api/categoryItem", categoryItemRoutes);
 app.use("/register", userRegistrationRoutes);
 app.use("/login", userLogin);
+app.use("/api/session", userSession);
 
 //Home page
 app.get("/", (req, res) => {
   res.json("Hello World");
 });
+
+app.get("/logout", (req, res) => {
+  req.session = null;
+  res.send('Logged out')
+})
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
