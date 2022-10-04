@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaintBrush } from '@fortawesome/free-solid-svg-icons';
@@ -9,9 +9,19 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/navbar.scss";
-
+import { DataContext } from "../context/dataContext";
+import axios from "axios";
 
 export const Header = () => {
+  const dataState = useContext(DataContext);
+
+
+  const handleLogout = () => {
+    dataState.setUser({})
+    axios.get('/logout')
+  }
+ 
+
   return (
     <Navbar className="navbar" expand="lg">
       <Container fluid>
@@ -51,20 +61,29 @@ export const Header = () => {
             >
               Profile
             </Nav.Link>
-            <Nav.Link
+            {!dataState.user.id && <Nav.Link
               as={Link}
               className="text-decoration-none text-black"
               to="/login"
             >
               Login
-            </Nav.Link>
-            <Nav.Link
+            </Nav.Link>}
+            {!dataState.user.id && <Nav.Link
               as={Link}
               className="text-decoration-none text-black"
               to="/register"
             >
               Register
-            </Nav.Link>
+            </Nav.Link>}
+
+            {dataState.user.id && <Nav.Link
+              as={Link}
+              className="text-decoration-none text-black"
+              to="/login"
+              onClick={handleLogout}
+            >
+              Logout
+            </Nav.Link>}
           </Nav>
           <Form className="d-flex">
             <Form.Control

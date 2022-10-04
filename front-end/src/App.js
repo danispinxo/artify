@@ -12,7 +12,9 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import { Footer } from "./components/Footer";
 
+
 function App() {
+  
   return (
     <DataContextProvider>
       <div className="App">

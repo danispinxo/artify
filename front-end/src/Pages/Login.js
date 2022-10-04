@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import "../styles/userAuth.scss"
 import axios from 'axios'
+import { useNavigate } from "react-router";
+import { DataContext } from "../context/dataContext";
 
 
 export default function Login() {
-
+  const [error, setError] = useState('')
+  const navigate = useNavigate();
+  const dataState = useContext(DataContext);
+  
   const {
     register,
     handleSubmit,
@@ -13,11 +18,11 @@ export default function Login() {
   } = useForm();
   
   const onSubmit = (data) => {
-    axios.post('/login', {
-      data
-    })
-    .then((res) => console.log('Logged in successfully!', res.data))
-    .catch((err) => console.log(err.response.data.message))
+    axios.post('/login', {data})
+    .then((res) => {console.log('Logged in successfully!', res.data)
+    dataState.setUser(res.data)
+    navigate('/')})
+    .catch((err) => setError(err.response.data.message))
   };
 
   return (
@@ -39,6 +44,11 @@ export default function Login() {
                 <input placeholder="Password" type="password" id="form3Example4" className="form-control" {...register("password", { required: true })}/>              
                 {errors.password && <p className="error-message">Password is required</p>}
               </div>
+
+              <div className="form-outline mb-4">
+                {error && <p className="error-message">{error}</p>}
+              </div>
+
               <button type="submit" className="btn btn-primary btn-block mb-4">
                 Login
               </button>

@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const multer = require('multer');
 const userQueries = require("../db/queries/users");
+const artQueries = require('../db/queries/artwork');
 const { uploadImage, getAssetInfo } = require('../configs/cloudinary');
 
 const storage = multer.diskStorage({
@@ -75,6 +76,35 @@ router.put("/cover", upload.single('cover'), (req, res) => {
     userQueries.updateCover(userID, imageURL)
   
     res.send("Okay!")
+    } catch (error) {
+        console.log(error);
+    }
+
+  })();
+
+});
+
+router.put("/add", upload.single('artwork'), (req, res) => {
+  const userID = req.body.userID;
+  const categoryID = req.body.categoryID;
+  const name = req.body.name;
+  const price_cents = req.body.priceCents;
+  const description = req.body.description;
+  const image = req.file.path;
+  const sold = false;
+
+  (async () => {
+
+    try {
+    // Upload the image
+    const publicId = await uploadImage(image);
+
+    // Get the image (returns the secure_url)
+    const imageURL = await getAssetInfo(publicId);
+
+    artQueries.addNewArtwork(userID, categoryID, name, price_cents, description, imageURL, sold)
+  
+    res.send("Image added to db successfully!")
     } catch (error) {
         console.log(error);
     }
