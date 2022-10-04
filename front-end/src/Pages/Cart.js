@@ -64,7 +64,7 @@ export default function Cart(props) {
 
         <div className='cart-header'>
           <Image src={user.avatar_image} alt="User's Name" roundedCircle="true" width="75px" />
-          <h1>{user.first_name} Cart</h1>        
+          <h1>{user.first_name}'s Cart</h1>        
         </div>
 
         <div className='cart-content'>

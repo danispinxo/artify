@@ -29,7 +29,7 @@ export default function ProductDescription(props) {
 
     axios.put("/order/api/add", orderInfo)
     .then((all) => {
-      console.log(all);
+      // figure out how to navigate to cart after successful response, or render error if unsuccessful
     });
   }
 
