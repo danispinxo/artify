@@ -71,6 +71,9 @@ export default function Cart(props) {
           <div className='cart-line-items'>
             <Table striped>
               <tbody>
+                {cart.length === 0 &&
+                <p>Your cart is empty.</p>
+                }
                 {cart.length > 0 &&
                 cart.map((item, index) => (
                   <tr className='line-item' key={index}>

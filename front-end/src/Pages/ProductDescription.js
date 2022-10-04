@@ -5,6 +5,7 @@ import "../styles/productInfo.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { DataContext } from "../context/dataContext";
+import { Currency } from 'react-tender';
 
 export default function ProductDescription(props) {
   const { id } = useParams()
@@ -47,7 +48,7 @@ export default function ProductDescription(props) {
       </div>
 
       <div className="product-price-container">
-        <h3>${product.price_cents/100.00}</h3>
+        <h3><Currency value={product.price_cents/100.00} currency="CAD" /></h3>
       </div>
       {!product.sold &&
       <div className="add-to-cart-button-container">
