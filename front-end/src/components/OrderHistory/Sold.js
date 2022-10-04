@@ -3,6 +3,7 @@ import "./OrderHistory.scss"
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import SimpleDateTime  from 'react-simple-timestamp-to-date';
+import { Currency } from 'react-tender';
 
 export default function Sold({orders}) {
 
@@ -21,7 +22,7 @@ export default function Sold({orders}) {
           </Card.Body>
           <ListGroup className="list-group-flush">
             <ListGroup.Item>{order.name}</ListGroup.Item>
-            <ListGroup.Item>$ {order.price_cents / 100}</ListGroup.Item>
+            <ListGroup.Item><Currency value={order.price_cents / 100.00} currency="CAD" /> </ListGroup.Item>
           </ListGroup>
           <Card.Body>
             <Card.Text>

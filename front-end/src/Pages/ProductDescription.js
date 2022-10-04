@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../styles/productInfo.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { DataContext } from "../context/dataContext";
+import { Currency } from 'react-tender';
 
 export default function ProductDescription(props) {
   const { id } = useParams()
   const [product, setProduct] = useState({})
+  const dataState = useContext(DataContext);
+  const user = dataState.user; // context for current user
 
   useEffect(() => {
     axios
@@ -18,18 +22,14 @@ export default function ProductDescription(props) {
   const handleAddToCart = event => {
     event.preventDefault();
 
-    //axios request to see IF THERE IS A USER SESSION CURRENTLY PRESENT
-    //use promise.all too link up all axios requests. 
-    //if there is then implement add to cart function
-    //else redirect to please log in/register page
     const orderInfo = {};
-    orderInfo.userID = 9;
+    orderInfo.userID = user.id;
     orderInfo.artworkID = product.id;
     orderInfo.price = product.price_cents;
 
     axios.put("/order/api/add", orderInfo)
     .then((all) => {
-      console.log(all);
+      // figure out how to navigate to cart after successful response, or render error if unsuccessful
     });
   }
 
@@ -48,7 +48,7 @@ export default function ProductDescription(props) {
       </div>
 
       <div className="product-price-container">
-        <h3>${product.price_cents/100.00}</h3>
+        <h3><Currency value={product.price_cents/100.00} currency="CAD" /></h3>
       </div>
       {!product.sold &&
       <div className="add-to-cart-button-container">

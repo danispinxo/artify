@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Currency } from 'react-tender';
 import axios from "axios";
 import "../styles/artForCategory.scss";
 
@@ -24,7 +25,7 @@ export default function Category(props) {
             <div className="artwork-category-info-container">
               <p>{artwork.artworkname}</p>
               <p>{artwork.description}</p>
-              <p>${artwork.price_cents / 100.00}</p>
+              <p><Currency value={artwork.price_cents / 100.00} currency="CAD" /></p>
             </div>
           </div>
         ))}

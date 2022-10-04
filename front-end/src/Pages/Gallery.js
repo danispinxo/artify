@@ -6,6 +6,7 @@ import "../styles/gallery.scss";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTag, faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { Currency } from 'react-tender';
 
 export const Gallery = () => {
   const { id } = useParams();
@@ -73,7 +74,7 @@ export const Gallery = () => {
                 </div>
                 <Card.Body>
                   <Card.Title>{artwork.name}</Card.Title>
-                  <Card.Text>$ {artwork.price_cents / 100.0}</Card.Text>
+                  <Card.Text><Currency value={artwork.price_cents / 100.0} currency="CAD" /></Card.Text>
                 </Card.Body>
               </Card>
             </div>

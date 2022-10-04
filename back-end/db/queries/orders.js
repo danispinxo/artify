@@ -41,8 +41,8 @@ const addArtworkToOrderByID = (order_id, artwork_id, price_cents) => {
 const getOrderByUserID = (user_id) => {
   return db
     .query(`
-      SELECT * FROM orders
-      JOIN line_items ON orders.id = line_items.order_id
+      SELECT line_items.id as line_id, * FROM line_items
+      JOIN orders ON orders.id = line_items.order_id
       JOIN artworks ON line_items.artwork_id = artworks.id
       WHERE orders.customer_id = $1
       AND orders.in_progress = TRUE;
@@ -80,4 +80,15 @@ const createNewOrder = (user_id) => {
   });
 };
 
-module.exports = { getAllSoldByUser, getAllPurchasedByUser, addArtworkToOrderByID, getOrderByUserID, getOrderInProgress, createNewOrder };
+const deleteLineItem = (line_item_id) => {
+  return db
+  .query(`
+    DELETE FROM line_items
+    WHERE id = $1;
+  `, [line_item_id])
+  .then((data) => {
+    return data.rows;
+  });
+};
+
+module.exports = { getAllSoldByUser, getAllPurchasedByUser, addArtworkToOrderByID, getOrderByUserID, getOrderInProgress, createNewOrder, deleteLineItem };

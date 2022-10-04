@@ -21,8 +21,8 @@ router.get("/purchased", (req, res) => {
   })
 });
 
-router.get("/cart", (req, res) => {
-  orderQueries.getOrderByUserID(5)
+router.post("/cart", (req, res) => {
+  orderQueries.getOrderByUserID(req.body.userID)
   .then((order) => {
     return res.json(order)
   })
@@ -51,6 +51,16 @@ router.put("/add", (req, res) => {
   })
   .then((result) => {
     return res.json(result)
+  })
+  .catch((err) => {
+    res.status(500).json({ error: err.message });
+  })
+});
+
+router.post("/remove", (req, res) => {
+  orderQueries.deleteLineItem(req.body.lineItemID)
+  .then((order) => {
+    return res.json(order)
   })
   .catch((err) => {
     res.status(500).json({ error: err.message });
