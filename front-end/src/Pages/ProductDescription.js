@@ -15,6 +15,20 @@ export default function ProductDescription(props) {
       .then((res) => setProduct(res.data))
   }, [id]);
 
+  const handleAddToCart = event => {
+    event.preventDefault();
+
+    const orderInfo = {};
+    orderInfo.userID = 9;
+    orderInfo.artworkID = product.id;
+    orderInfo.price = product.price_cents;
+
+    axios.put("/order/api/add", orderInfo)
+    .then((all) => {
+      console.log(all);
+    });
+  }
+
   return (
     <div className="product-description-container">
       <div className="product-name">
@@ -34,7 +48,7 @@ export default function ProductDescription(props) {
       </div>
       {!product.sold &&
       <div className="add-to-cart-button-container">
-        <button>
+        <button onClick={handleAddToCart}>
           <FontAwesomeIcon icon={faCartPlus} />
           Add to Cart
         </button>

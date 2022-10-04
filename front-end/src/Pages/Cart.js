@@ -4,7 +4,7 @@ import Image from 'react-bootstrap/Image';
 import Button from '../components/Button';
 import Table from 'react-bootstrap/Table';
 
-export default function Profile(props) {
+export default function Cart(props) {
 
   return (
     <div className='cart'>
