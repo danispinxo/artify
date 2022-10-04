@@ -11,13 +11,10 @@ import "../styles/navbar.scss";
 import { DataContext } from "../context/dataContext";
 import axios from "axios";
 import { useNavigate } from "react-router";
-import Button from "./Button";
-
 
 export const Header = () => {
   const dataState = useContext(DataContext);
   const [searchInput, setSearchInput] = useState('');
-  const [returnResult, setReturnResult] = useState({});
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -27,16 +24,20 @@ export const Header = () => {
   
   const handleSubmit = (event) => {
     event.preventDefault();
-   
-    axios.post('/api/search', {searchInput})
-    .then((artwork) => {
-      setReturnResult(artwork.data[0])
-      navigate(`/product/${artwork.data[0].id}`)
-    })
-    .catch(
-      setReturnResult({})
-      )
+    if(searchInput) {
+
+     axios.post('/api/search', {searchInput})
+     .then((artwork) => {
+       dataState.setArtResults(prev => ([...artwork.data]))
+       navigate(`/results`)
+     })
+     .catch((err) => {
+      navigate(`/results`)
+     })
+   }
   }
+
+  
 
   const handleSearchInput = (e) => {
     const data = e.target.value
@@ -50,7 +51,7 @@ export const Header = () => {
       <Container fluid>
         <div className="brand">
         <Navbar.Brand>
-          <FontAwesomeIcon icon={faPaintBrush} />
+          <FontAwesomeIcon className="nav-icon" icon={faPaintBrush} />
           <Link className="text-decoration-none text-black" to="/">
             Artify
           </Link>
@@ -79,23 +80,15 @@ export const Header = () => {
             </Nav.Link>
 
           </Nav>
-          {/* <Form className="d-flex">
-            
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-          </Form> */}
     
           <Nav>
             <Nav.Link
               as={Link}
               to="/cart"
             >
-              <FontAwesomeIcon icon={faCartShopping} />
+              <FontAwesomeIcon className="nav-cart" icon={faCartShopping} />
             </Nav.Link>
+
             {!dataState.user.id && <Nav.Link
               as={Link}
               className="text-decoration-none text-black"
@@ -103,6 +96,7 @@ export const Header = () => {
             >
               Login
             </Nav.Link>}
+
             {!dataState.user.id && <Nav.Link
               as={Link}
               className="text-decoration-none text-black"
@@ -117,9 +111,10 @@ export const Header = () => {
               className="text-decoration-none text-black"
               to={"/profile/" + dataState.user.id}
             >
-              {dataState.user.first_name}'s Profile
-            </Nav.Link>
-            }
+             Profile 
+             {/* {dataState.user.first_name} */}
+            </Nav.Link>}
+
             {dataState.user.id && 
             <Nav.Link
               as={Link}
@@ -129,13 +124,14 @@ export const Header = () => {
             >
               Logout
             </Nav.Link>}
+
           </Nav>
 
           <form onSubmit={(e) => handleSubmit(e)} className="d-flex">
             <input onChange={(e) => handleSearchInput(e) } value={searchInput} name="name" placeholder="Search" type="text"  id="form3Example4" className="form-control"/>
-           <Button type="submit" variant="outline-success">Search</Button>
+            <button className='button' type="submit" >Search</button>
           </form>
-           {/* {!returnResult.id && <p>Nothing artwork found matching your search</p>} */}
+           
 
         </Navbar.Collapse>
       </Container>
