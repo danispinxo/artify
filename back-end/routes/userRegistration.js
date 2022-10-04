@@ -2,12 +2,8 @@ const router = require('express').Router();
 const itemQueries = require("../db/queries/users");
 const bcrypt =require('bcrypt');
 
-
-
 router.post("/", async (req, res) => {
  
-  
-
   try{
     const salt = await bcrypt.genSalt()
     const hashedPassword = await bcrypt.hash(req.body.data.password, salt )
@@ -15,8 +11,9 @@ router.post("/", async (req, res) => {
     const userData = {...userObj, password: hashedPassword}
 
     itemQueries.addUser(userData)
-    .then((users) => {
-      return res.json(users)
+    .then((user) => {
+      req.session.user = user.id
+      return res.json(user)
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });
