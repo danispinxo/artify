@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import "../styles/userAuth.scss"
 import axios from "axios";
-
+import { DataContext } from "../context/dataContext";
 
 export default function Register() {
   const navigate =useNavigate()
+  const dataState = useContext(DataContext);
 
   const {
     register,
@@ -18,7 +19,9 @@ export default function Register() {
     axios.post('/register', {
       data
     })
-    .then(() => navigate('/') )
+    .then((res) => 
+    {dataState.setUser({})
+    navigate('/') })
   };
 
   return (

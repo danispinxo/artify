@@ -77,7 +77,9 @@ export default function EditProfile({setMode, user}) {
         <Form onSubmit={submitAvatar}>
           <Form.Group className="mb-3" controlId="change-avatar">
             <h2>Edit Your Avatar</h2>
-            <Image src={user.avatar_image} alt={user.first_name + user.last_name} roundedCircle="true" width="100px" />
+            {user.avatar_image &&
+              <Image src={user.avatar_image} alt={user.first_name + user.last_name} roundedCircle="true" width="100px" />            
+            }
             <Form.Control type="file" />
           </Form.Group>
 

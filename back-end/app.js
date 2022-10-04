@@ -41,6 +41,7 @@ const categoryItemRoutes = require("./routes/categoryItem");
 const userRegistrationRoutes = require("./routes/userRegistration");
 const userLogin = require("./routes/userLogin");
 const userSession = require("./routes/userSession");
+const artworkSearch = require("./routes/searchBar");
 
 // Mount all resource routes
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
@@ -54,6 +55,7 @@ app.use("/api/categoryItem", categoryItemRoutes);
 app.use("/register", userRegistrationRoutes);
 app.use("/login", userLogin);
 app.use("/api/session", userSession);
+app.use("/api/search", artworkSearch);
 
 //Home page
 app.get("/", (req, res) => {
