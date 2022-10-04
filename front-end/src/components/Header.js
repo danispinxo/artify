@@ -1,8 +1,7 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaintBrush } from '@fortawesome/free-solid-svg-icons';
-import Button from "react-bootstrap/Button";
+import { faPaintBrush, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
@@ -15,12 +14,11 @@ import axios from "axios";
 export const Header = () => {
   const dataState = useContext(DataContext);
 
-
   const handleLogout = () => {
     dataState.setUser({})
     axios.get('/logout')
   }
- 
+
 
   return (
     <Navbar className="navbar" expand="lg">
@@ -50,16 +48,27 @@ export const Header = () => {
             <Nav.Link
               as={Link}
               className="text-decoration-none text-black"
-              to="/gallery"
+              to="/gallery/3"
             >
               Gallery
             </Nav.Link>
+
+          </Nav>
+          <Form className="d-flex">
+            
+            <Form.Control
+              type="search"
+              placeholder="Search"
+              className="me-2"
+              aria-label="Search"
+            />
+          </Form>
+          <Nav>
             <Nav.Link
               as={Link}
-              className="text-decoration-none text-black"
-              to="/profile"
+              to="/cart"
             >
-              Profile
+              <FontAwesomeIcon icon={faCartShopping} />
             </Nav.Link>
             {!dataState.user.id && <Nav.Link
               as={Link}
@@ -76,7 +85,17 @@ export const Header = () => {
               Register
             </Nav.Link>}
 
-            {dataState.user.id && <Nav.Link
+            {dataState.user.id &&
+            <Nav.Link
+              as={Link}
+              className="text-decoration-none text-black"
+              to={"/profile/" + dataState.user.id}
+            >
+              {dataState.user.first_name}'s Profile
+            </Nav.Link>
+            }
+            {dataState.user.id && 
+            <Nav.Link
               as={Link}
               className="text-decoration-none text-black"
               to="/login"
@@ -85,15 +104,6 @@ export const Header = () => {
               Logout
             </Nav.Link>}
           </Nav>
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form>
         </Navbar.Collapse>
       </Container>
     </Navbar>
