@@ -50,10 +50,10 @@ export const Gallery = () => {
             <div className="list-item" key={i}>
               <Card>
                 <Card.Img
+                  className="card-img"
                   variant="top"
                   src={artwork.image}
                   alt="avatar"
-                  width="350px"
                 />
                 <Card.Body>
                   <Card.Title>{artwork.name}</Card.Title>

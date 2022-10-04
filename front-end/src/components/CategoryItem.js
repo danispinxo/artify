@@ -11,9 +11,9 @@ export default function CategoryItem(props) {
         <img src={image} alt={image} />
       </div>
       <div className="category-button">
-      <Link to={`/category/${id}`} >
-        <Button message={name} />
-      </Link>
+        <Link to={`/category/${id}`}>
+          <Button message={name} />
+        </Link>
       </div>
     </div>
   );
