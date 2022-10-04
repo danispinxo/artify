@@ -21,7 +21,7 @@ export default function ProductDescription(props) {
       </div>
 
       <div className="product-image-container" >
-        {product.image && <img className="product-image" src={`/${product.image}`} alt={product.image} width="50%"/>}
+        {product.image && <img className="product-image" src={product.image} alt={product.image} width="50%"/>}
       </div>
 
       <div className="product-description-container">
