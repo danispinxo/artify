@@ -26,7 +26,7 @@ export const Header = () => {
         <div className="brand">
         <Navbar.Brand>
           <FontAwesomeIcon icon={faPaintBrush} />
-          <Link id="nav-logo" className="text-decoration-none text-black" to="/">
+          <Link className="text-decoration-none text-black" to="/">
             Artify
           </Link>
         </Navbar.Brand>          
