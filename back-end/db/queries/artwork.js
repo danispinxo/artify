@@ -50,5 +50,16 @@ const addNewArtwork = (user_id, category_id, name, price_cents, description, ima
   });
 }
 
+const getArtworkBySearch= (search) => {
+  
+  return db
+    .query(
+      `SELECT * FROM artworks 
+      WHERE LOWER(artworks.name) LIKE LOWER($1 || '%');`, [search])
+    .then((data) => {
+      return data.rows;
+    });
+};
 
-module.exports = { getArtworkByRandom, getCategories, getArtworkById, getArtworkByCategoryId, addNewArtwork };
+
+module.exports = { getArtworkByRandom, getCategories, getArtworkById, getArtworkByCategoryId, addNewArtwork, getArtworkBySearch };

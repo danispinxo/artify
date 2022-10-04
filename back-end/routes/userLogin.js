@@ -7,7 +7,6 @@ router.post("/", (req, res) => {
 
   let email = req.body.data.email
   let password = req.body.data.password
-  console.log(email, password, 'dsfdsafdsfsda')
   
   itemQueries.authenticateUser(email)
   .catch((err) => {

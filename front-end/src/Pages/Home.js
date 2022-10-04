@@ -33,7 +33,7 @@ export const Home = () => {
           slidesPerGroup={5}
           loop={true}
           autoplay={{
-            delay: 2500,
+            delay: 5000,
             disableOnInteraction: false,
           }}
           loopFillGroupWithBlank={false}
