@@ -7,7 +7,6 @@ const app = express();
 const cookieSession = require('cookie-session');
 
 // Middleware
-app.use(upload());
 app.use(morgan('dev'));
 const cloudinary = require('cloudinary').v2;
 

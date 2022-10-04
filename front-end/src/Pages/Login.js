@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+import React from "react";
+=======
 import React, { useState, useContext } from "react";
+>>>>>>> master
 import { useForm } from "react-hook-form";
 import "../styles/userAuth.scss"
 import axios from 'axios'
