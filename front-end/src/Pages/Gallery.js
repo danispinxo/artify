@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Image from "react-bootstrap/Image";
@@ -7,12 +7,18 @@ import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTag, faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { Currency } from 'react-tender';
+import { useNavigate } from "react-router";
+import { DataContext } from "../context/dataContext";
 
 
 export const Gallery = () => {
   const { id } = useParams();
   const [userData, setUserData] = useState({});
   const [userGallery, setUserGallery] = useState([]);
+  const navigate = useNavigate();
+  const dataState = useContext(DataContext);
+  const user = dataState.user; // context for current user
+
 
   useEffect(() => {
     Promise.all([
@@ -23,6 +29,23 @@ export const Gallery = () => {
       setUserGallery(all[1].data);
     });
   }, [id]);
+
+
+
+  const handleAddToCart = (artwork) => {
+    console.log(artwork ,'artwork')
+    // event.preventDefault();
+
+    const orderInfo = {};
+    orderInfo.userID = user.id;
+    orderInfo.artworkID = artwork.id;
+    orderInfo.price = artwork.price_cents;
+
+    axios.put("/order/api/add", orderInfo)
+    .then((all) => {
+      // figure out how to navigate to cart after successful response, or render error if unsuccessful
+    });
+  }
 
 
   return (
@@ -62,21 +85,26 @@ export const Gallery = () => {
                       src={artwork.image}
                       alt="avatar"
                     />
+                   </a>
+
                     {artwork.sold && 
-                    <div className="after">
+                    <div className="after"  >
                       <FontAwesomeIcon icon={faTag} />  SOLD
                     </div>            
                     }
-                    {!artwork.sold && 
-                    <div className="add-to-cart">
-                      <FontAwesomeIcon  icon={faCartPlus} />
-                    </div>            
-                    }
-                  </a>
+                   
+                 
                 </div>
                 <Card.Body>
                   <Card.Title>{artwork.name}</Card.Title>
                   <Card.Text><Currency value={artwork.price_cents / 100.0} currency="CAD" /></Card.Text>
+
+                  {!artwork.sold && 
+                    <div className="add-to-cart">
+                      <FontAwesomeIcon onClick={() => handleAddToCart(artwork)}  icon={faCartPlus} />
+                    </div>            
+                    }
+
                 </Card.Body>
               </Card>
             </div>

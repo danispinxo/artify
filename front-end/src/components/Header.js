@@ -22,7 +22,7 @@ export const Header = () => {
     axios.get('/logout')
   };
   
-  //can snag info from the form here and put it as a url query and send it to another page.
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     if(searchInput) {
