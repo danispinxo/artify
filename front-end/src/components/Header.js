@@ -68,6 +68,7 @@ export const Header = () => {
 
             <Nav.Link
               as={Link}
+              id="artist-nav-link"
               className="text-decoration-none text-black"
               to="/artists"
             >
