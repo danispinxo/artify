@@ -63,7 +63,7 @@ export const Header = () => {
               className="text-decoration-none text-black"
               to="/categories"
             >
-              All Categories
+              Categories
             </Nav.Link>
 
             <Nav.Link
@@ -71,7 +71,7 @@ export const Header = () => {
               className="text-decoration-none text-black"
               to="/artists"
             >
-              All Artists
+              Artists
             </Nav.Link>
 
           </Nav>
@@ -106,13 +106,13 @@ export const Header = () => {
               className="text-decoration-none text-black"
               to={"/profile/" + dataState.user.id}
             >
-             Profile 
-             {/* {dataState.user.first_name} */}
+             {dataState.user.first_name}'s Profile
             </Nav.Link>}
 
             {dataState.user.id && 
             <Nav.Link
               as={Link}
+              id="logout-button"
               className="text-decoration-none text-black"
               to="/login"
               onClick={handleLogout}
