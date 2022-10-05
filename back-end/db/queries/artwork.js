@@ -58,7 +58,9 @@ const getArtworkBySearch= (search) => {
   return db
     .query(
       `SELECT * FROM artworks 
-      WHERE LOWER(artworks.name) LIKE LOWER($1 || '%');`, [search])
+      WHERE LOWER(artworks.name) LIKE LOWER('%'||$1||'%')
+      OR LOWER(artworks.description) LIKE LOWER('%'||$1||'%')
+      ;`, [search])
     .then((data) => {
       return data.rows;
     });

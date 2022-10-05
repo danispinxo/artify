@@ -123,7 +123,7 @@ export const Header = () => {
           </Nav>
 
           <form onSubmit={(e) => handleSubmit(e)} className="d-flex">
-            <input onChange={(e) => handleSearchInput(e) } value={searchInput} name="name" placeholder="Search" type="text"  id="form3Example4" className="form-control"/>
+            <input onChange={(e) => handleSearchInput(e) } value={searchInput || ''} name="name" placeholder="Search" type="text"  id="form3Example4" className="form-control"/>
             <button className='button' type="submit" >Search</button>
           </form>
            

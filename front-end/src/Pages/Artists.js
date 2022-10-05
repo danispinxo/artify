@@ -18,7 +18,7 @@ export default function Artists(props) {
   useEffect(() => {
     if (dataState.artworks) {
       dataState.setArtworks(dataState.artworks);
-      console.log(dataState.artworks);
+      
       dataState.setCategories(dataState.categories);
     }
   }, [dataState]);

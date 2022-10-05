@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
       })
     })
   } 
-  
+  //put edge case for still logged in as user.
   res.json({});
 });
 
