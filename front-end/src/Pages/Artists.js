@@ -34,7 +34,7 @@ export default function Artists(props) {
   return (
     <div className="homepage-container">
 
-      <h1>Explore All the Artify Artists</h1>
+      <h1 id="artists-title">Explore All the Artify Artists</h1>
       <div className="categories-container">
         {users.map((artist) => (
           <ArtistItem
