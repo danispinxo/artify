@@ -1,16 +1,17 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import axios from "axios";
 import "../styles/homepage.scss";
 import CategoryItem from "../components/CategoryItem";
 import { DataContext } from "../context/dataContext";
 
-export default function Artists() {
+export default function Artists(props) {
   const dataState = useContext(DataContext);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios.post(`order/api/artists`)
+    axios.get("/api/artists")
       .then((res) => {
-        console.log(res.data);
+        setUsers(res.data)
       })
   }, []);
 

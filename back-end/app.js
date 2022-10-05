@@ -57,7 +57,7 @@ app.use("/register", userRegistrationRoutes);
 app.use("/login", userLogin);
 app.use("/api/session", userSession);
 app.use("/api/search", artworkSearch);
-app.use("/api/artists", artworkRoutes);
+app.use("/api/artists", artistRoutes);
 
 //Home page
 app.get("/", (req, res) => {
