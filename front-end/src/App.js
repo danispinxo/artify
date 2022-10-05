@@ -15,6 +15,7 @@ import Cart from "./Pages/Cart";
 import SearchResults from "./Pages/SearchResults";
 import Categories from "./Pages/Categories";
 import Artists from "./Pages/Artists";
+import EditArtwork from "./Pages/EditArtwork";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/results" element={<SearchResults />} />
+            <Route path="/product/edit" element={<EditArtwork />} />
           </Routes>
           <Footer />
         </BrowserRouter>

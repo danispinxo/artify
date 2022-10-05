@@ -71,6 +71,7 @@ const deleteArtworkByID = (id) => {
     WHERE id = $1;
   `, [id])
   .then((data) => {
+    console.log("Deleted")
     return data.rows;
   });
 };

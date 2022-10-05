@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router";
 import axios from "axios";
 import '../styles/button.scss';
 import '../styles/profile.scss';
@@ -10,6 +11,7 @@ import { faTag } from '@fortawesome/free-solid-svg-icons';
 export default function ViewProfile() {
   const { id } = useParams();
   const [userGallery, setUserGallery] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`/api/gallery`,  { params: { id: id } })
@@ -22,11 +24,19 @@ export default function ViewProfile() {
     //make sure to pass this function the artwork ID
     const artworkInfo = {};
     artworkInfo.artworkID = artworkID;
-    axios.post(`order/api/remove`, artworkInfo)
+    axios.post(`/api/profile/delete`, artworkInfo)
     .then((res) => {
-      ///set userGallery again
+      axios.get(`/api/gallery`,  { params: { id: id } })
+        .then((all) => {
+          setUserGallery(all.data)
+        });
     })
   };
+
+  const handleEdit = (artworkID) => {
+    //make sure to pass this function the artwork ID
+    navigate(`/product/edit?artworkID=${artworkID}`)
+  }
 
   return (
     <div className="view-profile">
@@ -47,6 +57,8 @@ export default function ViewProfile() {
             </div>
             <Card.Body>
               <Card.Title>{art.name}</Card.Title>
+              <button onClick={() => handleDelete(art.id)}>DELETE</button>
+              <button onClick={() => handleEdit(art.id)}>EDIT</button>
             </Card.Body>
           </Card>
           </div>
