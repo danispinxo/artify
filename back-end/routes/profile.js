@@ -123,4 +123,14 @@ router.post("/delete", (req, res) => {
   })
 });
 
+router.post("/edit-artwork", (req, res) => {
+  artQueries.editArtworkDetails(req.body)
+  .then((order) => {
+    return res.json(order)
+  })
+  .catch((err) => {
+    res.status(500).json({ error: err.message });
+  })
+});
+
 module.exports = router;
