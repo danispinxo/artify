@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
 import '../styles/paymentForm.scss'
+import { useNavigate } from "react-router";
+
 
 const CARD_OPTIONS = {
 	iconStyle: "solid",
@@ -28,6 +30,9 @@ export default function PaymentForm() {
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,6 +41,7 @@ export default function PaymentForm() {
       card: elements.getElement(CardElement)
     })
 
+    setIsLoading(true)
   if(!error) {
     try{
       const {id} = paymentMethod
@@ -46,6 +52,8 @@ export default function PaymentForm() {
       if(response.data.success) {
         console.log('Successful payment')
         setSuccess(true)
+        setIsLoading(false)
+        navigate(`/confirmation`)
       }
     } catch(error){
       console.log('Error', error)
@@ -55,6 +63,7 @@ export default function PaymentForm() {
   }
 }
 
+  
   return ( 
   <>
    {!success ?
@@ -65,6 +74,10 @@ export default function PaymentForm() {
       </div>
     </fieldset>
     <button>Pay</button>
+    {!isLoading && <button >Pay</button>}
+    {isLoading && <button disabled>
+      <i className="fas fa-spinner fa-spin"></i>
+      PAYING</button>}
    </form>
     :
     <div>

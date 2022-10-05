@@ -93,4 +93,17 @@ const deleteLineItem = (line_item_id) => {
   });
 };
 
-module.exports = { getAllSoldByUser, getAllPurchasedByUser, addArtworkToOrderByID, getOrderByUserID, getOrderInProgress, createNewOrder, deleteLineItem };
+
+const emptyCart = (order_id) => {
+  return db
+  .query(`
+  UPDATE orders
+  SET in_progress = false
+  WHERE id = $1;
+`, [order_id])
+  .then((data) => {
+    return data.rows;
+  });
+};
+
+module.exports = { getAllSoldByUser, getAllPurchasedByUser, addArtworkToOrderByID, getOrderByUserID, getOrderInProgress, createNewOrder, deleteLineItem, emptyCart };

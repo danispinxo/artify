@@ -17,6 +17,7 @@ import Categories from "./Pages/Categories";
 import Artists from "./Pages/Artists";
 import EditArtwork from "./Pages/EditArtwork";
 import StripeContainer from "./components/StripeContainer";
+import Confirmation from "./Pages/Confirmation";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             <Route path="/results" element={<SearchResults />} />
             <Route path="/product/edit" element={<EditArtwork />} />
             <Route path="/payment" element={<StripeContainer />} />
+            <Route path="/confirmation" element={<Confirmation />} />
           </Routes>
           <Footer />
         </BrowserRouter>
