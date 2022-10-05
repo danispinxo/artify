@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTag, faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { Currency } from 'react-tender';
 
+
 export const Gallery = () => {
   const { id } = useParams();
   const [userData, setUserData] = useState({});
@@ -22,6 +23,7 @@ export const Gallery = () => {
       setUserGallery(all[1].data);
     });
   }, [id]);
+
 
   return (
     <div className="gallery">
@@ -67,7 +69,7 @@ export const Gallery = () => {
                     }
                     {!artwork.sold && 
                     <div className="add-to-cart">
-                      <FontAwesomeIcon icon={faCartPlus} />
+                      <FontAwesomeIcon  icon={faCartPlus} />
                     </div>            
                     }
                   </a>

@@ -41,4 +41,12 @@ function App() {
 
 export default App;
 
-//multiple match route
+
+// params  /:id
+
+//query  ?search=id&user=name
+
+//{
+//   search: id,
+//   user=name
+// }

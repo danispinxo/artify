@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaintBrush, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import Container from "react-bootstrap/Container";
@@ -13,37 +13,30 @@ import { useNavigate } from "react-router";
 
 export const Header = () => {
   const dataState = useContext(DataContext);
-  const [searchInput, setSearchInput] = useState('');
+  const [searchParams] = useSearchParams();
+  const [searchInput, setSearchInput] = useState(searchParams.get('search'));
   const navigate = useNavigate();
+  
 
   const handleLogout = () => {
     dataState.setUser({})
     axios.get('/logout')
   }
   
+  //can snag info from the form here and put it as a url query and send it to another page.
   const handleSubmit = (event) => {
     event.preventDefault();
     if(searchInput) {
-
-     axios.post('/api/search', {searchInput})
-     .then((artwork) => {
-       dataState.setArtResults(prev => ([...artwork.data]))
-       navigate(`/results`)
-     })
-     .catch((err) => {
-      navigate(`/results`)
-     })
+     navigate(`/results?search=${searchInput}`) 
    }
   }
-
-  
 
   const handleSearchInput = (e) => {
     const data = e.target.value
     setSearchInput(data)
   }
 
-  console.log(returnResult);
+  
 
   return (
     <Navbar className="navbar" expand="lg">
