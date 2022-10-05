@@ -9,3 +9,47 @@ $dark-red:#8C3503;
 $header-font: 'Quicksand', sans-serif;
 $logo-font: 'Pacifico', cursive;
 $body-font: 'Lato', sans-serif;
+
+@mixin glassbg {
+  backdrop-filter: blur(25px) saturate(144%);
+  -webkit-backdrop-filter: blur(25px) saturate(144%);
+  background-color: rgba(255, 255, 255, 0.52);
+}
+
+@mixin grid3col {
+  width: 96%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 25px 25px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". . ."
+    ". . ."
+    ". . .";
+}
+
+@mixin grid4col {
+  width: 96%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 25px 25px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". . . ."
+    ". . . ."
+    ". . . ."
+    ". . . ."; 
+}
+
+@mixin grid4col2row {
+  width: 96%;
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr; 
+  gap: 25px 25px; 
+  grid-template-areas: 
+    ". . . ."
+    ". . . ."; 
+}

@@ -63,11 +63,8 @@ h1 {
   transition: 1s ease;
   }
 
-  .categories-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 95%;  
+  .categories-container {  
+    @include grid4col2row
   }
 
   .homepage-container {

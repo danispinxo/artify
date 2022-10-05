@@ -63,15 +63,16 @@ export const Header = () => {
               className="text-decoration-none text-black"
               to="/categories"
             >
-              All Categories
+              Categories
             </Nav.Link>
 
             <Nav.Link
               as={Link}
+              id="artist-nav-link"
               className="text-decoration-none text-black"
               to="/artists"
             >
-              All Artists
+              Artists
             </Nav.Link>
 
           </Nav>
@@ -103,16 +104,17 @@ export const Header = () => {
             {dataState.user.id &&
             <Nav.Link
               as={Link}
+              id="user-profile-link"
               className="text-decoration-none text-black"
               to={"/profile/" + dataState.user.id}
             >
-             Profile 
-             {/* {dataState.user.first_name} */}
+             Your Profile
             </Nav.Link>}
 
             {dataState.user.id && 
             <Nav.Link
               as={Link}
+              id="logout-button"
               className="text-decoration-none text-black"
               to="/login"
               onClick={handleLogout}
