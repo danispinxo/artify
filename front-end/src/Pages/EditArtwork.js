@@ -9,34 +9,52 @@ import Form from 'react-bootstrap/Form';
 
 export default function EditArtwork(props) {
   const [searchParams] = useSearchParams();
-  const dataState = useContext(DataContext);
   const artworkID = searchParams.get('artworkID');
-// use a router link and do the axios call here
+
+  const dataState = useContext(DataContext);
+
+  const [artworks, setArtworks] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [editedArt, setEditedArt] = useState({});
+
+// do the axios call here
 // pass it the artwork object in the query string (use the examples from header and search results)
 // And this link would ONLY work if the logged in user id === user id for that artwork, if not show unauthorized message
 
-  const [edits, setEdits] = useState({});
-  const [categories, setCategories] = useState([]);
-
-  const VIEW = 'VIEW';
 
   useEffect(() => {
     if (dataState.categories) {
+      setArtworks(dataState.artworks);
       setCategories(dataState.categories);
     }
   }, [dataState]);
 
-  const artworkEdits = {};
+  useEffect(() => {
+    for (let artwork of artworks) {
+      if (artwork.id === Number(artworkID)) {
+        setEditedArt(artwork);
+      }
+    }
+  }, [artworks, artworkID]);
 
-  const editArtwork = (edits, user) => {
-    const editedArtwork = {};
-    // this creates an edited user to submit with the put request, either with the old or the new information
-    editedArtwork.id = artworkID;
-    // edits.first_name ? editedUser.first_name = edits.first_name : editedUser.first_name = user.first_name;
-    // edits.last_name ? editedUser.last_name = edits.last_name : editedUser.last_name = user.last_name;
-    // edits.bio ? editedUser.bio = edits.bio : editedUser.bio = user.bio;
+  const editArtwork = event => {
+    event.preventDefault();
 
-    setEdits(editedArtwork);
+    // This part retrieves the file from the change-avatar form
+    const form = event.currentTarget;
+    const categoryID = form.querySelector("#category").value;
+    const name = form.querySelector("#title").value;
+    const priceCents = form.querySelector("#price").value * 100;
+    const description = form.querySelector("#description").value;
+
+    // This part creates a FormData object, it includes 2 things: 1. text (the user.id), 2. the file
+    const formData = new FormData();
+    formData.append("userID", editedArt.user_id);
+    formData.append("categoryID", categoryID);
+    formData.append("name", name ? name : editedArt.name);
+    formData.append("priceCents", priceCents);
+    formData.append("description", description);
+
   };
 
   return (
@@ -57,20 +75,20 @@ export default function EditArtwork(props) {
 
           <Form.Group className="mb-3" controlId="title">
             <Form.Label>Artwork Title:</Form.Label>
-            <Form.Control name="title" type="name" />
+            <Form.Control name="title" type="name" placeholder={editedArt.name} />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="price">
             <Form.Label>Price:</Form.Label>
-            <Form.Control name="price" type="number" min="0.00" max="10000.00" step="0.01" defaultValue="10.00" />
+            <Form.Control name="price" type="number" min="0.00" max="10000.00" step="0.01" placeholder={editedArt.price_cents / 100 + " "}/>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="description">
             <Form.Label>Artwork Description</Form.Label>
-            <Form.Control as="textarea" />
+            <Form.Control as="textarea" placeholder={editedArt.description}/>
           </Form.Group>
 
-          <Button message="Add Artwork to Gallery" variant="primary" type="submit" />
+          <Button message="Edit this Artwork" variant="primary" type="submit" />
         </Form>
       </div>
     </div>
