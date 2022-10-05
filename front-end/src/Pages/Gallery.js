@@ -51,10 +51,10 @@ export const Gallery = () => {
           userGallery.map((artwork, i) => (
             <div className="list-item" key={i}>
               <Card>
-                <div className="card-image">
+                <div className="card-image2">
                   <a href={"/product/" + artwork.id}>
                     <Card.Img
-                      className="card-img"
+                      className="card-img2"
                       variant="top"
                       src={artwork.image}
                       alt="avatar"
