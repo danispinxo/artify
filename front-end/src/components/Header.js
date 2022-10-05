@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaintBrush, faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faPaintBrush, faCartShopping, faHome } from '@fortawesome/free-solid-svg-icons';
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -17,11 +17,10 @@ export const Header = () => {
   const [searchInput, setSearchInput] = useState(searchParams.get('search'));
   const navigate = useNavigate();
   
-
   const handleLogout = () => {
     dataState.setUser({})
     axios.get('/logout')
-  }
+  };
   
   //can snag info from the form here and put it as a url query and send it to another page.
   const handleSubmit = (event) => {
@@ -29,13 +28,12 @@ export const Header = () => {
     if(searchInput) {
      navigate(`/results?search=${searchInput}`) 
    }
-  }
+  };
 
   const handleSearchInput = (e) => {
     const data = e.target.value
     setSearchInput(data)
-  }
-
+  };
 
   return (
     <Navbar className="navbar" expand="lg">
@@ -50,24 +48,30 @@ export const Header = () => {
         </div>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
-          <Nav
-            className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: "100px" }}
-            navbarScroll
-          >
+          <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll >
+
             <Nav.Link
               as={Link}
               className="text-decoration-none text-black"
               to="/"
             >
-              Home
+              <FontAwesomeIcon icon={faHome} />
             </Nav.Link>
+
             <Nav.Link
               as={Link}
               className="text-decoration-none text-black"
-              to="/gallery/3"
+              to="/categories"
             >
-              Gallery
+              All Categories
+            </Nav.Link>
+
+            <Nav.Link
+              as={Link}
+              className="text-decoration-none text-black"
+              to="/artists"
+            >
+              All Artists
             </Nav.Link>
 
           </Nav>
@@ -123,7 +127,6 @@ export const Header = () => {
             <button className='button' type="submit" >Search</button>
           </form>
            
-
         </Navbar.Collapse>
       </Container>
     </Navbar>
