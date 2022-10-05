@@ -66,5 +66,16 @@ const getArtworkBySearch= (search) => {
     });
 };
 
+const deleteArtworkByID = (id) => {
+  return db
+  .query(`
+    DELETE FROM artworks
+    WHERE id = $1;
+  `, [id])
+  .then((data) => {
+    return data.rows;
+  });
+};
 
-module.exports = { getArtworkByRandom, getCategories, getArtworkById, getArtworkByCategoryId, addNewArtwork, getArtworkBySearch };
+
+module.exports = { getArtworkByRandom, getCategories, getArtworkById, getArtworkByCategoryId, addNewArtwork, getArtworkBySearch, deleteArtworkByID };

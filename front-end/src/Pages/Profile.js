@@ -17,16 +17,12 @@ export default function Profile(props) {
 
   const { id } = useParams()
   const [userData, setUserData] = useState({})
-  const [userGallery, setUserGallery] = useState([])
   const [mode, setMode] = useState(VIEW)
 
   useEffect(() => {
-    Promise.all([
-      axios.get(`/api/profile`,  { params: { id: id } }),
-      axios.get(`/api/gallery`,  { params: { id: id } })
-    ]).then((all) => {
-      setUserData(all[0].data[0])
-      setUserGallery(all[1].data)
+    axios.get(`/api/profile`,  { params: { id: id } })
+    .then((all) => {
+      setUserData(all.data[0])
     })
   }, [mode, id])
 
@@ -47,7 +43,7 @@ export default function Profile(props) {
         <Button message="Edit Profile" onClick={() => setMode(EDIT)}/>
         <a href={"/gallery/" + userData.id}><Button message="View Your Gallery" /></a>
       </div>
-      {mode === VIEW && <ViewProfile gallery={userGallery}/>}
+      {mode === VIEW && <ViewProfile />}
       {mode === EDIT && <EditProfile user={userData} setMode={setMode}/>}
       {mode === ADD && <AddArtwork user={userData} setMode={setMode}/>}
       {mode === HISTORY && <OrderHistory />}
