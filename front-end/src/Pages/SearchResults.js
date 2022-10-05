@@ -18,14 +18,13 @@ const searchInput = searchParams.get('search') ;
     })
   }, [searchInput])
 
-  
   return (
     <div>
     { artResult.length && <div className="search-artwork-container">
       {artResult.map((artwork, i) => 
         <div className="search-artwork-unit" key={i}>
               <Link to={`/product/${artwork.id}`} state={artwork}>
-              <img src={artwork.image}></img>
+              <img className="result-image" src={artwork.image} alt={artwork.image}></img>
               </Link>
               <div className="search-artwork-info">
               <p>{artwork.name}</p>

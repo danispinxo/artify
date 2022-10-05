@@ -6,7 +6,7 @@ router.post("/", (req, res) => {
   
   itemQueries.getArtworkBySearch(req.body.searchInput)
   .then((artworks) => {
-    console.log(artworks,'artworks')
+    
     return res.json(artworks)
   })
   .catch((err) => {
