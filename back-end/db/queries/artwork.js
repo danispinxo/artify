@@ -3,7 +3,7 @@ const db = require('../../configs/db.config');
 const getArtworkByRandom = () => {
   return db
     .query(
-      'SELECT * FROM artworks WHERE sold = false ORDER BY random() LIMIT 40;')
+      'SELECT * FROM artworks WHERE sold = false ORDER BY random() LIMIT 60;')
     .then((data) => {
       return data.rows;
     });

@@ -36,7 +36,6 @@ export const Header = () => {
     setSearchInput(data)
   }
 
-  
 
   return (
     <Navbar className="navbar" expand="lg">

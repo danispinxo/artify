@@ -25,7 +25,7 @@ router.post("/", (req, res) => {
     return res.json(user[0])
   })
   .catch((error) => {
-    return res.status(403).send({message: "Incorrect Password/email"})
+    return res.status(403).send({message: "Incorrect E-mail / Password"})
   })
 
   
