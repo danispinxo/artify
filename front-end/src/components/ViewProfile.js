@@ -5,7 +5,8 @@ import '../styles/button.scss';
 import '../styles/profile.scss';
 import Card from 'react-bootstrap/Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTag } from '@fortawesome/free-solid-svg-icons';
+import { faTag, faTrashCan, faPenToSquare} from '@fortawesome/free-solid-svg-icons';
+import { Link } from "react-router-dom";
 
 export default function ViewProfile() {
   const { id } = useParams();
@@ -22,34 +23,37 @@ export default function ViewProfile() {
     //make sure to pass this function the artwork ID
     const artworkInfo = {};
     artworkInfo.artworkID = artworkID;
-    axios.post(`order/api/remove`, artworkInfo)
+    axios.post(`/api/profile/delete`, artworkInfo)
     .then((res) => {
       ///set userGallery again
     })
   };
 
   return (
-    <div className="view-profile">
+    <div className="view-profile-container">
       <h1>Artworks Currently in Your Gallery</h1>
-      <div className="user-gallery">
+      <div className="view-profile-gallery">
         {userGallery.map((art, index) => 
-          <div key={index}>
-          <Card style={{ width: '14rem' }}>
-            <div className="card-image">
+          <Card className="view-profile-card" key={index}>
+            <div className="view-profile-card-img">
               <a href={"/product/" + art.id}>
-              <Card.Img variant="top" src={art.image} alt={art.name}/>
+              <Card.Img className="view-profile-card-img-top" variant="top" src={art.image} alt={art.name}/>
               {art.sold && 
-              <div className="after">
+              <div className="view-profile-card-img-after">
                 <FontAwesomeIcon icon={faTag} />  SOLD
-              </div>            
+              </div>
               }
               </a>
             </div>
-            <Card.Body>
+            <Card.Body className="view-profile-card-body">
               <Card.Title>{art.name}</Card.Title>
+              <div>
+              <FontAwesomeIcon icon={faTrashCan} className="view-profile-card-buttons" onClick={()=> handleDelete(art.id)}/>
+              <FontAwesomeIcon icon={faPenToSquare} className="view-profile-card-buttons" />
+              </div>
             </Card.Body>
           </Card>
-          </div>
+          
         )}
 
         {userGallery.length === 0 &&
