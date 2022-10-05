@@ -1,10 +1,18 @@
 import React, { useEffect, useContext } from "react";
+import axios from "axios";
 import "../styles/homepage.scss";
 import CategoryItem from "../components/CategoryItem";
 import { DataContext } from "../context/dataContext";
 
 export default function Artists() {
   const dataState = useContext(DataContext);
+
+  useEffect(() => {
+    axios.post(`order/api/artists`)
+      .then((res) => {
+        console.log(res.data);
+      })
+  }, []);
 
   useEffect(() => {
     if (dataState.artworks) {
