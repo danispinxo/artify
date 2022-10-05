@@ -3,7 +3,7 @@ const db = require('../../configs/db.config');
 const getArtworkByRandom = () => {
   return db
     .query(
-      'SELECT * FROM artworks WHERE sold = false ORDER BY random() LIMIT 40;')
+      'SELECT * FROM artworks WHERE sold = false ORDER BY random() LIMIT 60;')
     .then((data) => {
       return data.rows;
     });
@@ -58,7 +58,9 @@ const getArtworkBySearch= (search) => {
   return db
     .query(
       `SELECT * FROM artworks 
-      WHERE LOWER(artworks.name) LIKE LOWER($1 || '%');`, [search])
+      WHERE LOWER(artworks.name) LIKE LOWER('%'||$1||'%')
+      OR LOWER(artworks.description) LIKE LOWER('%'||$1||'%')
+      ;`, [search])
     .then((data) => {
       return data.rows;
     });

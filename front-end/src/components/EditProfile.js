@@ -61,10 +61,10 @@ export default function EditProfile({setMode, user}) {
 
     formData.append("userID", user.id);
     formData.append("cover", fileUpload);
-    console.log("Before axios", formData);
+   
     axios.put("/api/profile/cover", formData)
       .then((all) => {
-        console.log("Axios complete");
+        
         setMode(VIEW);
       });
   };
