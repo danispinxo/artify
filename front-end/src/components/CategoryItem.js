@@ -6,7 +6,7 @@ export default function CategoryItem(props) {
   const { name, image, id } = props;
 
   return (
-    <div className="categoryitem-container">
+    <div>
       <Link className="card5" to={`/category/${id}`}>
       <Card className="category-body">
         <Card.Img variant="top" src={image} alt={image} className="card-image" />
