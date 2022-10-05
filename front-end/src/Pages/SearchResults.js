@@ -1,23 +1,28 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { DataContext } from "../context/dataContext";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import { Link, useSearchParams } from "react-router-dom";
 import '../styles/searchResults.scss'
+import axios from 'axios';
 
 export default function SearchResults() {
-  const dataState = useContext(DataContext);
-  const [artworkList, setArtworkList] = useState([])
-
-  const searchedArtwork = dataState.artResults  
+const [searchParams] = useSearchParams();
+const[artResult, setArtResults] = useState([]);
+  
+const searchInput = searchParams.get('search') ;
   
   useEffect(() => {
-    setArtworkList(prev => ([...searchedArtwork]))
-  }, [])
+    axios.post('/api/search', {searchInput})
+    .then((response) => {
+      setArtResults(response.data)
+    })
+    .catch((err) => {
+    })
+  }, [searchInput])
 
-  console.log(artworkList, 'fdsafdsfdsafsad')
+  
   return (
     <div>
-    { artworkList.length && <div className="search-artwork-container">
-      {searchedArtwork.map((artwork, i) => 
+    { artResult.length && <div className="search-artwork-container">
+      {artResult.map((artwork, i) => 
         <div className="search-artwork-unit" key={i}>
               <Link to={`/product/${artwork.id}`} state={artwork}>
               <img src={artwork.image}></img>
@@ -31,7 +36,7 @@ export default function SearchResults() {
       )}
     </div> }
 
-    {!artworkList.length && <h1 className="null-search">No artwork found matching your search</h1>}
+    {!artResult.length && <h1 className="null-search">No artwork found matching your search</h1>}
     </div>
 
   )
