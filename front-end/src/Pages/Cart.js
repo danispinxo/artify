@@ -14,6 +14,11 @@ export default function Cart(props) {
   const dataState = useContext(DataContext);
   const user = dataState.user; // context for current user
 
+
+  // handle checkout 
+  //if not successful then things dont happen
+  // if succcessful make post request to change that order in progress to false
+
   const orderTotal = (cart) => {
     let total = 0;
     if (cart.length > 0) {
