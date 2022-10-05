@@ -123,7 +123,19 @@ router.post("/delete", (req, res) => {
   })
 });
 
-router.post("/edit-artwork", (req, res) => {
+router.post("/artwork", (req, res) => {
+  console.log("This is the artwork id: ", req.body.id);
+  artQueries.getArtworkById(req.body.id)
+  .then((artwork) => {
+    return res.json(artwork)  
+  })
+  .catch((err) => {
+    res.status(500).json({ error: err.message });
+  })
+});
+
+
+router.put("/edit-artwork", (req, res) => {
   artQueries.editArtworkDetails(req.body)
   .then((order) => {
     return res.json(order)

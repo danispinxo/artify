@@ -18,7 +18,7 @@ const getCategories = () => {
     });
 };
 
-const getArtworkById= (artwork_id) => {
+const getArtworkById = (artwork_id) => {
   return db
     .query(
       `SELECT * FROM artworks WHERE artworks.id = $1;`, [artwork_id])
@@ -71,7 +71,6 @@ const deleteArtworkByID = (id) => {
     WHERE id = $1;
   `, [id])
   .then((data) => {
-    console.log("Deleted")
     return data.rows;
   });
 };
