@@ -48,7 +48,7 @@ export default function Category(props) {
                 <Card.Text>
                   <p>{artwork.artworkname}</p>
                   <p>{artwork.description}</p>
-                  <p>${artwork.price_cents / 100.0}</p>
+                  <p><Currency value={artwork.price_cents / 100.0} currency="CAD" /></p>
                 </Card.Text>
               </Card.Body>
             </Card>
