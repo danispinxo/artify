@@ -6,6 +6,7 @@ import Button from '../components/Button';
 import Table from 'react-bootstrap/Table';
 import { DataContext } from "../context/dataContext";
 import { Currency } from 'react-tender';
+import StripeContainer from '../components/StripeContainer';
 
 export default function Cart(props) {
 
@@ -14,7 +15,7 @@ export default function Cart(props) {
   const dataState = useContext(DataContext);
   const user = dataState.user; // context for current user
 
-
+  
   // handle checkout 
   //if not successful then things dont happen
   // if succcessful make post request to change that order in progress to false
@@ -61,6 +62,19 @@ export default function Cart(props) {
         })
     })
   };
+
+
+  const handleEmptyCart = () => {
+    const orderId = cart[0].order_id
+    console.log(orderId, 'dfsafdsa')
+    axios.put('/emptycart', {orderId})
+    .then((res) => {
+      console.log(res)
+    })
+  }
+
+
+ 
 
   return (
     <div className='cart'>
@@ -110,8 +124,12 @@ export default function Cart(props) {
                   <td><Currency value={total} currency="CAD"/></td>
                 </tr>
               </tbody>
+              
             </Table>
-            <Button message="Checkout" />
+            <div onClick={handleEmptyCart} className="stripe-container">
+              <StripeContainer/>
+            </div>
+            
           </div>
         </div>
       </div>
