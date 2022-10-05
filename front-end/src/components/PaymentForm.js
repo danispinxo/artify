@@ -40,6 +40,7 @@ export default function PaymentForm() {
       type: 'card',
       card: elements.getElement(CardElement)
     })
+
     setIsLoading(true)
   if(!error) {
     try{
@@ -61,6 +62,7 @@ export default function PaymentForm() {
     console.log(error.message)
   }
 }
+
   
   return ( 
   <>
@@ -71,6 +73,7 @@ export default function PaymentForm() {
         <CardElement options={CARD_OPTIONS} />
       </div>
     </fieldset>
+    <button>Pay</button>
     {!isLoading && <button >Pay</button>}
     {isLoading && <button disabled>
       <i className="fas fa-spinner fa-spin"></i>

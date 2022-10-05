@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export default function SearchResults() {
 const [searchParams] = useSearchParams();
-const[artResult, setArtResults] = useState([]);
+const [artResult, setArtResults] = useState([]);
   
 const searchInput = searchParams.get('search') ;
   

@@ -87,5 +87,4 @@ const authenticateUser = (email) => {
     });
 };
 
-
 module.exports = { getUsers, getArtByUser, getUserById, editUser, addUser, authenticateUser, updateAvatar, updateCover };
