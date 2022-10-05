@@ -35,7 +35,6 @@ export default function Artists(props) {
     <div className="homepage-container">
 
       <h1>Explore All the Artify Artists</h1>
-      This will be a list of all the artists.
       <div className="categories-container">
         {users.map((artist) => (
           <ArtistItem
