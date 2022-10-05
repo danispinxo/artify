@@ -113,4 +113,14 @@ router.put("/add", upload.single('artwork'), (req, res) => {
 
 });
 
+router.post("/delete", (req, res) => {
+  artQueries.deleteArtworkByID(req.body.artworkID)
+  .then((order) => {
+    return res.json(order)
+  })
+  .catch((err) => {
+    res.status(500).json({ error: err.message });
+  })
+});
+
 module.exports = router;

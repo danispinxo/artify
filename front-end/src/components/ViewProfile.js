@@ -1,17 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import '../styles/button.scss';
 import '../styles/profile.scss';
 import Card from 'react-bootstrap/Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTag } from '@fortawesome/free-solid-svg-icons';
 
-export default function ViewProfile({gallery}) {
+export default function ViewProfile() {
+  const { id } = useParams();
+  const [userGallery, setUserGallery] = useState([]);
+
+  useEffect(() => {
+    axios.get(`/api/gallery`,  { params: { id: id } })
+    .then((all) => {
+      setUserGallery(all.data)
+    })
+  }, [id])
+
+  const handleDelete = (artworkID) => {
+    //make sure to pass this function the artwork ID
+    const artworkInfo = {};
+    artworkInfo.artworkID = artworkID;
+    axios.post(`order/api/remove`, artworkInfo)
+    .then((res) => {
+      ///set userGallery again
+    })
+  };
 
   return (
     <div className="view-profile">
       <h1>Artworks Currently in Your Gallery</h1>
       <div className="user-gallery">
-        {gallery.map((art, index) => 
+        {userGallery.map((art, index) => 
           <div key={index}>
           <Card style={{ width: '14rem' }}>
             <div className="card-image">
@@ -31,7 +52,7 @@ export default function ViewProfile({gallery}) {
           </div>
         )}
 
-        {gallery.length === 0 &&
+        {userGallery.length === 0 &&
         <p>You do not currently have any artworks in your gallery.</p>
         }
       </div>
