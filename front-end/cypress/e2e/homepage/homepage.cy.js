@@ -22,7 +22,7 @@ describe('homepage opens and runs properly', () => {
     cy.get('#form3Example3').type('k.jortons@mail.com', {force: true} );
     cy.get('form > :nth-child(3) > #form3Example4').type('password', {force: true});
     cy.get('.btn').click({force: true});
-    cy.get('.navbar').contains('Kenneth')
+    cy.get('.navbar').contains('Your Profile');
   });
 
   it('user can log in and out of existing account from the homepage', () => {
@@ -31,7 +31,7 @@ describe('homepage opens and runs properly', () => {
     cy.get(':nth-child(2) > #form3Example4').type('password', {force: true});
     cy.get('.btn').click({force: true});
     cy.get('[href="/login"]').click({force: true});
-    cy.get('#logout-button').click({force: true})
+    cy.get('#logout-button').click({force: true});
     cy.get('.navbar').contains('Login');
   });
 

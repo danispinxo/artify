@@ -103,10 +103,11 @@ export const Header = () => {
             {dataState.user.id &&
             <Nav.Link
               as={Link}
+              id="user-profile-link"
               className="text-decoration-none text-black"
               to={"/profile/" + dataState.user.id}
             >
-             {dataState.user.first_name}'s Profile
+             Your Profile
             </Nav.Link>}
 
             {dataState.user.id && 
