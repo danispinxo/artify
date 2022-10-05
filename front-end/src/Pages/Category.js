@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Currency } from 'react-tender';
 import axios from "axios";
 import "../styles/artForCategory.scss";
 import Image from "react-bootstrap/Image";

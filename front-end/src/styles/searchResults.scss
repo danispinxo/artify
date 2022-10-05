@@ -1,0 +1,20 @@
+.search-artwork-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.search-artwork-unit{
+  display: flex;
+  flex-direction: row;
+}
+
+.search-artwork-unit{
+  display:flex;
+  align-items: center;
+}
+
+.null-search {
+  display: flex;
+  align-items: center;
+  height:700px
+}
