@@ -50,12 +50,12 @@ export const Gallery = () => {
 
   return (
     <div className="gallery">
-      <div className="profile">
-        <div className="profile-cover">
+      <div className="profile-gallery">
+        <div className="profile-cover-gallery">
           <Image className="image" src={userData.cover_image} />
         </div>
 
-        <div className="profile-header">
+        <div className="profile-header-gallery">
           <Image
             src={userData.avatar_image}
             alt={userData.first_name + " " + userData.last_name}
