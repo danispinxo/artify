@@ -68,6 +68,8 @@ const getOrderInProgress = (user_id) => {
   });
 };
 
+//UPDATE ORDERS 
+
 const createNewOrder = (user_id) => {
   return db
   .query(`
