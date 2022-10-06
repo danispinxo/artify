@@ -78,17 +78,26 @@
   }
 
   .add-to-cart {
-    display: flex;
-    justify-content: right;
-    padding: 1rem;
-    color: $dark-brown;
-    font-family: $header-font;
-    font-size: 1.4rem;
-
-    &:hover {
-      cursor: pointer; 
-    }
+    display: none;
   }
+
+  &:hover {
+
+    .add-to-cart {
+      display: flex;
+      justify-content: right;
+      color: $dark-brown;
+      font-family: $header-font;
+      font-size: 1.4rem;
+      margin-left: 90%;
+
+      &:hover {
+        cursor: pointer; 
+      }
+    }    
+  }
+
+
 }
 
 .card-img{
