@@ -10,12 +10,12 @@ export function DataContextProvider(props) {
   const [user, setUser] = useState({})
   const [artResults, setArtResults] = useState([]);
 
+
   useEffect(() => {
     Promise.all([
       axios.get("/homepage/api"),
       axios.get("/categories/api"),
       axios.get("/api/session")
-     
     ]).then((all) => {
       setArtworks(all[0].data)
       setCategories(all[1].data)
@@ -28,7 +28,7 @@ export function DataContextProvider(props) {
       artworks:artworks,
       categories:categories,
       user: user,
-      artResults: artResults,
+      artResults: artResults, 
       setArtResults:setArtResults,
       setUser: setUser,
       setArtworks:setArtworks,
