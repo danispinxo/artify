@@ -18,7 +18,6 @@ export default function Artists(props) {
   useEffect(() => {
     if (dataState.artworks) {
       dataState.setArtworks(dataState.artworks);
-      
       dataState.setCategories(dataState.categories);
     }
   }, [dataState]);
@@ -37,6 +36,7 @@ export default function Artists(props) {
       <h1 id="artists-title">Explore All the Artify Artists</h1>
       <div className="categories-container">
         {users.map((artist) => (
+          getSampleArtwork(artist.user_id) && 
           <ArtistItem
             key={artist.user_id}
             id={artist.user_id}

@@ -96,6 +96,7 @@ export default function EditProfile({setMode, user}) {
               <Image src={user.cover_image} alt={user.first_name + "cover image"} className="edit-form-cover-img" />
             }
             <Form.Control type="file" className="edit-form-control"/>
+            <p className="recommendation">We recommend a minimum image size of 800px wide for cover images.</p>
           </Form.Group>
 
           <Button message="Upload New Cover" variant="primary" type="submit" />
