@@ -50,26 +50,28 @@ export default function ProductDescription({cart, setCart}) {
 
   return (
     <div className="product-description-container">
-      <div className="product-name">
-        <h1>{product.name} </h1>
+      
+      <div className="product-description-body">
+      <div className="product-description-image-container" >
+        {product.image && <img className="product-description-image" src={product.image} alt={product.image} />}
       </div>
 
-      <div className="product-image-container" >
-        {product.image && <img className="product-image" src={product.image} alt={product.image} width="50%"/>}
+      <div className="product-description-info">
+      <div className="product-description-name">
+        <p>{product.name} </p>
+      </div>
+      <div className="product-description-description">
+        <p>{product.description}</p>
       </div>
 
-      <div className="product-description-container">
-        <h3>{product.description}</h3>
-      </div>
-
-      <div className="product-price-container">
-        <h3><Currency value={product.price_cents/100.00} currency="CAD" /></h3>
+      <div className="product-description-price">
+        <p><Currency value={product.price_cents/100.00} currency="CAD" /></p>
       </div>
       
       {!product.sold && dataState.user.id && 
-      <div className="add-to-cart-button-container">
+      <div className="product-description-button-cont">
 
-        <button onClick={handleAddToCart}>
+        <button className="product-description-add-to-cart-button" onClick={handleAddToCart}>
           <FontAwesomeIcon icon={faCartPlus} />
           Add to Cart
         </button>
@@ -89,6 +91,10 @@ export default function ProductDescription({cart, setCart}) {
         </ToastContainer>
       </div>      
       }
+      </div>
+
+
+      </div>
       
       {product.sold &&
         <h2>This image has already been purchased!</h2>

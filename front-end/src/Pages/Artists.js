@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import axios from "axios";
-import "../styles/homepage.scss";
+import "../styles/artistitem.scss";
 import ArtistItem from "../components/ArtistItem";
 import { DataContext } from "../context/dataContext";
 
@@ -31,10 +31,10 @@ export default function Artists(props) {
   };
 
   return (
-    <div className="homepage-container">
+    <div className="artists-page-container">
 
       <h1 id="artists-title">Explore All the Artify Artists</h1>
-      <div className="categories-container">
+      <div className="artists-page-list">
         {users.map((artist) => (
           getSampleArtwork(artist.user_id) && 
           <ArtistItem
