@@ -18,6 +18,8 @@ export default function EditProfile({setMode, user}) {
     edits.first_name ? editedUser.first_name = edits.first_name : editedUser.first_name = user.first_name;
     edits.last_name ? editedUser.last_name = edits.last_name : editedUser.last_name = user.last_name;
     edits.bio ? editedUser.bio = edits.bio : editedUser.bio = user.bio;
+    edits.email ? editedUser.email = edits.email : editedUser.email = user.email;
+    // edits.password ? editedUser.password = edits.password : editedUser.password = user.password;
 
     setEdits(editedUser);
   };
@@ -115,6 +117,16 @@ export default function EditProfile({setMode, user}) {
             <Form.Label>Your Last Name</Form.Label>
             <Form.Control className="edit-form-control" name="last_name" type="name" placeholder={user.last_name} onChange={(event) => userEdits.last_name = event.target.value} />
           </Form.Group>
+
+          <Form.Group className="mb-3" controlId="change-email">
+            <Form.Label>Your Email</Form.Label>
+            <Form.Control className="edit-form-control" name="email" type="email" placeholder={user.email} onChange={(event) => userEdits.email = event.target.value} />
+          </Form.Group>
+
+          {/* <Form.Group className="mb-3" controlId="change-email">
+            <Form.Label>Your Password</Form.Label>
+            <Form.Control className="edit-form-control" name="password" type="password" placeholder="Change Your Password" onChange={(event) => userEdits.password = event.target.value} />
+          </Form.Group> */}
 
           <Form.Group className="mb-3" controlId="change-bio">
             <Form.Label>Your Bio</Form.Label>
