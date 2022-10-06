@@ -4,23 +4,43 @@ import axios from "axios";
 import Image from "react-bootstrap/Image";
 import "../styles/gallery.scss";
 import Card from "react-bootstrap/Card";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTag, faCartPlus } from '@fortawesome/free-solid-svg-icons';
-import { Currency } from 'react-tender';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTag, faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { Currency } from "react-tender";
 import { useNavigate } from "react-router";
 import { DataContext } from "../context/dataContext";
 import Toast from 'react-bootstrap/Toast';
+import "../styles/modal.scss";
 
 export const Gallery = () => {
   const { id } = useParams();
   const [userData, setUserData] = useState({});
   const [userGallery, setUserGallery] = useState([]);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dataState = useContext(DataContext);
   const user = dataState.user; // context for current user
+  const [modal, setModal] = useState(false);
+
+  const toggleModal = () => {
+    setModal(!modal);
+  };
 
   const [showPurchased, setShowPurchased] = useState(false);
   const toggleShowPurchased = () => setShowPurchased(false);
+  if (modal) {
+    document.body.classList.add("active-modal");
+  } else {
+    document.body.classList.remove("active-modal");
+  }
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    const name = e.target[0].value
+    const email = e.target[1].value
+    const message = e.target[2].value
+    console.log(name, email, message)
+    //axios call in here to give into to backend twilio
+  }
 
   useEffect(() => {
     Promise.all([
@@ -104,17 +124,47 @@ export const Gallery = () => {
                   <Card.Text><Currency value={artwork.price_cents / 100.0} currency="CAD" /></Card.Text>
                   {!artwork.sold && dataState.user.id &&
                       <FontAwesomeIcon onClick={() => handleAddToCart(artwork)}  icon={faCartPlus} className="add-to-cart" />
-                    }
+                    }       
+
                   {artwork.sold && 
-                    <div className="after"  >
-                      <FontAwesomeIcon icon={faTag} />  SOLD
-                    </div>            
+                    <div className="after"><FontAwesomeIcon icon={faTag} /> SOLD </div>
                   }
+
                 </Card.Body>
               </Card>
             </div>
           ))}
       </div>
+      <>
+        <button onClick={toggleModal} className="btn-modal"> 
+          Message
+        </button>
+        {modal && (
+          <div className="message-modal">
+            <div className="overlay" onClick={toggleModal}></div>
+            <div className="message-modal-content">
+
+            <div className="modal-form-container">
+             <form onSubmit={sendEmail}>
+              <input className="name-input" type="text" placeholder="Name" name="name"></input>
+              <br></br>
+              <input className="email-input" type="email" placeholder="Email" name="email"></input>
+              <br></br>
+              <input className="message-input" type="text" placeholder="Message" name="message"></input>
+              <br></br>
+              <input className="subject-input" type="text" placeholder="Subject" name="subject"></input>
+              <br></br>
+              <input className="message-submit" type="submit"></input>
+              <br></br>
+             </form>
+             </div>
+              <button onClick={toggleModal} className="message-close-modal">
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+      </>
     </div>
   );
 };

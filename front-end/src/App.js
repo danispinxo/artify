@@ -18,6 +18,7 @@ import Artists from "./Pages/Artists";
 import EditArtwork from "./Pages/EditArtwork";
 import StripeContainer from "./components/StripeContainer";
 import Confirmation from "./Pages/Confirmation";
+import MessageModal from "./components/MessageModal";
 
 function App() {
   const [cart, setCart] = useState(0);
@@ -42,6 +43,7 @@ function App() {
             <Route path="/product/edit" element={<EditArtwork />} />
             <Route path="/payment" element={<StripeContainer />} />
             <Route path="/confirmation" element={<Confirmation />} />
+            <Route path="/modal" element={<MessageModal />} />
           </Routes>
           <Footer />
         </BrowserRouter>
