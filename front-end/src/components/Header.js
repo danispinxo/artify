@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaintBrush, faHome } from '@fortawesome/free-solid-svg-icons';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
-import MailIcon from '@mui/icons-material/Mail';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -70,7 +69,7 @@ export default function Header({cart, setCart}) {
         </div>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
-          <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll >
+          <Nav className="me-auto my-2 my-lg-0" >
 
             <Nav.Link
               as={Link}
@@ -112,21 +111,6 @@ export default function Header({cart, setCart}) {
               </ThemeProvider>
 
             </Nav.Link> 
-            }
-
-            {dataState.user.id &&
-              <Nav.Link
-                as={Link}
-                id="user-messages-link"
-                className="text-decoration-none text-black"
-                to={"/"}
-              >
-                <ThemeProvider theme={theme}>
-                  <Badge badgeContent={4} color="secondary">
-                    <MailIcon color="action" />
-                  </Badge>                  
-                </ThemeProvider>
-              </Nav.Link>
             }
 
             {!dataState.user.id && <Nav.Link
