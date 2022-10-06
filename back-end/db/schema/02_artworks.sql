@@ -10,3 +10,6 @@ CREATE TABLE artworks (
   image VARCHAR(255), 
   sold BOOLEAN
 );
+
+
+
