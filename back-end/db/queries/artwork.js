@@ -77,5 +77,19 @@ const deleteArtworkByID = (id) => {
   });
 };
 
+const soldArtworkByOrderId = (order_id) => {
+  return db
+  .query(`
+  UPDATE artworks SET sold = true
+  FROM line_items
+  WHERE line_items.artwork_id =  artworks.id
+  AND line_items.order_id = $1; 
+  `, [order_id])
+  .then((data) => {
+    return data.rows;
+  });
+};
 
-module.exports = { getArtworkByRandom, getCategories, getArtworkById, getArtworkByCategoryId, addNewArtwork, getArtworkBySearch, deleteArtworkByID };
+
+
+module.exports = { getArtworkByRandom, getCategories, getArtworkById, getArtworkByCategoryId, addNewArtwork, getArtworkBySearch, deleteArtworkByID, soldArtworkByOrderId };

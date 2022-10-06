@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const itemQueries = require("../db/queries/orders");
+const itemQueries = require("../db/queries/artwork");
 
 router.put("/", (req, res) => {
-  
-  itemQueries.emptyCart(req.body.orderId)
-  .then(() => {
-    return res.json('Successfully changed order status to false')
+ 
+  itemQueries.soldArtworkByOrderId(req.body.orderId)
+  .then((artwork) => {
+    return res.json(artwork)
   })
   .catch((err) => {
     res.status(500).json({ error: err.message });

@@ -12,7 +12,7 @@ import { DataContext } from "../context/dataContext";
 
 export const Home = () => {
   const dataState = useContext(DataContext);
-
+  
 
   useEffect(() => {
     if (dataState.artworks) {

@@ -16,7 +16,8 @@ export const Header = () => {
   const [searchParams] = useSearchParams();
   const [searchInput, setSearchInput] = useState(searchParams.get('search'));
   const navigate = useNavigate();
-  
+
+
   const handleLogout = () => {
     dataState.setUser({})
     axios.get('/logout')
@@ -78,12 +79,14 @@ export const Header = () => {
           </Nav>
     
           <Nav>
-            <Nav.Link
+        
+            < Nav.Link
               as={Link}
               to="/cart"
             >
-              <FontAwesomeIcon className="nav-cart" icon={faCartShopping} />
-            </Nav.Link>
+              {dataState.user.id && <FontAwesomeIcon className="nav-cart" icon={faCartShopping} />}
+            </Nav.Link> 
+
 
             {!dataState.user.id && <Nav.Link
               as={Link}
