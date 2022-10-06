@@ -37,70 +37,75 @@ export const Footer = () => {
                Artify
               </h6>
               <p>
-                Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit.
+                Dani.S
+              </p>
+              <p>
+                Mohammed.A
+              </p>
+              <p>
+                Jeffrey.H
               </p>
             </MDBCol>
 
             <MDBCol md="2" lg="2" xl="2" className='mx-auto mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>Categories</h6>
               <p>
-                <a href='#!' className='text-reset'>
-                  Collectibles
+                <a href='/category/1' className='text-reset'>
+                  Children's Art
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
+                <a href='/category/2' className='text-reset'>
                  Photography
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
+                <a href='/category/3' className='text-reset'>
                  Painting
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
+                <a href='/category/4' className='text-reset'>
                  Drawing
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                 Visual Art
+                <a href='/category/5' className='text-reset'>
+                 Portrait
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                 Fine Art
+                <a href='/category/6' className='text-reset'>
+                 Landscape
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
+                <a href='/category/7' className='text-reset'>
                 Digital Art
                 </a>
+              </p>
+              <p>
+              <a href='/category/8' className='text-reset'>
+                Computer Art
+              </a>
               </p>
             </MDBCol>
 
             <MDBCol md="3" lg="2" xl="2" className='mx-auto mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>Useful links</h6>
               <p>
-                <a href='#!' className='text-reset'>
-                  Pricing
+                <a href='/' className='text-reset'>
+                  Home
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                  Settings
+                <a href='/artists' className='text-reset'>
+                  Artists
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                  Orders
-                </a>
-              </p>
-              <p>
-                <a href='#!' className='text-reset'>
-                  Help
+                <a href='/categories' className='text-reset'>
+                  Categories
                 </a>
               </p>
             </MDBCol>
@@ -109,11 +114,11 @@ export const Footer = () => {
               <h6 className='text-uppercase fw-bold mb-4'>Contact</h6>
               <p>
                 <MDBIcon icon="home" className="me-2" />
-                New York, NY 10012, US
+                Toronto, ON, CAN
               </p>
               <p>
                 <MDBIcon icon="envelope" className="me-3" />
-                info@example.com
+                noreplyArtify@gmail.com
               </p>
               <p>
                 <MDBIcon icon="phone" className="me-3" /> + 01 234 567 88

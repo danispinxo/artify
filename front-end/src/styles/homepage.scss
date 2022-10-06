@@ -43,13 +43,14 @@
   perspective: 1px;
 }
 
-h1 {
+.home-page-title {
   display: flex;
   justify-content: center;
   font-family: $body-font;
   padding-top: 50px;
   padding-bottom: 50px;
   color: $dark-red;
+  font-weight: 700;
 }
 
 .shrink img {
