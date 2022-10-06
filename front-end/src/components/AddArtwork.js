@@ -9,6 +9,7 @@ import '../styles/addartwork.scss';
 export default function AddArtwork({setMode, user}) {
   const dataState = useContext(DataContext);
   const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
   const VIEW = 'VIEW';
@@ -21,7 +22,7 @@ export default function AddArtwork({setMode, user}) {
 
   const submitArtwork = event => {
     event.preventDefault();
-
+    setIsLoading(true)
     // This part retrieves the file from the change-avatar form
     const form = event.currentTarget;
     const categoryID = form.querySelector("#category").value;
@@ -29,6 +30,8 @@ export default function AddArtwork({setMode, user}) {
     const priceCents = form.querySelector("#price").value * 100;
     const description = form.querySelector("#description").value;
     const fileUpload = form.querySelector("#add-artwork").files[0];
+    console.log("File size: ", fileUpload.size);
+    // if check which would return and setErrorMessages
     
     // This part creates a FormData object, it includes 2 things: 1. text (the user.id), 2. the file
     const formData = new FormData();
@@ -44,11 +47,12 @@ export default function AddArtwork({setMode, user}) {
       .then((all) => {
         // Then once complete
         setMode(VIEW);
+        setIsLoading(false);
       })
       .catch((err) => setError(err.response.data.message));
   };
 
-
+  console.log(isLoading)
   return (
     <div className="add-artwork-container">
       <h1>Add New Artwork</h1>
@@ -57,6 +61,7 @@ export default function AddArtwork({setMode, user}) {
           <Form.Group className="mb-3" controlId="add-artwork">
             <Form.Label>Upload Image:</Form.Label>
             <Form.Control type="file" className="add-artwork-form-control" required="true"/>
+            {/* {check bootstrap for form error messages} */}
           </Form.Group>
 
           <Form.Group className="mb-3">
@@ -82,12 +87,21 @@ export default function AddArtwork({setMode, user}) {
             <Form.Label className="add-artwork-label">Artwork Description</Form.Label>
             <Form.Control as="textarea" className="add-artwork-form-control"/>
           </Form.Group>
+        
+          {isLoading && <button variant="primary" type="submit" >
+            Add Artwork to Gallery
+            <i className="fas fa-spinner fa-spin"></i>
+            </ button>}
+          {!isLoading && <button  variant="primary" type="submit" >
+            Add Artwork to Gallery
+            </ button>}
+
           <div className="error-messages">
             {error && <p className="error-message">{error}</p>}
           </div>
-          <Button message="Add Artwork to Gallery" variant="primary" type="submit" />
+         
         </Form>
       
     </div>
   )
-}
+              }      

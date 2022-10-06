@@ -7,12 +7,11 @@
   margin-top: 60px;
 }
 
-
 .profile-gallery{
   display: flex;
   flex-direction: column;
- 
 }
+
 .user-name h2{
  padding-left: 50px;
  padding-top: 15px;
@@ -29,19 +28,20 @@
 .profile-cover-gallery{
   width: 100%;
   height: 450px;
+
+  .image {
+    background-size: cover;
+    height: 550px;
+    width: 100%;
+    object-position: center;
+    object-fit: cover;
+    
+  }
   
 }
-.profile-cover-gallery .image {
-  background-size: cover;
-  height: 550px;
-  width: 100%;
-  object-position: center;
-  object-fit: cover;
-  
-}
+
 .profile-header-gallery{
   margin-left: 50px;
-  // margin-top: -20px;
   
 }
 
@@ -50,7 +50,6 @@
   flex-direction: row;
   flex-wrap: wrap;
   width: 75%;
-  
 }
 
 .list-item{
@@ -58,20 +57,6 @@
   margin: 5px;
   padding-left: 50px;
   padding-top:  50px; 
-}
-
-.card-img{
-  width: 100%;
-  height: 600px;
-  object-fit: cover;
-}
-
-.card-image2{
-  .card-img2{
-    width: 100%;
-    height: 600px;
-    object-fit: cover;
-  }
 
   .after{
     position: absolute;
@@ -83,6 +68,7 @@
     color: $beige;
     font-family: $header-font;
     font-size: 1.8rem;
+    border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,18 +78,39 @@
 
   .add-to-cart {
     display: none;
-  
+  }
 
-    &:hover {
-      opacity: 1;
-      padding: 1rem;
+  &:hover {
+
+    .add-to-cart {
+      display: flex;
+      justify-content: right;
       color: $dark-brown;
       font-family: $header-font;
       font-size: 1.4rem;
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-end;
-      
-    }
+      margin-left: 90%;
+
+      &:hover {
+        cursor: pointer; 
+      }
+    }    
   }
+
+
+}
+
+.card-img{
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+}
+
+.card-image2{
+
+  .card-img2{
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+  }
+
 }
