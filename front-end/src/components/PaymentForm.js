@@ -73,7 +73,6 @@ export default function PaymentForm() {
         <CardElement options={CARD_OPTIONS} />
       </div>
     </fieldset>
-    <button>Pay</button>
     {!isLoading && <button >Pay</button>}
     {isLoading && <button disabled>
       <i className="fas fa-spinner fa-spin"></i>
