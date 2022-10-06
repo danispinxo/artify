@@ -9,7 +9,7 @@ import { faTag, faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { Currency } from 'react-tender';
 import { useNavigate } from "react-router";
 import { DataContext } from "../context/dataContext";
-
+import Toast from 'react-bootstrap/Toast';
 
 export const Gallery = () => {
   const { id } = useParams();
@@ -18,6 +18,9 @@ export const Gallery = () => {
   const navigate = useNavigate();
   const dataState = useContext(DataContext);
   const user = dataState.user; // context for current user
+
+  const [showPurchased, setShowPurchased] = useState(false);
+  const toggleShowPurchased = () => setShowPurchased(false);
 
   useEffect(() => {
     Promise.all([
@@ -30,8 +33,6 @@ export const Gallery = () => {
   }, [id]);
 
   const handleAddToCart = (artwork) => {
-    // event.preventDefault();
-
     const orderInfo = {};
     orderInfo.userID = user.id;
     orderInfo.artworkID = artwork.id;
@@ -39,7 +40,7 @@ export const Gallery = () => {
 
     axios.put("/order/api/add", orderInfo)
     .then((all) => {
-      navigate("/cart")
+      setShowPurchased(true);
     });
   };
 
@@ -65,6 +66,21 @@ export const Gallery = () => {
         </div>
 
         <div className="user-bio">{userData.bio && <p>{userData.bio}</p>}</div>
+      </div>
+
+      <div className="toast-holder">
+        <Toast show={showPurchased} onClose={toggleShowPurchased}>
+          <Toast.Header>
+            <img
+              src="holder.js/20x20?text=%20"
+              className="rounded me-2"
+              alt=""
+            />
+            <strong className="me-auto">Bootstrap</strong>
+            <small>11 mins ago</small>
+          </Toast.Header>
+          <Toast.Body>Woohoo, you're reading this text in a Toast!</Toast.Body>
+        </Toast>
       </div>
 
       <div className="list">
@@ -94,9 +110,6 @@ export const Gallery = () => {
                       <FontAwesomeIcon icon={faTag} />  SOLD
                     </div>            
                   }
-
-
-
                 </Card.Body>
               </Card>
             </div>
