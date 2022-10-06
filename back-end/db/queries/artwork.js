@@ -18,15 +18,14 @@ const getCategories = () => {
     });
 };
 
-
-const getArtworkById= (artwork_id) => {
+const getArtworkById = (artwork_id) => {
   return db
     .query(
       `SELECT * FROM artworks WHERE artworks.id = $1;`, [artwork_id])
     .then((data) => {
       return data.rows[0];
     });
-}
+};
 
 const getArtworkByCategoryId= (category_id) => {
   return db
@@ -51,10 +50,9 @@ const addNewArtwork = (user_id, category_id, name, price_cents, description, ima
   .then((data) => {
     return data.rows;
   });
-}
+};
 
-const getArtworkBySearch= (search) => {
-  
+const getArtworkBySearch = (search) => {
   return db
     .query(
       `SELECT * FROM artworks 
@@ -91,5 +89,18 @@ const soldArtworkByOrderId = (order_id) => {
 };
 
 
+const editArtworkDetails = (editedArtwork) => {
+  return db
+    .query(`
+    UPDATE artworks
+    SET category_id = $2, name = $3, price_cents = $4, description = $5
+    WHERE artworks.id = $1
+    RETURNING *;
+    `, [editedArtwork.id, editedArtwork.categoryID, editedArtwork.name, editedArtwork.price_cents, editedArtwork.description])
+    .then((data) => {
+      return data.rows;
+    });
+};
 
-module.exports = { getArtworkByRandom, getCategories, getArtworkById, getArtworkByCategoryId, addNewArtwork, getArtworkBySearch, deleteArtworkByID, soldArtworkByOrderId };
+
+module.exports = { getArtworkByRandom, getCategories, getArtworkById, getArtworkByCategoryId, addNewArtwork, getArtworkBySearch, deleteArtworkByID, editArtworkDetails, soldArtworkByOrderId };

@@ -14,12 +14,6 @@ export default function Cart(props) {
   const [subtotal, setSubtotal] = useState(0);
   const dataState = useContext(DataContext);
   const user = dataState.user; // context for current user
-
-  
-  // handle checkout 
-  //if not successful then things dont happen
-  // if succcessful make post request to change that order in progress to false
-
   const orderTotal = (cart) => {
     let total = 0;
     if (cart.length > 0) {
@@ -63,7 +57,6 @@ export default function Cart(props) {
     })
   };
 
-
   const handleEmptyCart = () => {
     const orderId = cart[0].order_id
     
@@ -75,9 +68,6 @@ export default function Cart(props) {
       console.log('Success')
     })
   }
-
-
- 
 
   return (
     <div className='cart'>

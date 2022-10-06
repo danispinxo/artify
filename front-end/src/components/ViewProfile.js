@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router";
 import axios from "axios";
 import '../styles/button.scss';
 import '../styles/profile.scss';
 import Card from 'react-bootstrap/Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTag, faTrashCan, faPenToSquare} from '@fortawesome/free-solid-svg-icons';
-import { Link } from "react-router-dom";
 
 export default function ViewProfile() {
   const { id } = useParams();
   const [userGallery, setUserGallery] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`/api/gallery`,  { params: { id: id } })
@@ -25,9 +26,17 @@ export default function ViewProfile() {
     artworkInfo.artworkID = artworkID;
     axios.post(`/api/profile/delete`, artworkInfo)
     .then((res) => {
-      ///set userGallery again
+      axios.get(`/api/gallery`,  { params: { id: id } })
+        .then((all) => {
+          setUserGallery(all.data)
+        });
     })
   };
+
+  const handleEdit = (artworkID) => {
+    //make sure to pass this function the artwork ID
+    navigate(`/product/edit?artworkID=${artworkID}`)
+  }
 
   return (
     <div className="view-profile-container">
@@ -49,7 +58,7 @@ export default function ViewProfile() {
               <Card.Title>{art.name}</Card.Title>
               <div>
               <FontAwesomeIcon icon={faTrashCan} className="view-profile-card-buttons" onClick={()=> handleDelete(art.id)}/>
-              <FontAwesomeIcon icon={faPenToSquare} className="view-profile-card-buttons" />
+              <FontAwesomeIcon icon={faPenToSquare} className="view-profile-card-buttons" onClick={()=> handleEdit(art.id)}/>
               </div>
             </Card.Body>
           </Card>
