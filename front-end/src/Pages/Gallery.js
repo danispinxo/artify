@@ -19,7 +19,6 @@ export const Gallery = () => {
   const dataState = useContext(DataContext);
   const user = dataState.user; // context for current user
 
-
   useEffect(() => {
     Promise.all([
       axios.get(`/api/profile`, { params: { id: id } }),
@@ -29,8 +28,6 @@ export const Gallery = () => {
       setUserGallery(all[1].data);
     });
   }, [id]);
-
-
 
   const handleAddToCart = (artwork) => {
     // event.preventDefault();
@@ -43,10 +40,8 @@ export const Gallery = () => {
     axios.put("/order/api/add", orderInfo)
     .then((all) => {
       navigate("/cart")
-      // figure out how to navigate to cart after successful response, or render error if unsuccessful
     });
-  }
-
+  };
 
   return (
     <div className="gallery">
