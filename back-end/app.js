@@ -47,6 +47,7 @@ const paymentRoutes = require("./routes/payment");
 const emptyCartRoutes = require("./routes/emptyCart");
 const soldRoutes = require("./routes/sold");
 const emailRoutes = require("./routes/email");
+const changePasswordRoute = require("./routes/changePassword");
 
 
 // Mount all resource routes
@@ -67,6 +68,7 @@ app.use("/payment", paymentRoutes);
 app.use("/emptycart", emptyCartRoutes);
 app.use("/sold", soldRoutes);
 app.use("/email", emailRoutes);
+app.use("/password/reset", changePasswordRoute);
 
 //Home page
 app.get("/", (req, res) => {
