@@ -9,6 +9,7 @@ import '../styles/addartwork.scss';
 export default function AddArtwork({setMode, user}) {
   const dataState = useContext(DataContext);
   const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const VIEW = 'VIEW';
 
@@ -20,7 +21,7 @@ export default function AddArtwork({setMode, user}) {
 
   const submitArtwork = event => {
     event.preventDefault();
-
+    setIsLoading(true)
     // This part retrieves the file from the change-avatar form
     const form = event.currentTarget;
     const categoryID = form.querySelector("#category").value;
@@ -43,10 +44,11 @@ export default function AddArtwork({setMode, user}) {
       .then((all) => {
         // Then once complete
         setMode(VIEW);
+        setIsLoading(false);
       });
   };
 
-
+  console.log(isLoading)
   return (
     <div className="add-artwork-container">
       <h1>Add New Artwork</h1>
@@ -80,8 +82,14 @@ export default function AddArtwork({setMode, user}) {
             <Form.Label>Artwork Description</Form.Label>
             <Form.Control as="textarea" className="add-artwork-form-control"/>
           </Form.Group>
-
-          <Button message="Add Artwork to Gallery" variant="primary" type="submit" />
+        
+          {isLoading && <button variant="primary" type="submit" >
+            Add Artwork to Gallery
+            <i className="fas fa-spinner fa-spin"></i>
+            </ button>}
+          {!isLoading && <button  variant="primary" type="submit" >
+            Add Artwork to Gallery
+            </ button>}
         </Form>
       
     </div>

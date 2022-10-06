@@ -57,7 +57,7 @@ export default function Register() {
               </div>
               
               <div className="form-outline mb-4">
-                <input placeholder="Password" type="password" id="form3Example4" className="form-control" {...register("password", { required: true })}/>              
+                <input placeholder="Password" type="password"  className="form-control" {...register("password", { required: true })}/>              
                 {errors.password && <p className="error-message">Password is required</p>}
               </div>
               <button type="submit" className="btn btn-primary btn-block mb-4">

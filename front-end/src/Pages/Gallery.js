@@ -4,11 +4,13 @@ import axios from "axios";
 import Image from "react-bootstrap/Image";
 import "../styles/gallery.scss";
 import Card from "react-bootstrap/Card";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTag, faCartPlus } from '@fortawesome/free-solid-svg-icons';
-import { Currency } from 'react-tender';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTag, faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { Currency } from "react-tender";
 import { useNavigate } from "react-router";
 import { DataContext } from "../context/dataContext";
+import "../styles/modal.scss";
+
 
 
 export const Gallery = () => {
@@ -18,7 +20,27 @@ export const Gallery = () => {
   const navigate = useNavigate();
   const dataState = useContext(DataContext);
   const user = dataState.user; // context for current user
+  const [modal, setModal] = useState(false);
+  
 
+  const toggleModal = () => {
+    setModal(!modal);
+  };
+
+  if (modal) {
+    document.body.classList.add("active-modal");
+  } else {
+    document.body.classList.remove("active-modal");
+  }
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    const name = e.target[0].value
+    const email = e.target[1].value
+    const message = e.target[2].value
+    console.log(name, email, message)
+    //axios call in here to give into to backend twilio
+  }
 
   useEffect(() => {
     Promise.all([
@@ -30,10 +52,8 @@ export const Gallery = () => {
     });
   }, [id]);
 
-
-
   const handleAddToCart = (artwork) => {
-    console.log(artwork ,'artwork')
+    console.log(artwork, "artwork");
     // event.preventDefault();
 
     const orderInfo = {};
@@ -41,12 +61,10 @@ export const Gallery = () => {
     orderInfo.artworkID = artwork.id;
     orderInfo.price = artwork.price_cents;
 
-    axios.put("/order/api/add", orderInfo)
-    .then((all) => {
+    axios.put("/order/api/add", orderInfo).then((all) => {
       // figure out how to navigate to cart after successful response, or render error if unsuccessful
     });
-  }
-
+  };
 
   return (
     <div className="gallery">
@@ -85,31 +103,66 @@ export const Gallery = () => {
                       src={artwork.image}
                       alt="avatar"
                     />
-                   </a>
+                  </a>
 
-                    {artwork.sold && 
-                    <div className="after"  >
-                      <FontAwesomeIcon icon={faTag} />  SOLD
-                    </div>            
-                    }
-                   
-                 
+                  {artwork.sold && (
+                    <div className="after">
+                      <FontAwesomeIcon icon={faTag} /> SOLD
+                    </div>
+                  )}
                 </div>
                 <Card.Body>
                   <Card.Title>{artwork.name}</Card.Title>
-                  <Card.Text><Currency value={artwork.price_cents / 100.0} currency="CAD" /></Card.Text>
+                  <Card.Text>
+                    <Currency
+                      value={artwork.price_cents / 100.0}
+                      currency="CAD"
+                    />
+                  </Card.Text>
 
-                  {!artwork.sold && 
+                  {!artwork.sold && (
                     <div className="add-to-cart">
-                      <FontAwesomeIcon onClick={() => handleAddToCart(artwork)}  icon={faCartPlus} />
-                    </div>            
-                    }
-
+                      <FontAwesomeIcon
+                        onClick={() => handleAddToCart(artwork)}
+                        icon={faCartPlus}
+                      />
+                    </div>
+                  )}
                 </Card.Body>
               </Card>
             </div>
           ))}
       </div>
+      <>
+        <button onClick={toggleModal} className="btn-modal"> 
+          Message
+        </button>
+        {modal && (
+          <div className="message-modal">
+            <div className="overlay" onClick={toggleModal}></div>
+            <div className="message-modal-content">
+
+            <div className="modal-form-container">
+             <form onSubmit={sendEmail}>
+              <input className="name-input" type="text" placeholder="Name" name="name"></input>
+              <br></br>
+              <input className="email-input" type="email" placeholder="Email" name="email"></input>
+              <br></br>
+              <input className="message-input" type="text" placeholder="Message" name="message"></input>
+              <br></br>
+              <input className="subject-input" type="text" placeholder="Subject" name="subject"></input>
+              <br></br>
+              <input className="message-submit" type="submit"></input>
+              <br></br>
+             </form>
+             </div>
+              <button onClick={toggleModal} className="message-close-modal">
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+      </>
     </div>
   );
 };
