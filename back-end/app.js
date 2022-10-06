@@ -28,7 +28,7 @@ cloudinary.config({
 });
 
 // Log the configuration
-console.log(cloudinary.config());
+// console.log(cloudinary.config());
 
 // Separated Routes for each Resource
 const galleryRoute = require("./routes/gallery");
@@ -45,6 +45,8 @@ const artworkSearch = require("./routes/searchBar");
 const artistRoutes = require("./routes/artists");
 const paymentRoutes = require("./routes/payment");
 const emptyCartRoutes = require("./routes/emptyCart");
+const soldRoutes = require("./routes/sold");
+
 
 // Mount all resource routes
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
@@ -62,6 +64,7 @@ app.use("/api/search", artworkSearch);
 app.use("/api/artists", artistRoutes);
 app.use("/payment", paymentRoutes);
 app.use("/emptycart", emptyCartRoutes);
+app.use("/sold", soldRoutes);
 
 //Home page
 app.get("/", (req, res) => {

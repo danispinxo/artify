@@ -59,10 +59,13 @@ export default function Cart(props) {
 
   const handleEmptyCart = () => {
     const orderId = cart[0].order_id
-    console.log(orderId, 'dfsafdsa')
-    axios.put('/emptycart', {orderId})
+    
+    Promise.all([
+      axios.put('/emptycart', {orderId}),
+      axios.put('/sold', {orderId})
+    ])
     .then((res) => {
-      console.log(res)
+      console.log('Success')
     })
   }
 
