@@ -6,11 +6,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { DataContext } from "../context/dataContext";
 import { Currency } from 'react-tender';
+import { useNavigate } from "react-router";
 
 export default function ProductDescription(props) {
   const { id } = useParams()
   const [product, setProduct] = useState({})
   const dataState = useContext(DataContext);
+  const navigate = useNavigate();
   const user = dataState.user; // context for current user
 
   useEffect(() => {
@@ -29,7 +31,8 @@ export default function ProductDescription(props) {
 
     axios.put("/order/api/add", orderInfo)
     .then((all) => {
-      // figure out how to navigate to cart after successful response, or render error if unsuccessful
+      alert('You add this item to your cart!');
+      navigate("/cart");
     });
   }
 
@@ -50,7 +53,8 @@ export default function ProductDescription(props) {
       <div className="product-price-container">
         <h3><Currency value={product.price_cents/100.00} currency="CAD" /></h3>
       </div>
-      {!product.sold &&
+      
+      {!product.sold && dataState.user.id && 
       <div className="add-to-cart-button-container">
         <button onClick={handleAddToCart}>
           <FontAwesomeIcon icon={faCartPlus} />
@@ -58,6 +62,7 @@ export default function ProductDescription(props) {
         </button>
       </div>      
       }
+      
       {product.sold &&
         <h2>This image has already been purchased!</h2>
       }

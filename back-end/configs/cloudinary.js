@@ -6,7 +6,7 @@ const uploadImage = async (imagePath) => {
     const result = await cloudinary.uploader.upload(imagePath);
     return result.public_id;
   } catch (error) {
-    console.error(error);
+    return error;
   }
 };
 
@@ -17,7 +17,7 @@ const getAssetInfo = async (publicId) => {
       const result = await cloudinary.api.resource(publicId);
       return result.secure_url;
       } catch (error) {
-      console.error(error);
+        return error;
   }
 };
 

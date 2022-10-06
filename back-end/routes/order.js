@@ -31,6 +31,16 @@ router.post("/cart", (req, res) => {
   })
 });
 
+router.post("/cart", (req, res) => {
+  orderQueries.getOrderByUserID(req.body.userID)
+  .then((order) => {
+    return res.json(order)
+  })
+  .catch((err) => {
+    res.status(500).json({ error: err.message });
+  })
+});
+
 router.put("/add", (req, res) => {
   // check if an in_progress order exists
   if (!req.session.user) {

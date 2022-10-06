@@ -33,7 +33,6 @@ export const Gallery = () => {
 
 
   const handleAddToCart = (artwork) => {
-    console.log(artwork ,'artwork')
     // event.preventDefault();
 
     const orderInfo = {};
@@ -43,6 +42,7 @@ export const Gallery = () => {
 
     axios.put("/order/api/add", orderInfo)
     .then((all) => {
+      navigate("/cart")
       // figure out how to navigate to cart after successful response, or render error if unsuccessful
     });
   }
@@ -99,7 +99,7 @@ export const Gallery = () => {
                   <Card.Title>{artwork.name}</Card.Title>
                   <Card.Text><Currency value={artwork.price_cents / 100.0} currency="CAD" /></Card.Text>
 
-                  {!artwork.sold && 
+                  {!artwork.sold && dataState.user.id &&
                     <div className="add-to-cart">
                       <FontAwesomeIcon onClick={() => handleAddToCart(artwork)}  icon={faCartPlus} />
                     </div>            
