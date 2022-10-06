@@ -1,6 +1,5 @@
 @import "variables.scss";
 
-
 .navbar {
   width: 100%;
   background: rgba(255, 255, 255, 0.59);
@@ -15,7 +14,6 @@
   
   .brand {
     font-family: $logo-font;
-    
   }
 
   .button {
@@ -57,25 +55,16 @@
   }
   
 
-}
 
-
-.form-control{
+  .form-control{
   height: 50px;
   margin-top: 15px;
   margin-left: 15px;
-}
+  }
 
-.nav-icon{
+  .nav-icon{
   font-size:x-large
+  }
+
 }
 
-.nav-cart{
-  margin-top:3px;
-  font-size:x-large;
-  margin-right: 5px
-}
-
-.text-decoration-none{
-  font-size:large;
-}

@@ -8,12 +8,12 @@ import { Currency } from 'react-tender';
 export default function Purchases({orders}) {
 
   return (
-    <div className="order-history">
+    <div className="order-history-sold-purchases-list">
       <h1>Your Purchased Artworks</h1>
-      <div className="order-list">
+      <div className="order-history-list">
       {orders.length >= 1 && orders.map((order, index) => 
-        <Card style={{ width: '14rem' }} key={index} >
-          <Card.Img variant="top" src={order.image} alt={order.name} />
+        <Card className="order-history-card" key={index} >
+          <Card.Img className="order-history-card-img" variant="top" src={order.image} alt={order.name} />
           <Card.Body>
             <Card.Title>Order No. {order.order_id}</Card.Title>
             <Card.Text>
@@ -26,7 +26,7 @@ export default function Purchases({orders}) {
           </ListGroup>
           <Card.Body>
             <Card.Text>{order.description}</Card.Text>
-            <Card.Link href={"/gallery/" + order.user_id}>View Artist's Gallery</Card.Link>
+            <Card.Link className="order-history-card-link" href={"/gallery/" + order.user_id}>View Artist's Gallery</Card.Link>
           </Card.Body>
         </Card>
       )}

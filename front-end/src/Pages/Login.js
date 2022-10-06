@@ -7,7 +7,7 @@ import { DataContext } from "../context/dataContext";
 
 
 export default function Login() {
-  const [error, setError] = useState('')
+  const [error, setError] = useState('');
   const navigate = useNavigate();
   const dataState = useContext(DataContext);
   

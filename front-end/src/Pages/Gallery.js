@@ -53,7 +53,6 @@ export const Gallery = () => {
   }, [id]);
 
   const handleAddToCart = (artwork) => {
-    console.log(artwork, "artwork");
     // event.preventDefault();
 
     const orderInfo = {};
@@ -61,7 +60,9 @@ export const Gallery = () => {
     orderInfo.artworkID = artwork.id;
     orderInfo.price = artwork.price_cents;
 
-    axios.put("/order/api/add", orderInfo).then((all) => {
+    axios.put("/order/api/add", orderInfo)
+    .then((all) => {
+      navigate("/cart")
       // figure out how to navigate to cart after successful response, or render error if unsuccessful
     });
   };
@@ -120,14 +121,14 @@ export const Gallery = () => {
                     />
                   </Card.Text>
 
-                  {!artwork.sold && (
+                  {!artwork.sold && dataState.user.id &&
                     <div className="add-to-cart">
                       <FontAwesomeIcon
                         onClick={() => handleAddToCart(artwork)}
                         icon={faCartPlus}
                       />
                     </div>
-                  )}
+                  }
                 </Card.Body>
               </Card>
             </div>

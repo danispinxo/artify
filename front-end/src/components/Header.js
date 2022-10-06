@@ -1,7 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaintBrush, faCartShopping, faHome } from '@fortawesome/free-solid-svg-icons';
+import { faPaintBrush, faHome } from '@fortawesome/free-solid-svg-icons';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Badge from '@mui/material/Badge';
+import MailIcon from '@mui/icons-material/Mail';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -11,13 +15,30 @@ import { DataContext } from "../context/dataContext";
 import axios from "axios";
 import { useNavigate } from "react-router";
 
-export const Header = () => {
+export default function Header({cart, setCart}) {
   const dataState = useContext(DataContext);
   const [searchParams] = useSearchParams();
   const [searchInput, setSearchInput] = useState(searchParams.get('search'));
   const navigate = useNavigate();
 
+  useEffect(() => {
+    axios.post("/order/api/cart", { userID: dataState.user.id})
+      .then((all) => {
+        setCart(all.data)
+      })
+  },[setCart, dataState.user.id])
 
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#595443',
+      },
+      secondary: {
+        main: '#8C3503',
+      },
+    },
+  });
+  
   const handleLogout = () => {
     dataState.setUser({})
     axios.get('/logout')
@@ -79,14 +100,34 @@ export const Header = () => {
           </Nav>
     
           <Nav>
-        
+            {dataState.user.id &&         
             < Nav.Link
               as={Link}
               to="/cart"
             >
-              {dataState.user.id && <FontAwesomeIcon className="nav-cart" icon={faCartShopping} />}
-            </Nav.Link> 
+              <ThemeProvider theme={theme}>
+                <Badge badgeContent={cart.length && cart.length} color="primary">
+                  <ShoppingCartIcon color="action" />
+                </Badge>                  
+              </ThemeProvider>
 
+            </Nav.Link> 
+            }
+
+            {dataState.user.id &&
+              <Nav.Link
+                as={Link}
+                id="user-messages-link"
+                className="text-decoration-none text-black"
+                to={"/"}
+              >
+                <ThemeProvider theme={theme}>
+                  <Badge badgeContent={4} color="secondary">
+                    <MailIcon color="action" />
+                  </Badge>                  
+                </ThemeProvider>
+              </Nav.Link>
+            }
 
             {!dataState.user.id && <Nav.Link
               as={Link}
@@ -112,7 +153,8 @@ export const Header = () => {
               to={"/profile/" + dataState.user.id}
             >
              Your Profile
-            </Nav.Link>}
+            </Nav.Link>
+            }
 
             {dataState.user.id && 
             <Nav.Link
