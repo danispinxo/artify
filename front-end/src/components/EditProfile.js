@@ -33,7 +33,6 @@ export default function EditProfile({setMode, user}) {
       })
   }, [edits, setMode]); 
 
-
   const submitAvatar = event => {
     event.preventDefault();
     // This part retrieves the file from the change-avatar form

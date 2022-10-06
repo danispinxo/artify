@@ -2,6 +2,9 @@ import React, { useContext, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaintBrush, faCartShopping, faHome } from '@fortawesome/free-solid-svg-icons';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Badge from '@mui/material/Badge';
+import MailIcon from '@mui/icons-material/Mail';
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -17,7 +20,17 @@ export const Header = () => {
   const [searchInput, setSearchInput] = useState(searchParams.get('search'));
   const navigate = useNavigate();
 
-
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#595443',
+      },
+      secondary: {
+        main: '#8C3503',
+      },
+    },
+  });
+  
   const handleLogout = () => {
     dataState.setUser({})
     axios.get('/logout')
@@ -87,7 +100,6 @@ export const Header = () => {
               {dataState.user.id && <FontAwesomeIcon className="nav-cart" icon={faCartShopping} />}
             </Nav.Link> 
 
-
             {!dataState.user.id && <Nav.Link
               as={Link}
               className="text-decoration-none text-black"
@@ -112,7 +124,23 @@ export const Header = () => {
               to={"/profile/" + dataState.user.id}
             >
              Your Profile
-            </Nav.Link>}
+            </Nav.Link>
+            }
+
+            {dataState.user.id &&
+              <Nav.Link
+                as={Link}
+                id="user-messages-link"
+                className="text-decoration-none text-black"
+                to={"/"}
+              >
+                <ThemeProvider theme={theme}>
+                  <Badge badgeContent={4} color="secondary">
+                    <MailIcon color="action" />
+                  </Badge>                  
+                </ThemeProvider>
+              </Nav.Link>
+            }
 
             {dataState.user.id && 
             <Nav.Link

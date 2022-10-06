@@ -61,6 +61,7 @@ export default function ProductDescription(props) {
         </button>
       </div>      
       }
+      
       {product.sold &&
         <h2>This image has already been purchased!</h2>
       }

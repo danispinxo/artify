@@ -47,14 +47,15 @@ router.put("/avatar", upload.single('avatar'), (req, res) => {
     // Upload the image
     const publicId = await uploadImage(avatarPath);
 
-    // Get the image (returns the secure_url)
-    const imageURL = await getAssetInfo(publicId);
+    if (publicId) {
+      // Get the image (returns the secure_url)
+      const imageURL = await getAssetInfo(publicId);
+      userQueries.updateAvatar(userID, imageURL);
+      res.send("Okay!")      
+    }
 
-    userQueries.updateAvatar(userID, imageURL);
-
-    res.send("Okay!")
     } catch (error) {
-      console.log(error);
+      res.send(error);
     }
 
   })();
@@ -70,14 +71,16 @@ router.put("/cover", upload.single('cover'), (req, res) => {
     // Upload the image
     const publicId = await uploadImage(coverPath);
 
-    // Get the image (returns the secure_url)
-    const imageURL = await getAssetInfo(publicId);
+    if (publicId) {
+      // Get the image (returns the secure_url)
+      const imageURL = await getAssetInfo(publicId);
 
-    userQueries.updateCover(userID, imageURL)
+      userQueries.updateCover(userID, imageURL);
+      res.send("Okay!")
+    }
   
-    res.send("Okay!")
     } catch (error) {
-        console.log(error);
+      res.send(error);
     }
 
   })();
@@ -99,14 +102,18 @@ router.put("/add", upload.single('artwork'), (req, res) => {
     // Upload the image
     const publicId = await uploadImage(image);
 
-    // Get the image (returns the secure_url)
-    const imageURL = await getAssetInfo(publicId);
+    if (publicId) {
+      // Get the image (returns the secure_url)
+      const imageURL = await getAssetInfo(publicId);
 
-    artQueries.addNewArtwork(userID, categoryID, name, price_cents, description, imageURL, sold)
-  
-    res.send("Image added to db successfully!")
+      artQueries.addNewArtwork(userID, categoryID, name, price_cents, description, imageURL, sold)
+    
+      res.send("Image added to db successfully!")      
+    }
+
     } catch (error) {
-        console.log(error);
+      res.status(500);
+      res.send(error);
     }
 
   })();
