@@ -30,11 +30,11 @@ function App() {
           <Header cart={cart} setCart={setCart}/>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/gallery/:id" element={<Gallery />} />
+            <Route path="/gallery/:id" element={<Gallery cart={cart} setCart={setCart}/>} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/artists" element={<Artists />} />
             <Route path="/profile/:id" element={<Profile />} />
-            <Route path="/product/:id" element={<ProductDescription />} />
+            <Route path="/product/:id" element={<ProductDescription cart={cart} setCart={setCart}/>} />
             <Route path="/category/:id" element={<Category />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

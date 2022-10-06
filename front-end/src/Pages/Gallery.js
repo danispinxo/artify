@@ -7,26 +7,24 @@ import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTag, faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { Currency } from "react-tender";
-import { useNavigate } from "react-router";
 import { DataContext } from "../context/dataContext";
+import ToastContainer from 'react-bootstrap/ToastContainer';
 import Toast from 'react-bootstrap/Toast';
 import "../styles/modal.scss";
 
-export const Gallery = () => {
+export const Gallery = ({cart, setCart}) => {
   const { id } = useParams();
   const [userData, setUserData] = useState({});
   const [userGallery, setUserGallery] = useState([]);
-  // const navigate = useNavigate();
   const dataState = useContext(DataContext);
   const user = dataState.user; // context for current user
   const [modal, setModal] = useState(false);
+  const [showPurchased, setShowPurchased] = useState([]);
 
   const toggleModal = () => {
     setModal(!modal);
   };
 
-  const [showPurchased, setShowPurchased] = useState(false);
-  const toggleShowPurchased = () => setShowPurchased(false);
   if (modal) {
     document.body.classList.add("active-modal");
   } else {
@@ -49,10 +47,24 @@ export const Gallery = () => {
     ]).then((all) => {
       setUserData(all[0].data[0]);
       setUserGallery(all[1].data);
+
+      for (const art of all[1].data) {
+        setShowPurchased((prev) => [...prev, false])
+      }
     });
   }, [id]);
 
-  const handleAddToCart = (artwork) => {
+  useEffect(() => {
+    const orderInfo = {};
+    orderInfo.userID = user.id;
+    axios.post(`order/api/cart`, orderInfo)
+      .then((res) => {
+        setCart(res.data);
+      })
+  }, [showPurchased, setCart, user]);
+
+  const handleAddToCart = (artwork, i) => {
+
     const orderInfo = {};
     orderInfo.userID = user.id;
     orderInfo.artworkID = artwork.id;
@@ -60,8 +72,19 @@ export const Gallery = () => {
 
     axios.put("/order/api/add", orderInfo)
     .then((all) => {
-      setShowPurchased(true);
-    });
+      setShowPurchased((prev) => {
+        prev[i] = true; 
+        return [...prev]
+      })
+
+      setTimeout(() => {
+        setShowPurchased((prev) => {
+          prev[i] = false; 
+          return [...prev]
+        })
+      }, 2000)
+    })
+
   };
 
   return (
@@ -86,21 +109,7 @@ export const Gallery = () => {
         </div>
 
         <div className="user-bio">{userData.bio && <p>{userData.bio}</p>}</div>
-      </div>
 
-      <div className="toast-holder">
-        <Toast show={showPurchased} onClose={toggleShowPurchased}>
-          <Toast.Header>
-            <img
-              src="holder.js/20x20?text=%20"
-              className="rounded me-2"
-              alt=""
-            />
-            <strong className="me-auto">Bootstrap</strong>
-            <small>11 mins ago</small>
-          </Toast.Header>
-          <Toast.Body>Woohoo, you're reading this text in a Toast!</Toast.Body>
-        </Toast>
       </div>
 
       <div className="list">
@@ -109,6 +118,19 @@ export const Gallery = () => {
             <div className="list-item" key={i}>
               <Card>
                 <div className="card-image2">
+                  <ToastContainer position={'middle-center'}>
+                    <Toast show={showPurchased.length > 0 && showPurchased[i]} >
+                      <Toast.Header>
+                        <img
+                          src="holder.js/20x20?text=%20"
+                          className="rounded me-2"
+                          alt=""
+                        />
+                        <strong className="me-auto">Success!</strong>
+                      </Toast.Header>
+                      <Toast.Body>You've just added this sweet piece of art to your cart!</Toast.Body>
+                    </Toast>          
+                  </ToastContainer>
                   <a href={"/product/" + artwork.id}>
                     <Card.Img
                       className="card-img2"
@@ -123,7 +145,7 @@ export const Gallery = () => {
                   <Card.Title>{artwork.name}</Card.Title>
                   <Card.Text><Currency value={artwork.price_cents / 100.0} currency="CAD" /></Card.Text>
                   {!artwork.sold && dataState.user.id &&
-                      <FontAwesomeIcon onClick={() => handleAddToCart(artwork)}  icon={faCartPlus} className="add-to-cart" />
+                      <FontAwesomeIcon onClick={() => handleAddToCart(artwork, i)}  icon={faCartPlus} className="add-to-cart" />
                     }       
 
                   {artwork.sold && 
