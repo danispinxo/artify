@@ -71,7 +71,7 @@ export default function EditProfile({setMode, user}) {
   };
 
   return (
-    <div className="edit-profile">
+    <div className="edit-profile-container">
       <h1>Edit Your Profile</h1>
 
       <div className="edit-avatar-form">

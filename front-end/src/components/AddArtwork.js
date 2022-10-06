@@ -4,6 +4,7 @@ import '../styles/button.scss';
 import Button from "./Button";
 import Form from 'react-bootstrap/Form';
 import { DataContext } from "../context/dataContext";
+import '../styles/addartwork.scss';
 
 export default function AddArtwork({setMode, user}) {
   const dataState = useContext(DataContext);
@@ -47,18 +48,18 @@ export default function AddArtwork({setMode, user}) {
 
 
   return (
-    <div className="add-artwork">
+    <div className="add-artwork-container">
       <h1>Add New Artwork</h1>
-      <div className="add-artwork-form">
-        <Form onSubmit={submitArtwork}>
+      
+        <Form onSubmit={submitArtwork} className="add-artwork-form">
           <Form.Group className="mb-3" controlId="add-artwork">
             <Form.Label>Upload Image:</Form.Label>
-            <Form.Control type="file" />
+            <Form.Control type="file" className="add-artwork-form-control"/>
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Category</Form.Label>
-            <Form.Select id="category">
+            <Form.Select id="category" className="add-artwork-form-select" >
               {categories.map((category) => 
                 <option key={category.id} value={category.id}>{category.name}</option>
               )}
@@ -67,22 +68,22 @@ export default function AddArtwork({setMode, user}) {
 
           <Form.Group className="mb-3" controlId="title">
             <Form.Label>Artwork Title:</Form.Label>
-            <Form.Control name="title" type="name" />
+            <Form.Control name="title" type="name" className="add-artwork-form-control"/>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="price">
             <Form.Label>Price:</Form.Label>
-            <Form.Control name="price" type="number" min="0.00" max="10000.00" step="0.01" defaultValue="10.00" />
+            <Form.Control name="price" type="number" min="0.00" max="10000.00" step="0.01" defaultValue="10.00" className="add-artwork-form-control"/>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="description">
             <Form.Label>Artwork Description</Form.Label>
-            <Form.Control as="textarea" />
+            <Form.Control as="textarea" className="add-artwork-form-control"/>
           </Form.Group>
 
           <Button message="Add Artwork to Gallery" variant="primary" type="submit" />
         </Form>
-      </div>
+      
     </div>
   )
 }
