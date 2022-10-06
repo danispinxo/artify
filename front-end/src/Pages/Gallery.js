@@ -81,22 +81,21 @@ export const Gallery = () => {
                       alt="avatar"
                     />
                    </a>
-
-                    {artwork.sold && 
-                    <div className="after"  >
-                      <FontAwesomeIcon icon={faTag} />  SOLD
-                    </div>            
-                    }
-                   
-                 
+                                  
                 </div>
                 <Card.Body>
                   <Card.Title>{artwork.name}</Card.Title>
                   <Card.Text><Currency value={artwork.price_cents / 100.0} currency="CAD" /></Card.Text>
 
+                  {artwork.sold && 
+                    <div className="after"  >
+                      <FontAwesomeIcon icon={faTag} />  SOLD
+                    </div>            
+                  }
+                  
                   {!artwork.sold && dataState.user.id &&
                     <div className="add-to-cart">
-                      <FontAwesomeIcon onClick={() => handleAddToCart(artwork)}  icon={faCartPlus} />
+                      <FontAwesomeIcon onClick={() => handleAddToCart(artwork)}  icon={faCartPlus} className="add-to-cart" />
                     </div>            
                     }
 
