@@ -19,7 +19,7 @@ export default function ProductDescription({cart, setCart}) {
   useEffect(() => {
     const orderInfo = {};
     orderInfo.userID = user.id;
-    axios.post(`order/api/cart`, orderInfo)
+    axios.post("/order/api/cart", orderInfo)
       .then((res) => {
         setCart(res.data);
       })
