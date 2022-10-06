@@ -1,5 +1,5 @@
 import "./App.scss";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { DataContextProvider } from "./context/dataContext";
 import { Home } from "./Pages/Home";
@@ -21,6 +21,21 @@ import Confirmation from "./Pages/Confirmation";
 
 function App() {
   const [cart, setCart] = useState(0);
+
+  useEffect(() => {
+    const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL || "ws://localhost:8001");
+
+    socket.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+
+      if (typeof data === "object") {
+        console.log(data);
+      }
+    };
+
+    return () => socket.close();
+
+  }, []);
 
   return (
     <DataContextProvider>
@@ -51,13 +66,3 @@ function App() {
 }
 
 export default App;
-
-
-// params  /:id
-
-//query  ?search=id&user=name
-
-//{
-//   search: id,
-//   user=name
-// }
