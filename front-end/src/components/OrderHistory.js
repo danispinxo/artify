@@ -26,12 +26,18 @@ export default function OrderHistory() {
   },[id])
 
   return (
-    <div className="order-history">
+    <div className="order-history-container">
+
+       <div className="order-history-buttons">
       <Button message={"Sold Artworks"} onClick={() => setOrderType(SOLD)}/>
       <Button message={"Purchased Artworks"} onClick={() => setOrderType(PURCHASES)}/> 
+       </div>
 
+      
       {orderType === SOLD && <Sold orders={soldArtworks}/>}
       {orderType === PURCHASES && <Purchases orders={purchasedArtworks}/>}
+      
+      
     </div>
   )
 }

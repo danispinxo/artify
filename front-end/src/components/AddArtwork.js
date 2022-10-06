@@ -60,7 +60,7 @@ export default function AddArtwork({setMode, user}) {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Category</Form.Label>
+            <Form.Label className="add-artwork-label">Category</Form.Label>
             <Form.Select id="category" className="add-artwork-form-select" >
               {categories.map((category) => 
                 <option key={category.id} value={category.id}>{category.name}</option>
@@ -69,17 +69,17 @@ export default function AddArtwork({setMode, user}) {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="title">
-            <Form.Label>Artwork Title:</Form.Label>
+            <Form.Label className="add-artwork-label">Artwork Title:</Form.Label>
             <Form.Control name="title" type="name" className="add-artwork-form-control"/>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="price">
-            <Form.Label>Price:</Form.Label>
+            <Form.Label className="add-artwork-label">Price:</Form.Label>
             <Form.Control name="price" type="number" min="0.00" max="10000.00" step="0.01" defaultValue="10.00" className="add-artwork-form-control"/>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="description">
-            <Form.Label>Artwork Description</Form.Label>
+            <Form.Label className="add-artwork-label">Artwork Description</Form.Label>
             <Form.Control as="textarea" className="add-artwork-form-control"/>
           </Form.Group>
           <div className="error-messages">

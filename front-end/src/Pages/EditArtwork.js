@@ -4,6 +4,7 @@ import { DataContext } from "../context/dataContext";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import '../styles/button.scss';
+import '../styles/editartwork.scss';
 import Image from 'react-bootstrap/Image';
 import Button from "../components/Button";
 import Form from 'react-bootstrap/Form';
@@ -81,16 +82,18 @@ export default function EditArtwork(props) {
   }
 
   return (
-    <div className="edit-artwork">
+    <div className="edit-artwork-container">
+
+
       <h1>Edit This Artwork's Details</h1>
 
-      <Image src={existingArt.image} alt={existingArt.name} rounded="true" width="250px" />
-      <div className="edit-form">
-      <Form onSubmit={editArtwork}>
+      <Image className="edit-artwork-img" src={existingArt.image} alt={existingArt.name}/>
+      
+      <Form onSubmit={editArtwork} className="edit-artwork-form">
 
           <Form.Group className="mb-3">
-            <Form.Label>Category (Current Category: {artworkCategory(existingArt.category_id)}) </Form.Label>
-            <Form.Select id="category">
+            <Form.Label className="edit-artwork-label">Category (Current Category: {artworkCategory(existingArt.category_id)}) </Form.Label>
+            <Form.Select id="category" className="edit-artwork-form-control">
               <option />
               {categories.map((category) => 
                 <option key={category.id} value={category.id}>{category.name}</option>
@@ -99,23 +102,23 @@ export default function EditArtwork(props) {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="title">
-            <Form.Label>Artwork Title:</Form.Label>
-            <Form.Control name="title" type="name" placeholder={existingArt.name} />
+            <Form.Label className="edit-artwork-label">Artwork Title:</Form.Label>
+            <Form.Control className="edit-artwork-form-control" name="title" type="name" placeholder={existingArt.name} />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="price">
-            <Form.Label>Price:</Form.Label>
-            <Form.Control name="price" type="number" min="0.00" max="10000.00" step="0.01" placeholder={existingArt.price_cents / 100 + " "}/>
+            <Form.Label className="edit-artwork-label">Price:</Form.Label>
+            <Form.Control className="edit-artwork-form-control" name="price" type="number" min="0.00" max="10000.00" step="0.01" placeholder={existingArt.price_cents / 100 + " "}/>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="description">
-            <Form.Label>Artwork Description</Form.Label>
-            <Form.Control as="textarea" placeholder={existingArt.description}/>
+            <Form.Label className="edit-artwork-label">Artwork Description</Form.Label>
+            <Form.Control className="edit-artwork-form-control" as="textarea" placeholder={existingArt.description}/>
           </Form.Group>
 
           <Button message="Edit this Artwork" variant="primary" type="submit" />
         </Form>
-      </div>
+      
     </div>
   )
 }
