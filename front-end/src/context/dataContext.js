@@ -10,7 +10,6 @@ export function DataContextProvider(props) {
   const [user, setUser] = useState({})
   const [artResults, setArtResults] = useState([]);
 
-
   useEffect(() => {
     Promise.all([
       axios.get("/homepage/api"),
@@ -21,7 +20,7 @@ export function DataContextProvider(props) {
       setCategories(all[1].data)
       setUser(all[2].data)
     })
-  },[])
+  },[user.id])
 
   return (
     <DataContext.Provider value={{ 

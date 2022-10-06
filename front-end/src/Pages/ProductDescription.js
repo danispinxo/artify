@@ -31,6 +31,7 @@ export default function ProductDescription(props) {
 
     axios.put("/order/api/add", orderInfo)
     .then((all) => {
+      alert('You add this item to your cart!');
       navigate("/cart");
     });
   }
