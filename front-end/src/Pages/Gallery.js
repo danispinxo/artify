@@ -11,8 +11,6 @@ import { useNavigate } from "react-router";
 import { DataContext } from "../context/dataContext";
 import "../styles/modal.scss";
 
-
-
 export const Gallery = () => {
   const { id } = useParams();
   const [userData, setUserData] = useState({});
@@ -21,10 +19,11 @@ export const Gallery = () => {
   const dataState = useContext(DataContext);
   const user = dataState.user; // context for current user
   const [modal, setModal] = useState(false);
-  
+  const [isLoading, setIsLoading] = useState(false);
 
   const toggleModal = () => {
     setModal(!modal);
+    setIsLoading(false)
   };
 
   if (modal) {
@@ -33,13 +32,20 @@ export const Gallery = () => {
     document.body.classList.remove("active-modal");
   }
 
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
     const name = e.target[0].value
     const email = e.target[1].value
     const message = e.target[2].value
-    console.log(name, email, message)
-    //axios call in here to give into to backend twilio
+  
+    axios.post('/email', {name, email, message})
+    .then((res) => {
+      setIsLoading(true)
+      setTimeout(() => {
+        setModal(!modal)
+      }, 3000)
+      console.log(res.data)
+    })
   }
 
   useEffect(() => {
@@ -138,7 +144,7 @@ export const Gallery = () => {
         <button onClick={toggleModal} className="btn-modal"> 
           Message
         </button>
-        {modal && (
+        {modal && !isLoading && (
           <div className="message-modal">
             <div className="overlay" onClick={toggleModal}></div>
             <div className="message-modal-content">
@@ -151,18 +157,43 @@ export const Gallery = () => {
               <br></br>
               <input className="message-input" type="text" placeholder="Message" name="message"></input>
               <br></br>
-              <input className="subject-input" type="text" placeholder="Subject" name="subject"></input>
-              <br></br>
-              <input className="message-submit" type="submit"></input>
+              <button className="message-submit" type="submit">Submit</button>
+              
               <br></br>
              </form>
              </div>
               <button onClick={toggleModal} className="message-close-modal">
                 Close
-              </button>
-            </div>
+              </button> 
+            </div> 
           </div>
         )}
+
+
+          {modal && isLoading && (
+          <div className="message-modal">
+            <div className="overlay" onClick={toggleModal}></div>
+            <div className="message-modal-content">
+
+            <div className="modal-form-container">
+             <form onSubmit={sendEmail}>
+              <input className="name-input" type="text" placeholder="Name" name="name"></input>
+              <br></br>
+              <input className="email-input" type="email" placeholder="Email" name="email"></input>
+              <br></br>
+              <input className="message-input" type="text" placeholder="Message" name="message"></input>
+              <br></br>
+              <button className="message-submit" type="submit">Sending <i className="fas fa-spinner fa-spin"></i></button>
+              <br></br>
+             </form>
+             </div>
+              <button onClick={toggleModal} className="message-close-modal">
+                Close
+              </button> 
+            </div> 
+          </div>
+        )}    
+
       </>
     </div>
   );

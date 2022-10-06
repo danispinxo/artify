@@ -46,6 +46,7 @@ const artistRoutes = require("./routes/artists");
 const paymentRoutes = require("./routes/payment");
 const emptyCartRoutes = require("./routes/emptyCart");
 const soldRoutes = require("./routes/sold");
+const emailRoutes = require("./routes/email");
 
 
 // Mount all resource routes
@@ -65,6 +66,7 @@ app.use("/api/artists", artistRoutes);
 app.use("/payment", paymentRoutes);
 app.use("/emptycart", emptyCartRoutes);
 app.use("/sold", soldRoutes);
+app.use("/email", emailRoutes);
 
 //Home page
 app.get("/", (req, res) => {
