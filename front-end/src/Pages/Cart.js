@@ -8,12 +8,11 @@ import { DataContext } from "../context/dataContext";
 import { Currency } from 'react-tender';
 import StripeContainer from '../components/StripeContainer';
 
-export default function Cart(props) {
-
-  const [cart, setCart] = useState({});
+export default function Cart({cart, setCart}) {
   const [subtotal, setSubtotal] = useState(0);
   const dataState = useContext(DataContext);
   const user = dataState.user; // context for current user
+
   const orderTotal = (cart) => {
     let total = 0;
     if (cart.length > 0) {
@@ -21,7 +20,6 @@ export default function Cart(props) {
         total += item.price_cents
       }
     }
-
     return total;
   };
 
@@ -32,8 +30,7 @@ export default function Cart(props) {
       .then((res) => {
         setCart(res.data);
       })
-  }, [user]);
-
+  }, [setCart, user]);
 
   useEffect(() => {
     setSubtotal(orderTotal(cart));
@@ -81,11 +78,11 @@ export default function Cart(props) {
 
         <div className='cart-content'>
           <div className='cart-line-items'>
+            {cart.length === 0 &&
+              <p>Your cart is empty.</p>
+            }
             <Table striped>
               <tbody>
-                {cart.length === 0 &&
-                <p>Your cart is empty.</p>
-                }
                 {cart.length > 0 &&
                 cart.map((item, index) => (
                   <tr className='line-item' key={index}>

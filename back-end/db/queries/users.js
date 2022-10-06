@@ -31,10 +31,10 @@ const editUser = (editedUser) => {
   return db
     .query(`
     UPDATE users
-    SET first_name = $2, last_name = $3, bio = $4
+    SET first_name = $2, last_name = $3, bio = $4, email = $5
     WHERE users.id = $1
     RETURNING *;
-    `, [editedUser.id, editedUser.first_name, editedUser.last_name, editedUser.bio])
+    `, [editedUser.id, editedUser.first_name, editedUser.last_name, editedUser.bio, editedUser.email])
     .then((data) => {
       return data.rows;
     });

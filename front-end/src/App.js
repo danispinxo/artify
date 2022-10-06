@@ -1,9 +1,9 @@
 import "./App.scss";
-import React from "react";
+import React, {useState} from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { DataContextProvider } from "./context/dataContext";
 import { Home } from "./Pages/Home";
-import { Header } from "./components/Header";
+import Header from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Gallery } from "./Pages/Gallery";
 import Profile from "./Pages/Profile";
@@ -20,11 +20,13 @@ import StripeContainer from "./components/StripeContainer";
 import Confirmation from "./Pages/Confirmation";
 
 function App() {
+  const [cart, setCart] = useState(0);
+
   return (
     <DataContextProvider>
       <div className="App">
         <BrowserRouter>
-          <Header />
+          <Header cart={cart} setCart={setCart}/>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/gallery/:id" element={<Gallery />} />
@@ -35,7 +37,7 @@ function App() {
             <Route path="/category/:id" element={<Category />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/cart" element={<Cart />} />
+            <Route path="/cart" element={<Cart cart={cart} setCart={setCart}/>} />
             <Route path="/results" element={<SearchResults />} />
             <Route path="/product/edit" element={<EditArtwork />} />
             <Route path="/payment" element={<StripeContainer />} />

@@ -9,6 +9,7 @@ import '../styles/addartwork.scss';
 export default function AddArtwork({setMode, user}) {
   const dataState = useContext(DataContext);
   const [categories, setCategories] = useState([]);
+  const [error, setError] = useState('');
 
   const VIEW = 'VIEW';
 
@@ -43,7 +44,8 @@ export default function AddArtwork({setMode, user}) {
       .then((all) => {
         // Then once complete
         setMode(VIEW);
-      });
+      })
+      .catch((err) => setError(err.response.data.message));
   };
 
 
@@ -54,7 +56,7 @@ export default function AddArtwork({setMode, user}) {
         <Form onSubmit={submitArtwork} className="add-artwork-form">
           <Form.Group className="mb-3" controlId="add-artwork">
             <Form.Label>Upload Image:</Form.Label>
-            <Form.Control type="file" className="add-artwork-form-control"/>
+            <Form.Control type="file" className="add-artwork-form-control" required="true"/>
           </Form.Group>
 
           <Form.Group className="mb-3">
@@ -80,7 +82,9 @@ export default function AddArtwork({setMode, user}) {
             <Form.Label className="add-artwork-label">Artwork Description</Form.Label>
             <Form.Control as="textarea" className="add-artwork-form-control"/>
           </Form.Group>
-
+          <div className="error-messages">
+            {error && <p className="error-message">{error}</p>}
+          </div>
           <Button message="Add Artwork to Gallery" variant="primary" type="submit" />
         </Form>
       

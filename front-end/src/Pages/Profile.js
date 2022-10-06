@@ -34,9 +34,10 @@ export default function Profile(props) {
         {userData.avatar_image && 
           <Image src={userData.avatar_image} alt={userData.first_name + " " + userData.last_name} className="profile-header-"roundedCircle="true" width="75px" />        
         }
-        <h1 onClick={() => setMode(VIEW)}>{userData.first_name} {userData.last_name}'s Profile</h1>
+        <h1 onClick={() => setMode(VIEW)}>{userData.first_name} {userData.last_name}'s Profile</h1><br/>
       </div>
       <div className='profile-bio'>
+        {userData.email && <p><b>Email: </b>{userData.email}</p>}
         {userData.bio && <p>{userData.bio}</p>}
       </div>
       <div className='profile-buttons'>
