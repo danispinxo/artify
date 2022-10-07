@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useContext} from "react";
 import axios from "axios";
 import '../styles/button.scss';
-import Button from "./Button";
 import Form from 'react-bootstrap/Form';
 import { DataContext } from "../context/dataContext";
 import '../styles/addartwork.scss';
