@@ -32,6 +32,7 @@ export default function PaymentForm({cart}) {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const dataState = useContext(DataContext);
+  const currentUser = dataState.user
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,7 +41,17 @@ export default function PaymentForm({cart}) {
       card: elements.getElement(CardElement)
     })
 
-    setIsLoading(true)
+    setIsLoading(true);
+
+    axios.post('/receipt', {cart, currentUser})
+    .then((res) => {
+      console.log('Success')
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+
+
       if(!error) {
         try {
           const {id} = paymentMethod
@@ -72,7 +83,7 @@ export default function PaymentForm({cart}) {
         <CardElement options={CARD_OPTIONS} />
       </div>
     </fieldset>
-    {!isLoading && <button >Pay</button>}
+    {!isLoading && <button>Pay</button>}
     {isLoading && <button disabled>
       <i className="fas fa-spinner fa-spin"></i>
       PAYING</button>}
