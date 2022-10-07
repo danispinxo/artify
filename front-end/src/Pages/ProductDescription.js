@@ -76,7 +76,7 @@ export default function ProductDescription({cart, setCart}) {
           Add to Cart
         </button>
 
-        <ToastContainer position={'bottom-center'}>
+        <ToastContainer position={'middle-center'}>
           <Toast show={addedToCart} >
             <Toast.Header>
               <img

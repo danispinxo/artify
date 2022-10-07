@@ -117,6 +117,50 @@ export const Gallery = ({cart, setCart}) => {
           </h2>
         </div>
 
+        <>
+          <div className="modal-btn-container">
+            <button onClick={toggleModal} className="btn-modal">Message This Artist</button>            
+          </div>
+
+        {modal && !isLoading && (
+          <div className="message-modal">
+            <div className="overlay" onClick={toggleModal}>
+            </div>
+            <div className="message-modal-content">
+              <h1>Send this Artist an Email</h1>
+              <div className="modal-form-container">
+                <form onSubmit={sendEmail}>
+                  <label>Your name:</label><br/>
+                  <input className="name-input" type="text" placeholder="Name" name="name" /><br/>
+                  <label>Your email:</label><br/>
+                  <input className="email-input" type="email" placeholder="Email" name="email" /><br/>
+                  <label>Your message:</label><br/>
+                  <textarea className="message-input" type="text" placeholder="Message" name="message" /><br/>
+                  <button className="message-submit" type="submit">Submit</button><br/>
+                </form>
+              </div>
+                <button onClick={toggleModal} className="message-close-modal">Close</button> 
+            </div> 
+          </div>
+        )}
+
+
+          {modal && isLoading && (
+            <div className="message-modal">
+              <div className="overlay" onClick={toggleModal}></div>
+              <div className="message-modal-content">
+                <div className="modal-form-container">
+                  <form onSubmit={sendEmail}>
+                    <button className="message-submit" type="submit">Sending <i className="fas fa-spinner fa-spin"></i></button>
+                    <br/>
+                  </form>
+                </div>
+                <button onClick={toggleModal} className="message-close-modal">Close</button> 
+              </div> 
+            </div>
+          )}
+
+      </>
         <div className="user-bio">{userData.bio && <p>{userData.bio}</p>}</div>
 
       </div>
@@ -166,61 +210,6 @@ export const Gallery = ({cart, setCart}) => {
             </div>
           ))}
       </div>
-      <>
-        <button onClick={toggleModal} className="btn-modal"> 
-          Message
-        </button>
-        {modal && !isLoading && (
-          <div className="message-modal">
-            <div className="overlay" onClick={toggleModal}></div>
-            <div className="message-modal-content">
-
-            <div className="modal-form-container">
-             <form onSubmit={sendEmail}>
-              <input className="name-input" type="text" placeholder="Name" name="name"></input>
-              <br></br>
-              <input className="email-input" type="email" placeholder="Email" name="email"></input>
-              <br></br>
-              <input className="message-input" type="text" placeholder="Message" name="message"></input>
-              <br></br>
-              <button className="message-submit" type="submit">Submit</button>
-              
-              <br></br>
-             </form>
-             </div>
-              <button onClick={toggleModal} className="message-close-modal">
-                Close
-              </button> 
-            </div> 
-          </div>
-        )}
-
-
-          {modal && isLoading && (
-          <div className="message-modal">
-            <div className="overlay" onClick={toggleModal}></div>
-            <div className="message-modal-content">
-
-            <div className="modal-form-container">
-             <form onSubmit={sendEmail}>
-              <input className="name-input" type="text" placeholder="Name" name="name"></input>
-              <br></br>
-              <input className="email-input" type="email" placeholder="Email" name="email"></input>
-              <br></br>
-              <input className="message-input" type="text" placeholder="Message" name="message"></input>
-              <br></br>
-              <button className="message-submit" type="submit">Sending <i className="fas fa-spinner fa-spin"></i></button>
-              <br></br>
-             </form>
-             </div>
-              <button onClick={toggleModal} className="message-close-modal">
-                Close
-              </button> 
-            </div> 
-          </div>
-        )}    
-
-      </>
     </div>
   );
 };
