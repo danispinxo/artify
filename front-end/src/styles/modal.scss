@@ -5,39 +5,89 @@ body.active-modal {
 }
 
 .message-modal, .overlay {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   position: fixed;
+  z-index: 2;
 }
 
 .overlay {
-  background: rgba(120, 116, 116, 0.8);
+  background: rgba(120, 116, 116, 0.7);
+  z-index: 2;
 }
 
 .message-modal-content {
   position: absolute;
+  width: 30%;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   line-height: 1.4;
-  background: $beige;
-  padding: 14px 28px;
-  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.59);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10.8px);
+  -webkit-backdrop-filter: blur(10.8px);
+  padding: 2% 2%;
+  padding-left: 3%;
+  border-radius: 10px;
   height:2000 px;
-  // max-width: 5000px;
-  // min-width: 5000px;
   display:flex;
   flex-direction: column;
+  z-index: 2;
 }
 
 .message-close-modal {
   top: 10px;
   right: 10px;
+  cursor: pointer;
+  font-size: 25px;
+  color: $dark-red;
 }
+.message-modal-head-cross{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+.modal-form{
+  .name-email-input{
+    width: 94%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 1%;
+    border-radius: 4px;
+    border: none;
+    @include glassbg;
+  
+  }
+  .message-input{
+    width: 94%;
+    border-radius: 4px;
+    border: none;
+    @include glassbg;
+    padding-top: 1%;
+    padding-left: 1%;
+  }
+  .message-submit{
+    margin-left: 0 !important;
+    width: 94%;
+    @include glassbg;
+    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.2) !important;
+  }
+  .message-submit:hover{
+    color: $beige;
+    background-color: $dark-red;
+    box-shadow: 6px 6px 6px 2px rgba(0,0,0,0.1) !important;
+  }
+  
+  .modal-form-label{
+    padding-top: 2%;
+    padding-bottom: 1%;
+  }
 
-
+}
 

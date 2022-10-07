@@ -5,7 +5,7 @@ import Image from "react-bootstrap/Image";
 import "../styles/gallery.scss";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTag, faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { faTag, faCartPlus, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { Currency } from "react-tender";
 import { DataContext } from "../context/dataContext";
 import ToastContainer from 'react-bootstrap/ToastContainer';
@@ -125,19 +125,23 @@ export const Gallery = ({cart, setCart}) => {
             <div className="overlay" onClick={toggleModal}>
             </div>
             <div className="message-modal-content">
-              <h1>Send this Artist an Email</h1>
+              <div className="message-modal-head-cross">
+              <h4>Send this Artist an Email</h4>
+              <FontAwesomeIcon icon={faCircleXmark} onClick={toggleModal} className="message-close-modal"/>
+              </div>
+               
               <div className="modal-form-container">
-                <form onSubmit={sendEmail}>
-                  <label>Your name:</label><br/>
-                  <input className="name-input" type="text" placeholder="Name" name="name" /><br/>
-                  <label>Your email:</label><br/>
-                  <input className="email-input" type="email" placeholder="Email" name="email" /><br/>
-                  <label>Your message:</label><br/>
+                <form onSubmit={sendEmail} className="modal-form">
+                  <label className="modal-form-label">Your name:</label><br/>
+                  <input className="name-email-input" type="text" placeholder="Name" name="name" /><br/>
+                  <label className="modal-form-label">Your email:</label><br/>
+                  <input className="name-email-input" type="email" placeholder="Email" name="email" /><br/>
+                  <label className="modal-form-label">Your message:</label><br/>
                   <textarea className="message-input" type="text" placeholder="Message" name="message" /><br/>
                   <button className="message-submit" type="submit">Submit</button><br/>
                 </form>
               </div>
-                <button onClick={toggleModal} className="message-close-modal">Close</button> 
+                {/* <button onClick={toggleModal} className="message-close-modal">Close</button>  */}
             </div> 
           </div>
         )}
