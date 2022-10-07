@@ -30,7 +30,7 @@ const getArtworkById = (artwork_id) => {
 const getArtworkByCategoryId= (category_id) => {
   return db
     .query(
-      `SELECT users.first_name as firstName, users.last_name as lastName, users.avatar_image as avatarImage, categories.name as categoryName, artworks.user_id, artworks.name as artworkName, artworks.description, artworks.image as artworkImage, artworks.price_cents 
+      `SELECT users.first_name as firstName, users.last_name as lastName, users.avatar_image as avatarImage, categories.name as categoryName, artworks.user_id, artworks.name as artworkName, artworks.description, artworks.image as artworkImage, artworks.price_cents, artworks.id as artworksID
       FROM artworks JOIN users ON user_id = users.id
       JOIN categories ON category_id = categories.id
       WHERE categories.id = $1 AND sold = false;`, [category_id])

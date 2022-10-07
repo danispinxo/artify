@@ -4,21 +4,50 @@ import axios from "axios";
 import Image from "react-bootstrap/Image";
 import "../styles/gallery.scss";
 import Card from "react-bootstrap/Card";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTag, faCartPlus } from '@fortawesome/free-solid-svg-icons';
-import { Currency } from 'react-tender';
-import { useNavigate } from "react-router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTag, faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { Currency } from "react-tender";
 import { DataContext } from "../context/dataContext";
+import ToastContainer from 'react-bootstrap/ToastContainer';
+import Toast from 'react-bootstrap/Toast';
+import "../styles/modal.scss";
 
-
-export const Gallery = () => {
+export const Gallery = ({cart, setCart}) => {
   const { id } = useParams();
   const [userData, setUserData] = useState({});
   const [userGallery, setUserGallery] = useState([]);
-  const navigate = useNavigate();
   const dataState = useContext(DataContext);
   const user = dataState.user; // context for current user
+  const [modal, setModal] = useState(false);
+  const [showPurchased, setShowPurchased] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
+  const toggleModal = () => {
+    setModal(!modal);
+    setIsLoading(false)
+  };
+
+  if (modal) {
+    document.body.classList.add("active-modal");
+  } else {
+    document.body.classList.remove("active-modal");
+  }
+
+  const sendEmail = async (e) => {
+    e.preventDefault();
+    const name = e.target[0].value
+    const email = e.target[1].value
+    const message = e.target[2].value
+  
+    axios.post('/email', {name, email, message})
+    .then((res) => {
+      setIsLoading(true)
+      setTimeout(() => {
+        setModal(!modal)
+      }, 3000)
+      console.log(res.data)
+    })
+  }
 
   useEffect(() => {
     Promise.all([
@@ -27,13 +56,23 @@ export const Gallery = () => {
     ]).then((all) => {
       setUserData(all[0].data[0]);
       setUserGallery(all[1].data);
+
+      for (const art of all[1].data) {
+        setShowPurchased((prev) => [...prev, false])
+      }
     });
   }, [id]);
 
+  useEffect(() => {
+    const orderInfo = {};
+    orderInfo.userID = user.id;
+    axios.post("/order/api/cart", orderInfo)
+      .then((res) => {
+        setCart(res.data);
+      })
+  }, [showPurchased, setCart, user]);
 
-
-  const handleAddToCart = (artwork) => {
-    // event.preventDefault();
+  const handleAddToCart = (artwork, i) => {
 
     const orderInfo = {};
     orderInfo.userID = user.id;
@@ -42,11 +81,20 @@ export const Gallery = () => {
 
     axios.put("/order/api/add", orderInfo)
     .then((all) => {
-      navigate("/cart")
-      // figure out how to navigate to cart after successful response, or render error if unsuccessful
-    });
-  }
+      setShowPurchased((prev) => {
+        prev[i] = true; 
+        return [...prev]
+      })
 
+      setTimeout(() => {
+        setShowPurchased((prev) => {
+          prev[i] = false; 
+          return [...prev]
+        })
+      }, 2000)
+    })
+
+  };
 
   return (
     <div className="gallery">
@@ -69,7 +117,52 @@ export const Gallery = () => {
           </h2>
         </div>
 
+        <>
+          <div className="modal-btn-container">
+            <button onClick={toggleModal} className="btn-modal">Message This Artist</button>            
+          </div>
+
+        {modal && !isLoading && (
+          <div className="message-modal">
+            <div className="overlay" onClick={toggleModal}>
+            </div>
+            <div className="message-modal-content">
+              <h1>Send this Artist an Email</h1>
+              <div className="modal-form-container">
+                <form onSubmit={sendEmail}>
+                  <label>Your name:</label><br/>
+                  <input className="name-input" type="text" placeholder="Name" name="name" /><br/>
+                  <label>Your email:</label><br/>
+                  <input className="email-input" type="email" placeholder="Email" name="email" /><br/>
+                  <label>Your message:</label><br/>
+                  <textarea className="message-input" type="text" placeholder="Message" name="message" /><br/>
+                  <button className="message-submit" type="submit">Submit</button><br/>
+                </form>
+              </div>
+                <button onClick={toggleModal} className="message-close-modal">Close</button> 
+            </div> 
+          </div>
+        )}
+
+
+          {modal && isLoading && (
+            <div className="message-modal">
+              <div className="overlay" onClick={toggleModal}></div>
+              <div className="message-modal-content">
+                <div className="modal-form-container">
+                  <form onSubmit={sendEmail}>
+                    <button className="message-submit" type="submit">Sending <i className="fas fa-spinner fa-spin"></i></button>
+                    <br/>
+                  </form>
+                </div>
+                <button onClick={toggleModal} className="message-close-modal">Close</button> 
+              </div> 
+            </div>
+          )}
+
+      </>
         <div className="user-bio">{userData.bio && <p>{userData.bio}</p>}</div>
+
       </div>
 
       <div className="list">
@@ -78,6 +171,19 @@ export const Gallery = () => {
             <div className="list-item" key={i}>
               <Card>
                 <div className="card-image2">
+                  <ToastContainer position={'middle-center'}>
+                    <Toast show={showPurchased.length > 0 && showPurchased[i]} >
+                      <Toast.Header>
+                        <img
+                          src="holder.js/20x20?text=%20"
+                          className="rounded me-2"
+                          alt=""
+                        />
+                        <strong className="me-auto">Success!</strong>
+                      </Toast.Header>
+                      <Toast.Body>You've just added this sweet piece of art to your cart!</Toast.Body>
+                    </Toast>          
+                  </ToastContainer>
                   <a href={"/product/" + artwork.id}>
                     <Card.Img
                       className="card-img2"
@@ -86,24 +192,18 @@ export const Gallery = () => {
                       alt="avatar"
                     />
                    </a>
-
-                    {artwork.sold && 
-                    <div className="after"  >
-                      <FontAwesomeIcon icon={faTag} />  SOLD
-                    </div>            
-                    }
-                   
-                 
+                                  
                 </div>
                 <Card.Body>
                   <Card.Title>{artwork.name}</Card.Title>
                   <Card.Text><Currency value={artwork.price_cents / 100.0} currency="CAD" /></Card.Text>
-
                   {!artwork.sold && dataState.user.id &&
-                    <div className="add-to-cart">
-                      <FontAwesomeIcon onClick={() => handleAddToCart(artwork)}  icon={faCartPlus} />
-                    </div>            
-                    }
+                      <FontAwesomeIcon onClick={() => handleAddToCart(artwork, i)}  icon={faCartPlus} className="add-to-cart" />
+                    }       
+
+                  {artwork.sold && 
+                    <div className="after"><FontAwesomeIcon icon={faTag} /> SOLD </div>
+                  }
 
                 </Card.Body>
               </Card>

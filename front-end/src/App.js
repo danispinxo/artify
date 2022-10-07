@@ -19,6 +19,7 @@ import EditArtwork from "./Pages/EditArtwork";
 import StripeContainer from "./components/StripeContainer";
 import Confirmation from "./Pages/Confirmation";
 
+
 function App() {
   const [cart, setCart] = useState(0);
 
@@ -29,11 +30,11 @@ function App() {
           <Header cart={cart} setCart={setCart}/>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/gallery/:id" element={<Gallery />} />
+            <Route path="/gallery/:id" element={<Gallery cart={cart} setCart={setCart}/>} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/artists" element={<Artists />} />
             <Route path="/profile/:id" element={<Profile />} />
-            <Route path="/product/:id" element={<ProductDescription />} />
+            <Route path="/product/:id" element={<ProductDescription cart={cart} setCart={setCart}/>} />
             <Route path="/category/:id" element={<Category />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
@@ -42,6 +43,7 @@ function App() {
             <Route path="/product/edit" element={<EditArtwork />} />
             <Route path="/payment" element={<StripeContainer />} />
             <Route path="/confirmation" element={<Confirmation />} />
+           
           </Routes>
           <Footer />
         </BrowserRouter>
@@ -51,13 +53,3 @@ function App() {
 }
 
 export default App;
-
-
-// params  /:id
-
-//query  ?search=id&user=name
-
-//{
-//   search: id,
-//   user=name
-// }

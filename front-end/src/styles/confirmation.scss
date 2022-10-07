@@ -1,11 +1,23 @@
 .confirmation{
+  display:flex;
+  flex-direction:column;
+  align-items: center;
   margin-top: 300px;
   margin-bottom: 200px;
   
 }
 
-// .back-to-home{
-//   width: 300px;
-//   margin-left:900px
-// }
+.back-to-home{
+  width: 200px;
+  margin-top:5em
+}
+
+.confirm-logo{
+  font-size: 200px;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  color: green;
+}
+
+
 

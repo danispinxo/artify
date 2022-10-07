@@ -23,18 +23,20 @@ export default function Category(props) {
 
   return (
     <div className="category-page-container">
-      <h1>{categoryArtwork.length > 0 && categoryArtwork[0].categoryname}</h1>
+      {categoryArtwork.length > 0 && categoryArtwork[0].categoryname}
+     
       <div className="cat-container">
       {categoryArtwork.length > 0 &&
         categoryArtwork.map((artwork, i) => (
           <div className="category-unit" key={i}>
             <Card>
+              <a href={"/product/" + artwork.artworksid}>
               <Card.Img
                 className="cat-img"
                 variant="top"
                 src={artwork.artworkimage}
                 alt={artwork.artworkimage}
-              />
+              /> </a>
               <Card.Body className="cat-body">
                 <Card.Title className="cat-title">
                   <Image

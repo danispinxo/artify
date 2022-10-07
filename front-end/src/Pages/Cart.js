@@ -51,7 +51,7 @@ export default function Cart({cart, setCart}) {
         .then((res) => {
           setCart(res.data);
         })
-    })
+      })
   };
 
   const handleEmptyCart = () => {
@@ -62,7 +62,12 @@ export default function Cart({cart, setCart}) {
       axios.put('/sold', {orderId})
     ])
     .then((res) => {
-      console.log('Success')
+      const orderInfo = {};
+      orderInfo.userID = user.id;
+      axios.post(`order/api/cart`, orderInfo)
+        .then((res) => {
+          setCart(res.data);
+        })
     })
   }
 
@@ -78,9 +83,9 @@ export default function Cart({cart, setCart}) {
 
         <div className='cart-content'>
           <div className='cart-line-items'>
-            {cart.length === 0 &&
-              <p>Your cart is empty.</p>
-            }
+                {cart.length === 0 &&
+                <p>Your cart is empty.</p>
+                }
             <Table striped>
               <tbody>
                 {cart.length > 0 &&
