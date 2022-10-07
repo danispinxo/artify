@@ -5,22 +5,22 @@ import "../styles/profile.scss";
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown';
 import ViewProfile from '../components/ViewProfile';
 import EditProfile from '../components/EditProfile';
 import AddArtwork from '../components/AddArtwork';
-import OrderHistory from '../components/OrderHistory';
 import { useNavigate } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserXmark } from '@fortawesome/free-solid-svg-icons';
-
+import Purchases from '../components/OrderHistory/Purchases';
+import Sold from '../components/OrderHistory/Sold';
 
 export default function Profile(props) {
   const VIEW = 'VIEW';
   const EDIT = 'EDIT';
   const ADD = 'ADD';
-  const HISTORY = 'HISTORY';
+  const SOLD = 'SOLD';
+  const PURCHASED = 'PURCHASED';
+
   const navigate = useNavigate()
   const { id } = useParams()
   const [userData, setUserData] = useState({})
@@ -28,10 +28,9 @@ export default function Profile(props) {
   const [authUser, setAuthUser] = useState(false)
 
   useEffect(() => {
-    Promise.all(
-      [
-        axios.get(`/api/profile`,  { params: { id: id } }),
-        axios.get('/profile/auth')
+    Promise.all([
+      axios.get('/api/profile',  { params: { id: id } }),
+      axios.get('/profile/auth')
     ])
     .then((all) => {
       setAuthUser(all[1].data)
@@ -39,8 +38,8 @@ export default function Profile(props) {
     })
   }, [mode, id])
 
-  
   if(Number(id) === authUser) {
+
   return (
     <div className='profile'>
       <div className='profile-header-container'>
@@ -55,14 +54,9 @@ export default function Profile(props) {
         </div>
         <ButtonGroup className='profile-buttons'>
           <Button onClick={() => setMode(EDIT)}>Edit Profile</Button>
-          <Button onClick={() => setMode(HISTORY)}>Order History</Button>
-
-          <DropdownButton as={ButtonGroup} title="Order History" id="bg-nested-dropdown">
-            <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
-            <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
-          </DropdownButton>
-
           <Button onClick={() => setMode(ADD)}>Add to Gallery</Button>
+          <Button onClick={() => setMode(SOLD)}>Sold Artwork</Button>
+          <Button onClick={() => setMode(PURCHASED)}>Purchased Artwork</Button>
           <Button onClick={()=> navigate("/gallery/" + userData.id)}>View Your Gallery</Button>
         </ButtonGroup>
       </div>
@@ -70,7 +64,9 @@ export default function Profile(props) {
       {mode === VIEW && <ViewProfile />}
       {mode === EDIT && <EditProfile user={userData} setMode={setMode}/>}
       {mode === ADD && <AddArtwork user={userData} setMode={setMode}/>}
-      {mode === HISTORY && <OrderHistory />}
+      {mode === PURCHASED && <Purchases user={userData} />}
+      {mode === SOLD && <Sold user={userData} />}
+
     </div> 
   ) } else {
     return(
