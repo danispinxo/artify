@@ -19,16 +19,26 @@ export default function Profile(props) {
   const { id } = useParams()
   const [userData, setUserData] = useState({})
   const [mode, setMode] = useState(VIEW)
+  const [authUser, setAuthUser] = useState(false)
 
   useEffect(() => {
-    axios.get(`/api/profile`,  { params: { id: id } })
+    Promise.all(
+      [
+        axios.get(`/api/profile`,  { params: { id: id } }),
+        axios.get('/profile/auth')
+    ])
     .then((all) => {
-      setUserData(all.data[0])
+      setAuthUser(all[1].data)
+      setUserData(all[0].data[0])
     })
   }, [mode, id])
 
+  console.log(Number(id), authUser)
+  
+
+  if(Number(id) === authUser) {
   return (
-    <div className='profile'>
+      <div className='profile'>
       <div className='profile-header-container'>
       <div className='profile-header'>
         {userData.avatar_image && 
@@ -51,6 +61,17 @@ export default function Profile(props) {
       {mode === EDIT && <EditProfile user={userData} setMode={setMode}/>}
       {mode === ADD && <AddArtwork user={userData} setMode={setMode}/>}
       {mode === HISTORY && <OrderHistory />}
-    </div>
-  )
+    </div> 
+  ) } else {
+    return(
+      <div>
+        <h1>FORBIDDEN ACCESS! PLEASE LOG IN.</h1>
+        <h1>FORBIDDEN ACCESS! PLEASE LOG IN.</h1>
+        <h1>FORBIDDEN ACCESS! PLEASE LOG IN.</h1>
+        <h1>FORBIDDEN ACCESS! PLEASE LOG IN.</h1>
+        <h1>FORBIDDEN ACCESS! PLEASE LOG IN.</h1>
+        <h1>FORBIDDEN ACCESS! PLEASE LOG IN.</h1>
+      </div>
+    )
+  }
 };
