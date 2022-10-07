@@ -30,7 +30,7 @@ export default function Confirmation() {
       <h3>Order No. {orderID}</h3>
       <FontAwesomeIcon icon={faCircleCheck} className="confirm-logo" />
       {order.length > 0 && order.map((item, index) => (
-            <ConfirmationLineItem index={index} image={item.image} name={item.name} price_cents={item.price_cents} />
+            <ConfirmationLineItem key={index} image={item.image} name={item.name} price_cents={item.price_cents} artist={item.user_id} customer={item.customer_id} />
       ))}
       <h3>You will also receive a confirmation email outlining your order details</h3>
       

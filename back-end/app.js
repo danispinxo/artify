@@ -49,7 +49,7 @@ const soldRoutes = require("./routes/sold");
 const emailRoutes = require("./routes/email");
 const changePasswordRoute = require("./routes/changePassword");
 const profileAuthRoute = require("./routes/profileAuth");
-
+const ratingsRoutes = require("./routes/ratings");
 
 // Mount all resource routes
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
@@ -71,6 +71,7 @@ app.use("/sold", soldRoutes);
 app.use("/email", emailRoutes);
 app.use("/password/reset", changePasswordRoute);
 app.use("/profile/auth", profileAuthRoute);
+app.use("/api/ratings", ratingsRoutes);
 
 //Home page
 app.get("/", (req, res) => {
