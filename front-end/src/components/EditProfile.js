@@ -71,6 +71,20 @@ export default function EditProfile({setMode, user}) {
       });
   };
 
+  const changePassword = event => {
+    event.preventDefault();
+
+    const passwordResetObj = {};
+    passwordResetObj.id = user.id;
+    passwordResetObj.password = event.target[0].value;
+
+    axios.post("/password/reset/", passwordResetObj)
+      .then((all) => {
+        
+        setMode(VIEW);
+      });
+  };
+
   return (
     <div className="edit-profile-container">
       <h1>Edit Your Profile</h1>
@@ -104,6 +118,18 @@ export default function EditProfile({setMode, user}) {
         </Form>
       </div>
 
+      <div className="edit-password-form">
+        <Form onSubmit={changePassword} className="edit-form-container">
+          <Form.Group className="mb-3" controlId="change-password">
+            <h2>Change Your Password</h2>
+            <Form.Label>Your New Password</Form.Label>
+            <Form.Control className="edit-form-control" name="password" type="password" placeholder="Change Your Password" onChange={(event => event.preventDefault)} />
+          </Form.Group>
+
+          <Button message="Change Your Password" variant="primary" type="submit" />
+        </Form>
+      </div>
+
       <div className="edit-form-info">
         <Form onSubmit={event => event.preventDefault()} className="edit-form-info-container">
         <h2>Edit Your Profile Information</h2>
@@ -121,11 +147,6 @@ export default function EditProfile({setMode, user}) {
             <Form.Label>Your Email</Form.Label>
             <Form.Control className="edit-form-control" name="email" type="email" placeholder={user.email} onChange={(event) => userEdits.email = event.target.value} />
           </Form.Group>
-
-          {/* <Form.Group className="mb-3" controlId="change-email">
-            <Form.Label>Your Password</Form.Label>
-            <Form.Control className="edit-form-control" name="password" type="password" placeholder="Change Your Password" onChange={(event) => userEdits.password = event.target.value} />
-          </Form.Group> */}
 
           <Form.Group className="mb-3" controlId="change-bio">
             <Form.Label>Your Bio</Form.Label>

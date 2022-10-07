@@ -19,7 +19,7 @@ export default function ProductDescription({cart, setCart}) {
   useEffect(() => {
     const orderInfo = {};
     orderInfo.userID = user.id;
-    axios.post(`order/api/cart`, orderInfo)
+    axios.post("/order/api/cart", orderInfo)
       .then((res) => {
         setCart(res.data);
       })
@@ -76,7 +76,7 @@ export default function ProductDescription({cart, setCart}) {
           Add to Cart
         </button>
 
-        <ToastContainer position={'bottom-center'}>
+        <ToastContainer position={'middle-center'}>
           <Toast show={addedToCart} >
             <Toast.Header>
               <img

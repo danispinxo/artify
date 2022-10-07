@@ -87,4 +87,18 @@ const authenticateUser = (email) => {
     });
 };
 
-module.exports = { getUsers, getArtByUser, getUserById, editUser, addUser, authenticateUser, updateAvatar, updateCover };
+const changePassword = (user_id, password) => {
+  return db
+    .query(`
+    UPDATE users
+    SET password = $2
+    WHERE users.id = $1
+    RETURNING *;
+    `, 
+    [user_id, password])
+    .then((data) => {
+      return data.rows;
+    });
+};
+
+module.exports = { getUsers, getArtByUser, getUserById, editUser, addUser, authenticateUser, updateAvatar, updateCover, changePassword };

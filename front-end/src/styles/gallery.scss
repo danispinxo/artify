@@ -35,14 +35,12 @@
     width: 100%;
     object-position: center;
     object-fit: cover;
-    
   }
   
 }
 
 .profile-header-gallery{
   margin-left: 50px;
-  
 }
 
 .list{
@@ -58,7 +56,7 @@
   padding-left: 50px;
   padding-top:  50px; 
 
-  .after{
+  .after {
     position: absolute;
     top: 0;
     left: 0;
@@ -101,7 +99,7 @@
 
 .card-img{
   width: 100%;
-  height: 600px;
+  // height: 600px;
   object-fit: cover;
 }
 
@@ -109,7 +107,7 @@
 
   .card-img2{
     width: 100%;
-    height: 600px;
+    // height: 600px;
     object-fit: cover;
   }
 
