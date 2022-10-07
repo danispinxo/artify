@@ -25,13 +25,14 @@ const CARD_OPTIONS = {
 	}
 }
 
-export default function PaymentForm({cart}) {
+export default function PaymentForm({cart, setCart}) {
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const dataState = useContext(DataContext);
+  const user = dataState.user; // context for current user
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,7 +41,8 @@ export default function PaymentForm({cart}) {
       card: elements.getElement(CardElement)
     })
 
-    setIsLoading(true)
+    setIsLoading(true);
+
       if(!error) {
         try {
           const {id} = paymentMethod
@@ -60,6 +62,24 @@ export default function PaymentForm({cart}) {
       } else {
         console.log(error.message)
       }
+
+      const orderId = cart[0].order_id
+        
+        Promise.all([
+          axios.put('/emptycart', {orderId}),
+          axios.put('/sold', {orderId})
+        ])
+        .then((res) => {
+            const orderInfo = {};
+            orderInfo.userID = user.id;
+           
+              axios.post(`order/api/cart`, orderInfo)
+                .then((res) => {
+                  setCart(res.data);
+                })
+        })
+      
+
   }
 
   
