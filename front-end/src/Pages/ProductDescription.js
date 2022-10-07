@@ -34,6 +34,10 @@ export default function ProductDescription({cart, setCart}) {
   const handleAddToCart = event => {
     event.preventDefault();
 
+    if (!user.id) {
+      alert("You can't add to cart without signing in!")
+    }
+    
     const orderInfo = {};
     orderInfo.userID = user.id;
     orderInfo.artworkID = product.id;

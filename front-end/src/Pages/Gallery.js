@@ -72,7 +72,10 @@ export const Gallery = ({cart, setCart}) => {
   }, [showPurchased, setCart, user]);
 
   const handleAddToCart = (artwork, i) => {
-
+    if (!user.id) {
+      alert("You can't add to cart without signing in!")
+    }
+    
     const orderInfo = {};
     orderInfo.userID = user.id;
     orderInfo.artworkID = artwork.id;
