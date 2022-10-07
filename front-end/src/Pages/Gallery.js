@@ -5,11 +5,7 @@ import Image from "react-bootstrap/Image";
 import "../styles/gallery.scss";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTag,
-  faCartPlus,
-  faCircleXmark,
-} from "@fortawesome/free-solid-svg-icons";
+import { faTag, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { Currency } from "react-tender";
 import { DataContext } from "../context/dataContext";
 import ToastContainer from "react-bootstrap/ToastContainer";
@@ -27,6 +23,7 @@ export const Gallery = ({ cart, setCart }) => {
   const [modal, setModal] = useState(false);
   const [showPurchased, setShowPurchased] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [rating, setRating] = useState([]);
 
   const StyledRating = styled(Rating)({
     "& .MuiRating-iconFilled": {
@@ -81,6 +78,18 @@ export const Gallery = ({ cart, setCart }) => {
     });
   }, [showPurchased, setCart, user]);
 
+  useEffect(() => {
+    axios.post("/api/ratings/get", { id: id})
+      .then((res) => {
+        let total = 0;
+        for (const rating of res.data) {
+          total += Number(rating.rating);
+        }
+        setRating(total / res.data.length);
+
+      })
+  }, []);
+
   const handleAddToCart = (artwork, i) => {
     if (!user.id) {
       alert("You can't add to cart without signing in!");
@@ -99,11 +108,12 @@ export const Gallery = ({ cart, setCart }) => {
 
       setTimeout(() => {
         setShowPurchased((prev) => {
-          prev[i] = false;
-          return [...prev];
-        });
-      }, 2000);
-    });
+          prev[i] = false; 
+          return [...prev]
+        })
+      }, 1000)
+    })
+
   };
 
   return (
@@ -224,20 +234,10 @@ export const Gallery = ({ cart, setCart }) => {
             
               <Card className="Gallery-list-item" key={i}>
                 <div className="card-image2">
-                  <ToastContainer position={"middle-center"}>
-                    <Toast show={showPurchased.length > 0 && showPurchased[i]}>
-                      <Toast.Header>
-                        <img
-                          src="holder.js/20x20?text=%20"
-                          className="rounded me-2"
-                          alt=""
-                        />
-                        <strong className="me-auto">Success!</strong>
-                      </Toast.Header>
-                      <Toast.Body>
-                        You've just added this sweet piece of art to your cart!
-                      </Toast.Body>
-                    </Toast>
+                  <ToastContainer className="toast-container" position={'middle-center'}>
+                    <Toast show={showPurchased.length > 0 && showPurchased[i]} >
+                      <Toast.Body className="toast-body">Added To Cart</Toast.Body>
+                    </Toast>          
                   </ToastContainer>
                   <a href={"/product/" + artwork.id}>
                     <Card.Img

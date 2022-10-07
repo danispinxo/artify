@@ -74,9 +74,6 @@
 
 
 
-
-
-
 .Gallery-list{
   display: grid; 
   grid-template-columns: 1fr 1fr 1fr; 
@@ -88,6 +85,7 @@
   width: 96%;
   margin-top: 3%;
   margin-bottom: 3%;
+
   .Gallery-list-item{
     width: 100%;
     height: 100%;
@@ -120,7 +118,7 @@
       color: $dark-brown;
       font-family: $header-font;
       font-size: 1.4rem;
-      background:rgb(78, 89, 207);
+      background:$dark-red;
       padding: 20px;
       border-radius: 5px;
       color:white;
@@ -132,33 +130,44 @@
     }
     &:hover {
       .add-to-cart {
-        visibility: visible;
-      }
-    }   
-    .card-img{
-      width: 100%;
-      object-fit: cover;
-    }
+     visibility: visible;
+      }  
+  }
     
-    .card-image2{
     
-      .card-img2{
-        width: 100%;
-        height: 40vw;
-        object-fit: cover;
-        
-      }
-    
-    }
+
+  .card-img{
+    width: 100%;
+    object-fit: cover;
   }
   
+  .card-image2{
+  
+    .card-img2{
+      width: 100%;
+      height: 40vw;
+      object-fit: cover;
+      
+    } 
+    .toast-body{
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      height: 3em;
+      font-size: xx-large;
+      background: $dark-red;
+      border-radius: 5px;
+      border:0;
+      font-weight: 500;
+      color:white;
+      opacity: 0.6;
+      font-family: $header-font;
+    }
  
-  
-  
+  }
+
 }
 
-
-
-
-
+}
+  
 

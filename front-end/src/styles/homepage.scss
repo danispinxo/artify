@@ -1,76 +1,73 @@
 @import "variables.scss";
 
-.swiper {
+.homepage-container {
+  display: flex;
+  justify-content: center;
   width: 100%;
-  height: 100%;
-  margin: 0;
-}
-
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-
-  /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
+  flex-direction: column;
   align-items: center;
-  background-color: rgba(243, 236, 236, 0.95);
-  border-radius: 10px;
-  // border: 1px solid rgb(235, 222, 222);
 
-}
-
-.swiper-slide img {
-  display: block;
-  width: 450px;
-  height: 550px;
-  object-fit: cover;
-}
-
-.artwork-container {
-  border-radius: 15px;
-  overflow: hidden;
-  perspective: 1px;
-}
-
-.home-page-title {
-  display: flex;
-  justify-content: center;
-  padding-bottom: 3%;
-  padding-top: 2%;
-  color: $dark-red;
-  font-weight: 700;
-}
-
-.shrink img {
-  transition: 1s ease;
+  h1 {
+    font-family: $header-font;
+    color: $dark-red;
   }
+
+  .home-page-title {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 3%;
+    padding-top: 2%;
+    color: $dark-red;
+    font-weight: 700;
+  }
+
+  .swiper {
+    width: 100%;
+    height: 100%;
+    margin: 0;
   
-  .shrink img:hover{
-  -webkit-transform: scale(1.0);
-  -ms-transform: scale(0);
-  transform: scale(1.1);
-  transition: 1s ease;
+    .swiper-slide {
+      background: #fff;
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -ms-flex-align: center;
+
+      -webkit-justify-content: center;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+
+      background-color: rgba(243, 236, 236, 0.95);
+      border-radius: 10px;
+      overflow: hidden;
+      perspective: 1px;
+      transition: 1s ease;
+  
+      img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+
+        &:hover{
+          -webkit-transform: scale(1.0);
+          -ms-transform: scale(0);
+          transform: scale(1.1);
+          transition: 1s ease;
+        }
+      }
+    }
   }
 
   .categories-container {  
     @include grid4col2row
   }
-
-  .homepage-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-  }
+}
