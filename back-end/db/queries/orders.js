@@ -93,7 +93,6 @@ const deleteLineItem = (line_item_id) => {
   });
 };
 
-
 const emptyCart = (order_id) => {
   return db
   .query(`
@@ -106,4 +105,18 @@ const emptyCart = (order_id) => {
   });
 };
 
-module.exports = { getAllSoldByUser, getAllPurchasedByUser, addArtworkToOrderByID, getOrderByUserID, getOrderInProgress, createNewOrder, deleteLineItem, emptyCart };
+const getLastOrderByUserID = (user_id) => {
+  return db
+  .query(`
+  SELECT line_items.id as line_id, * FROM line_items
+  JOIN orders ON orders.id = line_items.order_id
+  JOIN artworks ON line_items.artwork_id = artworks.id
+  WHERE orders.customer_id = $1
+  ORDER BY order_date DESC
+  LIMIT 1;
+`, [user_id])
+  .then((data) => {
+    return data.rows;
+  });
+};
+module.exports = { getAllSoldByUser, getAllPurchasedByUser, addArtworkToOrderByID, getOrderByUserID, getOrderInProgress, createNewOrder, deleteLineItem, emptyCart, getLastOrderByUserID };

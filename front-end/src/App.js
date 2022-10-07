@@ -42,8 +42,7 @@ function App() {
             <Route path="/results" element={<SearchResults />} />
             <Route path="/product/edit" element={<EditArtwork />} />
             <Route path="/payment" element={<StripeContainer />} />
-            <Route path="/confirmation" element={<Confirmation />} />
-           
+            <Route path="/confirmation" element={<Confirmation cart={cart} setCart={setCart}/>} />
           </Routes>
           <Footer />
         </BrowserRouter>

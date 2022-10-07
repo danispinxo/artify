@@ -1,23 +1,31 @@
-.confirmation{
+@import "variables.scss";
+
+.confirmation {
   display:flex;
   flex-direction:column;
   align-items: center;
-  margin-top: 300px;
-  margin-bottom: 200px;
+  margin-top: 10%;
+  padding-bottom: 2rem;
   
+  h1 {
+    font-family: $header-font;
+    color: $dark-red
+  }
+
+  h3 {
+    font-family: $body-font;
+    color: $dark-brown;
+  }
+
+  .confirm-logo{
+    font-size: 200px;
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+    color: green;
+  }
+
+  .back-to-home {
+    width: auto;
+    margin-top:5em
+  }
 }
-
-.back-to-home{
-  width: 200px;
-  margin-top:5em
-}
-
-.confirm-logo{
-  font-size: 200px;
-  margin-top: 0.3em;
-  margin-bottom: 0.3em;
-  color: green;
-}
-
-
-

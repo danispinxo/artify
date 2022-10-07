@@ -5,7 +5,6 @@ import '../styles/paymentForm.scss'
 import { useNavigate } from "react-router";
 import { DataContext } from "../context/dataContext";
 
-
 const CARD_OPTIONS = {
 	iconStyle: "solid",
 	style: {
@@ -26,17 +25,13 @@ const CARD_OPTIONS = {
 	}
 }
 
-
-export default function PaymentForm() {
+export default function PaymentForm({cart}) {
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const dataState = useContext(DataContext);
-
-  console.log(dataState.user)
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,26 +41,26 @@ export default function PaymentForm() {
     })
 
     setIsLoading(true)
-  if(!error) {
-    try{
-      const {id} = paymentMethod
-      const response = await axios.post('/payment', {
-        amount: 1000,
-        id: id
-      })
-      if(response.data.success) {
-        console.log('Successful payment')
-        setSuccess(true)
-        setIsLoading(false)
-        navigate(`/confirmation`)
+      if(!error) {
+        try {
+          const {id} = paymentMethod
+          const response = await axios.post('/payment', {
+            amount: 1000,
+            id: id
+          })
+          if (response.data.success) {
+            console.log('Successful payment')
+            setSuccess(true)
+            setIsLoading(false)
+            navigate('/confirmation', {cart: cart})
+          }
+        } catch(error){
+          console.log('Error', error)
+        }
+      } else {
+        console.log(error.message)
       }
-    } catch(error){
-      console.log('Error', error)
-    }
-  } else {
-    console.log(error.message)
   }
-}
 
   
   return ( 

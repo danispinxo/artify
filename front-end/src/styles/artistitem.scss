@@ -36,6 +36,11 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+
+    .artist-name-and-rating {
+      display: flex;
+      flex-direction: column;
+    }
   }
   .artistitem-card-avatar-img{
     width: 100px;

@@ -122,7 +122,7 @@ export default function Cart({cart, setCart}) {
               
             </Table>
             <div onClick={handleEmptyCart} className="stripe-container">
-              <StripeContainer/>
+              <StripeContainer cart={cart}/>
             </div>
             
           </div>
