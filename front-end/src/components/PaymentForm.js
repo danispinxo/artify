@@ -34,8 +34,6 @@ export default function PaymentForm() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const dataState = useContext(DataContext);
-
-  console.log(dataState.user)
   
 
   const handleSubmit = async (e) => {

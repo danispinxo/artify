@@ -93,28 +93,56 @@
   }
 
   .add-to-cart {
-    display: none;
+    cursor: pointer; 
+    box-shadow: 0.4rem;
+    display: flex;
+    justify-content: center;
+    color: $dark-brown;
+    font-family: $header-font;
+    font-size: 1.4rem;
+    background:gray;
+    padding: 20px;
+    border-radius: 5px;
+    color:white;
+    position:absolute;
+    bottom: 23px;
+    right: 1px;
+    width: 100%;
+    visibility: hidden;
   }
 
   &:hover {
-
     .add-to-cart {
+      box-shadow: 0.4rem;
       display: flex;
-      justify-content: right;
+      justify-content: center;
       color: $dark-brown;
       font-family: $header-font;
       font-size: 1.4rem;
-      margin-left: 90%;
-
-      &:hover {
-        cursor: pointer; 
-        box-shadow: 0.4rem;
-      }
-    }    
+      background:gray;
+      padding: 20px;
+      border-radius: 5px;
+      color:white;
+      position:absolute;
+      bottom: 23px;
+      right: 1px;
+      width: 100%;
+    }   
+    .card-body{
+      visibility: hidden;
+    } 
   }
+}
 
+.card{
+  &:hover {
+    .add-to-cart {
+      visibility: visible;
+    }   
 
 }
+}
+
 
 .card-img{
   width: 100%;

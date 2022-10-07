@@ -196,7 +196,8 @@ export const Gallery = ({cart, setCart}) => {
                   <Card.Title>{artwork.name}</Card.Title>
                   <Card.Text><Currency value={artwork.price_cents / 100.0} currency="CAD" /></Card.Text>
                   {!artwork.sold && user.id &&
-                      <FontAwesomeIcon onClick={() => handleAddToCart(artwork, i)}  icon={faCartPlus} className="add-to-cart" />
+                      // <FontAwesomeIcon onClick={() => handleAddToCart(artwork, i)}  icon={faCartPlus} className="add-to-cart" />
+                      <h5 className="add-to-cart" onClick={() => handleAddToCart(artwork, i)} >Add to cart</h5>
                     }       
 
                   {artwork.sold && 
