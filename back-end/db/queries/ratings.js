@@ -11,4 +11,15 @@ const addRating = (customer_id, artist_id, rating) => {
     });
 };
 
-module.exports = { addRating };
+const getRatingsByUserID = (user_id) => {
+  return db
+    .query(`
+    SELECT * FROM ratings
+    WHERE artist_id = $1;
+      `, [user_id])
+    .then((data) => {
+      return data.rows;
+    });
+};
+
+module.exports = { addRating, getRatingsByUserID };

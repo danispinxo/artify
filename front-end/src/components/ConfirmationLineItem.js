@@ -16,13 +16,11 @@ export default function ConfirmationLineItem({key, image, name, price_cents, art
   });
 
   const ratingHandler = (rating) => {
-    //addRating = (customer_id, artist_id, rating) 
-
     const ratingObject = {};
-    ratingObject.customer_id = artist;
-    ratingObject.artist_id = customer;
+    ratingObject.customer_id = customer;
+    ratingObject.artist_id = artist;
     ratingObject.rating = rating;
-    console.log(ratingObject);
+    
     axios.post("/api/ratings/add", ratingObject)
     .then((res) => {
       setRating(rating);
