@@ -100,7 +100,7 @@
     color: $dark-brown;
     font-family: $header-font;
     font-size: 1.4rem;
-    background:gray;
+    background:rgb(78, 89, 207);
     padding: 20px;
     border-radius: 5px;
     color:white;
@@ -110,28 +110,6 @@
     width: 100%;
     visibility: hidden;
   }
-
-  &:hover {
-    .add-to-cart {
-      box-shadow: 0.4rem;
-      display: flex;
-      justify-content: center;
-      color: $dark-brown;
-      font-family: $header-font;
-      font-size: 1.4rem;
-      background:gray;
-      padding: 20px;
-      border-radius: 5px;
-      color:white;
-      position:absolute;
-      bottom: 23px;
-      right: 1px;
-      width: 100%;
-    }   
-    .card-body{
-      visibility: hidden;
-    } 
-  }
 }
 
 .card{
@@ -139,14 +117,12 @@
     .add-to-cart {
       visibility: visible;
     }   
-
 }
 }
 
 
 .card-img{
   width: 100%;
-  // height: 600px;
   object-fit: cover;
 }
 
@@ -159,3 +135,8 @@
   }
 
 }
+
+
+
+
+
