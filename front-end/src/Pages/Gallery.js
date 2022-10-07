@@ -75,7 +75,7 @@ export const Gallery = ({cart, setCart}) => {
     if (!user.id) {
       alert("You can't add to cart without signing in!")
     }
-    
+
     const orderInfo = {};
     orderInfo.userID = user.id;
     orderInfo.artworkID = artwork.id;
@@ -195,7 +195,7 @@ export const Gallery = ({cart, setCart}) => {
                 <Card.Body>
                   <Card.Title>{artwork.name}</Card.Title>
                   <Card.Text><Currency value={artwork.price_cents / 100.0} currency="CAD" /></Card.Text>
-                  {!artwork.sold && dataState.user.id &&
+                  {!artwork.sold && user.id &&
                       <FontAwesomeIcon onClick={() => handleAddToCart(artwork, i)}  icon={faCartPlus} className="add-to-cart" />
                     }       
 

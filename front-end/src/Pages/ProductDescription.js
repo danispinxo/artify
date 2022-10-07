@@ -37,7 +37,7 @@ export default function ProductDescription({cart, setCart}) {
     if (!user.id) {
       alert("You can't add to cart without signing in!")
     }
-    
+
     const orderInfo = {};
     orderInfo.userID = user.id;
     orderInfo.artworkID = product.id;
@@ -93,6 +93,12 @@ export default function ProductDescription({cart, setCart}) {
             <Toast.Body>You've just added this sweet piece of art to your cart!</Toast.Body>
           </Toast>          
         </ToastContainer>
+      </div>      
+      }
+
+      {!product.sold && !dataState.user.id && 
+      <div className="product-description-button-cont">
+        <p>You must be logged in to add this item to your cart. Please log in or register a new account to shop at Artify!</p>
       </div>      
       }
       </div>
