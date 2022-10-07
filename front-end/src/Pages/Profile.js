@@ -3,7 +3,10 @@ import { useParams } from "react-router-dom";
 import axios from 'axios';
 import "../styles/profile.scss";
 import Image from 'react-bootstrap/Image';
-import Button from '../components/Button';
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
 import ViewProfile from '../components/ViewProfile';
 import EditProfile from '../components/EditProfile';
 import AddArtwork from '../components/AddArtwork';
@@ -39,25 +42,31 @@ export default function Profile(props) {
   
   if(Number(id) === authUser) {
   return (
-      <div className='profile'>
+    <div className='profile'>
       <div className='profile-header-container'>
-      <div className='profile-header'>
-        {userData.avatar_image && 
-          <Image src={userData.avatar_image} alt={userData.first_name + " " + userData.last_name} className="profile-header-"roundedCircle="true" width="75px" />        
-        }
-        <h1 onClick={() => setMode(VIEW)}>{userData.first_name} {userData.last_name}'s Profile</h1><br/>
+        <div className='profile-header'>
+          {userData.avatar_image && 
+          <Image src={userData.avatar_image} alt={userData.first_name + " " + userData.last_name} className="profile-header-"roundedCircle="true" width="75px" />}
+          <h1 onClick={() => setMode(VIEW)}>{userData.first_name} {userData.last_name}'s Profile</h1><br/>
+        </div>
+        <div className='profile-bio'>
+          {userData.email && <p><b>Email: </b>{userData.email}</p>}
+          {userData.bio && <p>{userData.bio}</p>}
+        </div>
+        <ButtonGroup className='profile-buttons'>
+          <Button onClick={() => setMode(EDIT)}>Edit Profile</Button>
+          <Button onClick={() => setMode(HISTORY)}>Order History</Button>
+
+          <DropdownButton as={ButtonGroup} title="Order History" id="bg-nested-dropdown">
+            <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
+            <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
+          </DropdownButton>
+
+          <Button onClick={() => setMode(ADD)}>Add to Gallery</Button>
+          <Button onClick={()=> navigate("/gallery/" + userData.id)}>View Your Gallery</Button>
+        </ButtonGroup>
       </div>
-      <div className='profile-bio'>
-        {userData.email && <p><b>Email: </b>{userData.email}</p>}
-        {userData.bio && <p>{userData.bio}</p>}
-      </div>
-      <div className='profile-buttons'>
-        <Button message="Edit Profile" onClick={() => setMode(EDIT)}/>
-        <Button message="Order History" onClick={() => setMode(HISTORY)}/>
-        <Button message="Add to Gallery" onClick={() => setMode(ADD)}/>
-        <Button message="View Your Gallery"  onClick={()=> navigate("/gallery/" + userData.id)}/>
-      </div>
-      </div>
+      
       {mode === VIEW && <ViewProfile />}
       {mode === EDIT && <EditProfile user={userData} setMode={setMode}/>}
       {mode === ADD && <AddArtwork user={userData} setMode={setMode}/>}
