@@ -9,6 +9,9 @@ import EditProfile from '../components/EditProfile';
 import AddArtwork from '../components/AddArtwork';
 import OrderHistory from '../components/OrderHistory';
 import { useNavigate } from 'react-router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserXmark } from '@fortawesome/free-solid-svg-icons';
+
 
 export default function Profile(props) {
   const VIEW = 'VIEW';
@@ -19,16 +22,24 @@ export default function Profile(props) {
   const { id } = useParams()
   const [userData, setUserData] = useState({})
   const [mode, setMode] = useState(VIEW)
+  const [authUser, setAuthUser] = useState(false)
 
   useEffect(() => {
-    axios.get(`/api/profile`,  { params: { id: id } })
+    Promise.all(
+      [
+        axios.get(`/api/profile`,  { params: { id: id } }),
+        axios.get('/profile/auth')
+    ])
     .then((all) => {
-      setUserData(all.data[0])
+      setAuthUser(all[1].data)
+      setUserData(all[0].data[0])
     })
   }, [mode, id])
 
+  
+  if(Number(id) === authUser) {
   return (
-    <div className='profile'>
+      <div className='profile'>
       <div className='profile-header-container'>
       <div className='profile-header'>
         {userData.avatar_image && 
@@ -51,6 +62,14 @@ export default function Profile(props) {
       {mode === EDIT && <EditProfile user={userData} setMode={setMode}/>}
       {mode === ADD && <AddArtwork user={userData} setMode={setMode}/>}
       {mode === HISTORY && <OrderHistory />}
-    </div>
-  )
+    </div> 
+  ) } else {
+    return(
+      <div className="profile">
+        <h1 className="forbidden-access-title">FORBIDDEN ACCESS!</h1>
+        <FontAwesomeIcon icon={faUserXmark} className="no-access-logo" />
+        <h3 className="forbidden-access-message">You do not have permission to access this page. Please log in or register.</h3>
+      </div>
+    )
+  }
 };

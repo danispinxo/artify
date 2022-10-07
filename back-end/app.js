@@ -48,6 +48,7 @@ const emptyCartRoutes = require("./routes/emptyCart");
 const soldRoutes = require("./routes/sold");
 const emailRoutes = require("./routes/email");
 const changePasswordRoute = require("./routes/changePassword");
+const profileAuthRoute = require("./routes/profileAuth");
 
 
 // Mount all resource routes
@@ -69,6 +70,7 @@ app.use("/emptycart", emptyCartRoutes);
 app.use("/sold", soldRoutes);
 app.use("/email", emailRoutes);
 app.use("/password/reset", changePasswordRoute);
+app.use("/profile/auth", profileAuthRoute);
 
 //Home page
 app.get("/", (req, res) => {

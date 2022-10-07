@@ -12,11 +12,10 @@ body.active-modal {
   right: 0;
   bottom: 0;
   position: fixed;
-
 }
 
 .overlay {
-  background: rgba(120, 116, 116, 0.8) 
+  background: rgba(120, 116, 116, 0.8);
 }
 
 .message-modal-content {
@@ -33,7 +32,6 @@ body.active-modal {
   // min-width: 5000px;
   display:flex;
   flex-direction: column;
- 
 }
 
 .message-close-modal {
