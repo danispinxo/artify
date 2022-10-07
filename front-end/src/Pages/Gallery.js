@@ -5,7 +5,7 @@ import Image from "react-bootstrap/Image";
 import "../styles/gallery.scss";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTag, faCartPlus, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import { faTag, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { Currency } from "react-tender";
 import { DataContext } from "../context/dataContext";
 import ToastContainer from 'react-bootstrap/ToastContainer';
@@ -23,6 +23,7 @@ export const Gallery = ({cart, setCart}) => {
   const [modal, setModal] = useState(false);
   const [showPurchased, setShowPurchased] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [rating, setRating] = useState([]);
 
   const StyledRating = styled(Rating)({
     '& .MuiRating-iconFilled': {
@@ -78,6 +79,18 @@ export const Gallery = ({cart, setCart}) => {
         setCart(res.data);
       })
   }, [showPurchased, setCart, user]);
+
+  useEffect(() => {
+    axios.post("/api/ratings/get", { id: id})
+      .then((res) => {
+        let total = 0;
+        for (const rating of res.data) {
+          total += Number(rating.rating);
+        }
+        setRating(total / res.data.length);
+
+      })
+  }, []);
 
   const handleAddToCart = (artwork, i) => {
     if (!user.id) {
@@ -172,7 +185,7 @@ export const Gallery = ({cart, setCart}) => {
       </>
         <div className="user-bio">
           {userData.bio && <p>{userData.bio}</p>}
-          <StyledRating name="simple-controlled" value={4} readOnly />
+          <StyledRating name="simple-controlled" value={rating} readOnly />
         </div>
 
       </div>
