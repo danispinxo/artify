@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useContext} from "react";
+import { DataContext } from "../context/dataContext";
 import axios from "axios";
 import '../styles/button.scss';
-import Form from 'react-bootstrap/Form';
-import { DataContext } from "../context/dataContext";
 import '../styles/addartwork.scss';
+import Form from 'react-bootstrap/Form';
 
 export default function AddArtwork({setMode, user}) {
   const dataState = useContext(DataContext);
@@ -29,8 +29,11 @@ export default function AddArtwork({setMode, user}) {
     const priceCents = form.querySelector("#price").value * 100;
     const description = form.querySelector("#description").value;
     const fileUpload = form.querySelector("#add-artwork").files[0];
-    console.log("File size: ", fileUpload.size);
-    // if check which would return and setErrorMessages
+
+    if (fileUpload.size >= 10000000) {
+      setError("This file size is too large. Maximum file size: 10MB.")
+      return;
+    }
     
     // This part creates a FormData object, it includes 2 things: 1. text (the user.id), 2. the file
     const formData = new FormData();
@@ -64,7 +67,7 @@ export default function AddArtwork({setMode, user}) {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label className="add-artwork-label">Category</Form.Label>
+            <Form.Label className="add-artwork-label">Category: </Form.Label>
             <Form.Select id="category" className="add-artwork-form-select" >
               {categories.map((category) => 
                 <option key={category.id} value={category.id}>{category.name}</option>
@@ -77,13 +80,13 @@ export default function AddArtwork({setMode, user}) {
             <Form.Control name="title" type="name" className="add-artwork-form-control"/>
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="price">
-            <Form.Label className="add-artwork-label">Price:</Form.Label>
+          <Form.Group className="price-group" controlId="price">
+            <Form.Label className="add-artwork-label">Price: </Form.Label>
             <Form.Control name="price" type="number" min="0.00" max="10000.00" step="0.01" defaultValue="10.00" className="add-artwork-form-control"/>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="description">
-            <Form.Label className="add-artwork-label">Artwork Description</Form.Label>
+            <Form.Label className="add-artwork-label">Artwork Description:</Form.Label>
             <Form.Control as="textarea" className="add-artwork-form-control"/>
           </Form.Group>
         
@@ -100,7 +103,6 @@ export default function AddArtwork({setMode, user}) {
           </div>
          
         </Form>
-      
     </div>
   )
-              }      
+}      

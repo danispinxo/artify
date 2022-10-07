@@ -23,41 +23,39 @@ export default function Category(props) {
 
   return (
     <div className="category-page-container">
-      {categoryArtwork.length > 0 && categoryArtwork[0].categoryname}
-     
+      <h1>{categoryArtwork.length > 0 && categoryArtwork[0].categoryname}</h1>
       <div className="cat-container">
-      {categoryArtwork.length > 0 &&
-        categoryArtwork.map((artwork, i) => (
-          <div className="category-unit" key={i}>
-            <Card>
-              <a href={"/product/" + artwork.artworksid}>
-              <Card.Img
-                className="cat-img"
-                variant="top"
-                src={artwork.artworkimage}
-                alt={artwork.artworkimage}
-              /> </a>
-              <Card.Body className="cat-body">
-                <Card.Title className="cat-title">
-                  <Image
-                    className="cat-avatar-img"
-                    src={artwork.avatarimage}
-                    alt={artwork.firstname + " " + artwork.lastname}
-                  />
-                  <Link className="cat-link" to={`/gallery/${artwork.user_id}`}>{artwork.firstname} {artwork.lastname}</Link>
-                  
-                </Card.Title>
-                <Card.Text>
-                  <p>{artwork.artworkname}</p>
-                  <p>{artwork.description}</p>
-                  <p><Currency value={artwork.price_cents / 100.0} currency="CAD" /></p>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </div>
-        ))}
-      </div>
-      
+        {categoryArtwork.length > 0 &&
+          categoryArtwork.map((artwork, i) => (
+            <div className="category-unit" key={i}>
+              <Card>
+                <a href={"/product/" + artwork.artworksid}>
+                <Card.Img
+                  className="cat-img"
+                  variant="top"
+                  src={artwork.artworkimage}
+                  alt={artwork.artworkname}
+                /></a>
+                <Card.Body className="cat-body">
+                  <Card.Title className="cat-title">
+                    <Image
+                      className="cat-avatar-img"
+                      src={artwork.avatarimage}
+                      alt={artwork.firstname + " " + artwork.lastname}
+                    />
+                    <Link className="cat-link" to={`/gallery/${artwork.user_id}`}>{artwork.firstname} {artwork.lastname}</Link>
+                    
+                  </Card.Title>
+                  <Card.Text>
+                    <p>{artwork.artworkname}</p>
+                    <p>{artwork.description}</p>
+                    <p><Currency value={artwork.price_cents / 100.0} currency="CAD" /></p>
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </div>
+          ))}
+        </div>
     </div>
   );
 }
