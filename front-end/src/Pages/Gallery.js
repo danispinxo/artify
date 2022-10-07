@@ -149,7 +149,6 @@ export const Gallery = ({cart, setCart}) => {
                   <button className="message-submit" type="submit">Submit</button><br/>
                 </form>
               </div>
-                {/* <button onClick={toggleModal} className="message-close-modal">Close</button>  */}
             </div> 
           </div>
         )}
