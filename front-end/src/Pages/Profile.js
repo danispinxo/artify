@@ -9,6 +9,9 @@ import EditProfile from '../components/EditProfile';
 import AddArtwork from '../components/AddArtwork';
 import OrderHistory from '../components/OrderHistory';
 import { useNavigate } from 'react-router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserXmark } from '@fortawesome/free-solid-svg-icons';
+
 
 export default function Profile(props) {
   const VIEW = 'VIEW';
@@ -33,9 +36,7 @@ export default function Profile(props) {
     })
   }, [mode, id])
 
-  console.log(Number(id), authUser)
   
-
   if(Number(id) === authUser) {
   return (
       <div className='profile'>
@@ -64,13 +65,10 @@ export default function Profile(props) {
     </div> 
   ) } else {
     return(
-      <div>
-        <h1>FORBIDDEN ACCESS! PLEASE LOG IN.</h1>
-        <h1>FORBIDDEN ACCESS! PLEASE LOG IN.</h1>
-        <h1>FORBIDDEN ACCESS! PLEASE LOG IN.</h1>
-        <h1>FORBIDDEN ACCESS! PLEASE LOG IN.</h1>
-        <h1>FORBIDDEN ACCESS! PLEASE LOG IN.</h1>
-        <h1>FORBIDDEN ACCESS! PLEASE LOG IN.</h1>
+      <div className="profile">
+        <h1 className="forbidden-access-title">FORBIDDEN ACCESS!</h1>
+        <FontAwesomeIcon icon={faUserXmark} className="no-access-logo" />
+        <h3 className="forbidden-access-message">You do not have permission to access this page. Please log in or register.</h3>
       </div>
     )
   }

@@ -113,8 +113,24 @@
     padding-left: 0 !important;
   }
 
+  .forbidden-access-message{
+    margin-top: 3em;
+    margin-bottom: 6em;
+    color: rgb(154, 40, 40);
+  }
 
+  .forbidden-access-title{
+    margin-top: 2em;
+    margin-bottom: 2em;
+    color: rgb(154, 40, 40);
+  }
 
-  
+  .no-access-logo{
+    font-size: 8em;
+    color:rgb(184, 94, 78)
+  }
+
 }
+
+
 
