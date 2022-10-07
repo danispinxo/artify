@@ -7,6 +7,7 @@ export default function StripeContainer({cart}) {
   const PUBLIC_KEY = process.env.REACT_APP_STRIPE_PUB
   const [stripePromise, setStripePromise] = useState(() => loadStripe(PUBLIC_KEY))
 
+  
   return (
     <Elements stripe={stripePromise} setStripePromise={setStripePromise}>
       <PaymentForm cart={cart}/>
