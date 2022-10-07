@@ -51,7 +51,7 @@ export default function PaymentForm({cart, setCart}) {
       console.log(error)
     })
 
-
+    
       if(!error) {
         try {
           const {id} = paymentMethod
