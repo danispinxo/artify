@@ -11,6 +11,8 @@ import { DataContext } from "../context/dataContext";
 import ToastContainer from 'react-bootstrap/ToastContainer';
 import Toast from 'react-bootstrap/Toast';
 import "../styles/modal.scss";
+import { styled } from '@mui/material/styles';
+import Rating from '@mui/material/Rating';
 
 export const Gallery = ({cart, setCart}) => {
   const { id } = useParams();
@@ -21,6 +23,12 @@ export const Gallery = ({cart, setCart}) => {
   const [modal, setModal] = useState(false);
   const [showPurchased, setShowPurchased] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const StyledRating = styled(Rating)({
+    '& .MuiRating-iconFilled': {
+      color: '#d6a00a',
+    }
+  });
 
   const toggleModal = () => {
     setModal(!modal);
@@ -159,7 +167,10 @@ export const Gallery = ({cart, setCart}) => {
           )}
 
       </>
-        <div className="user-bio">{userData.bio && <p>{userData.bio}</p>}</div>
+        <div className="user-bio">
+          {userData.bio && <p>{userData.bio}</p>}
+          <StyledRating name="simple-controlled" value={4} readOnly />
+        </div>
 
       </div>
 
