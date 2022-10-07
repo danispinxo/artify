@@ -21,7 +21,6 @@ export default function AddArtwork({setMode, user}) {
 
   const submitArtwork = event => {
     event.preventDefault();
-    setIsLoading(true)
     // This part retrieves the file from the change-avatar form
     const form = event.currentTarget;
     const categoryID = form.querySelector("#category").value;
@@ -34,6 +33,8 @@ export default function AddArtwork({setMode, user}) {
       setError("This file size is too large. Maximum file size: 10MB.")
       return;
     }
+
+    setIsLoading(true)
     
     // This part creates a FormData object, it includes 2 things: 1. text (the user.id), 2. the file
     const formData = new FormData();
@@ -60,10 +61,10 @@ export default function AddArtwork({setMode, user}) {
       <h1>Add New Artwork</h1>
       
         <Form onSubmit={submitArtwork} className="add-artwork-form">
-          <Form.Group className="mb-3" controlId="add-artwork">
+          <Form.Group className="mb-3" controlId="add-artwork" >
             <Form.Label>Upload Image:</Form.Label>
-            <Form.Control type="file" className="add-artwork-form-control" required="true"/>
-            {/* {check bootstrap for form error messages} */}
+            <Form.Control type="file" className="add-artwork-form-control" required />
+            <Form.Control.Feedback type="invalid">Please upload your artwork image file.</Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group className="mb-3">
