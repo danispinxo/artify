@@ -4,8 +4,6 @@ const bcrypt =require('bcrypt');
 
 router.post("/", async (req, res) => {
   try{
-    console.log("THIS IS REQ BODY", req.body);
-
     const salt = await bcrypt.genSalt()
     const hashedPassword = await bcrypt.hash(req.body.password, salt )
     const userObj = req.body

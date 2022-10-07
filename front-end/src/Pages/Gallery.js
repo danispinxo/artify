@@ -45,7 +45,6 @@ export const Gallery = ({cart, setCart}) => {
       setTimeout(() => {
         setModal(!modal)
       }, 3000)
-      console.log(res.data)
     })
   }
 
@@ -57,7 +56,7 @@ export const Gallery = ({cart, setCart}) => {
       setUserData(all[0].data[0]);
       setUserGallery(all[1].data);
 
-      for (const art of all[1].data) {
+      for (let i = 0; i <= all[1].data.length; i++) {
         setShowPurchased((prev) => [...prev, false])
       }
     });

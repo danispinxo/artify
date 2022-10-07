@@ -30,11 +30,10 @@ export default function EditArtwork(props) {
 
       axios.post("/api/profile/artwork", queryItem)
         .then((res) => {
-          console.log(res.data);
           setExistingArt(res.data);
         })
         .catch((error) => {
-          console.log(error)
+          console.error(error)
         })
     }
 

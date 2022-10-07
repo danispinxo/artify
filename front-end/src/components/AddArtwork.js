@@ -55,7 +55,6 @@ export default function AddArtwork({setMode, user}) {
       .catch((err) => setError(err.response.data.message));
   };
 
-  console.log(isLoading)
   return (
     <div className="add-artwork-container">
       <h1>Add New Artwork</h1>
