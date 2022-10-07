@@ -46,9 +46,8 @@
 .home-page-title {
   display: flex;
   justify-content: center;
-  font-family: $body-font;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-bottom: 3%;
+  padding-top: 2%;
   color: $dark-red;
   font-weight: 700;
 }
@@ -74,5 +73,4 @@
     width: 100%;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
   }
