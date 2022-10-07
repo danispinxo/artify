@@ -6,13 +6,15 @@
  justify-content: center;
  align-items: center;
  width: 100%;
- margin-top: 8%;
  margin-bottom: 4%;
+ 
  .product-description-body{
   width: 65%;
   height: 100%;
   display: flex;
   flex-direction: row;
+  @include glassbg;
+  border-radius: 10px;
 
  }
   .product-description-image-container{
@@ -21,6 +23,8 @@
     width: 50%;
   }
  .product-description-image{
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
   width: 100%;
   height: 100%;
   object-fit: cover;
