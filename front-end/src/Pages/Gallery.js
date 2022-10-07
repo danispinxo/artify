@@ -111,15 +111,11 @@ export const Gallery = ({cart, setCart}) => {
           />
         </div>
         <div className="user-name">
-          <h2>
-            {userData.first_name} {userData.last_name}
-          </h2>
+          <h2>{userData.first_name} {userData.last_name}</h2>
+          <button onClick={toggleModal} className="btn-modal">Message This Artist</button>            
         </div>
 
         <>
-          <div className="modal-btn-container">
-            <button onClick={toggleModal} className="btn-modal">Message This Artist</button>            
-          </div>
 
         {modal && !isLoading && (
           <div className="message-modal">
