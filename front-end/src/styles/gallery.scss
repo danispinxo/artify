@@ -56,11 +56,6 @@
   }
 }
 
-
-
-
-
-
 .list{
   display: flex;
   flex-direction: row;
@@ -100,7 +95,7 @@
     color: $dark-brown;
     font-family: $header-font;
     font-size: 1.4rem;
-    background:rgb(78, 89, 207);
+    background:$dark-red;
     padding: 20px;
     border-radius: 5px;
     color:white;
@@ -110,6 +105,24 @@
     width: 100%;
     visibility: hidden;
   }
+
+  .toast-body{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 3em;
+    font-size: xx-large;
+    background: $dark-red;
+    border-radius: 5px;
+    border:0;
+    font-weight: 500;
+    color:white;
+    opacity: 0.6;
+    font-family: $header-font;
+  }
+  
+
+
 }
 
 .card{

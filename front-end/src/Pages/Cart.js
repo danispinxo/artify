@@ -54,25 +54,7 @@ export default function Cart({cart, setCart}) {
       })
   };
 
-  const handleEmptyCart = () => {
-    const orderId = cart[0].order_id
-    
-    Promise.all([
-      axios.put('/emptycart', {orderId}),
-      axios.put('/sold', {orderId})
-    ])
-    .then((res) => {
-        const orderInfo = {};
-        orderInfo.userID = user.id;
-       
-          axios.post(`order/api/cart`, orderInfo)
-            .then((res) => {
-              setCart(res.data);
-            })
-       
-    })
-  }
-  
+
   return (
     <div className='cart'>
       {user.id && 
@@ -123,8 +105,8 @@ export default function Cart({cart, setCart}) {
               </tbody>
               
             </Table>
-            <div onClick={handleEmptyCart} className="stripe-container">
-              <StripeContainer cart={cart}/>
+            <div className="stripe-container">
+              <StripeContainer cart={cart} setCart={setCart}/>
             </div>
             
           </div>

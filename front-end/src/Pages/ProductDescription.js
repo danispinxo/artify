@@ -48,7 +48,7 @@ export default function ProductDescription({cart, setCart}) {
       setAddedToCart(true);
       setTimeout(() => {
         setAddedToCart(false)
-      }, 2000)
+      }, 1000)
     });
   }
 
@@ -82,15 +82,7 @@ export default function ProductDescription({cart, setCart}) {
 
         <ToastContainer position={'middle-center'}>
           <Toast show={addedToCart} >
-            <Toast.Header>
-              <img
-                src="holder.js/20x20?text=%20"
-                className="rounded me-2"
-                alt=""
-              />
-              <strong className="me-auto">Success!</strong>
-            </Toast.Header>
-            <Toast.Body>You've just added this sweet piece of art to your cart!</Toast.Body>
+            <Toast.Body className="toast-body">Added To Cart</Toast.Body>
           </Toast>          
         </ToastContainer>
       </div>      
