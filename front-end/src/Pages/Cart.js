@@ -62,15 +62,17 @@ export default function Cart({cart, setCart}) {
       axios.put('/sold', {orderId})
     ])
     .then((res) => {
-      const orderInfo = {};
-      orderInfo.userID = user.id;
-      axios.post(`order/api/cart`, orderInfo)
-        .then((res) => {
-          setCart(res.data);
-        })
+        const orderInfo = {};
+        orderInfo.userID = user.id;
+       
+          axios.post(`order/api/cart`, orderInfo)
+            .then((res) => {
+              setCart(res.data);
+            })
+       
     })
   }
-
+  
   return (
     <div className='cart'>
       {user.id && 
