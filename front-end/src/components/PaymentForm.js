@@ -25,7 +25,7 @@ const CARD_OPTIONS = {
 	}
 }
 
-export default function PaymentForm({cart}) {
+export default function PaymentForm({cart, setCart}) {
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
@@ -51,7 +51,7 @@ export default function PaymentForm({cart}) {
       console.log(error)
     })
 
-
+    
       if(!error) {
         try {
           const {id} = paymentMethod
@@ -71,6 +71,24 @@ export default function PaymentForm({cart}) {
       } else {
         console.log(error.message)
       }
+
+      const orderId = cart[0].order_id
+        
+        Promise.all([
+          axios.put('/emptycart', {orderId}),
+          axios.put('/sold', {orderId})
+        ])
+        .then((res) => {
+            const orderInfo = {};
+            orderInfo.userID = currentUser.id;
+           
+              axios.post(`order/api/cart`, orderInfo)
+                .then((res) => {
+                  setCart(res.data);
+                })
+        })
+      
+
   }
 
   

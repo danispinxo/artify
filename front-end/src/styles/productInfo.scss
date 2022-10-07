@@ -60,4 +60,19 @@
     box-shadow: 6px 6px 6px 2px rgba(0,0,0,0.1) !important;
 
  }
+
+ .toast-body{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height: 4em;
+  font-size: xx-large;
+  background: $dark-red;
+  border-radius: 5px;
+  border:0;
+  font-weight: 500;
+  color:white;
+  opacity: 0.6;
+  font-family:$header-font;
+}
 }
