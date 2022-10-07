@@ -23,7 +23,8 @@ export default function Category(props) {
 
   return (
     <div className="category-page-container">
-      <h1>{categoryArtwork.length > 0 && categoryArtwork[0].categoryname}</h1>
+      {categoryArtwork.length > 0 && categoryArtwork[0].categoryname}
+     
       <div className="cat-container">
       {categoryArtwork.length > 0 &&
         categoryArtwork.map((artwork, i) => (

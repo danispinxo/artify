@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
 import '../styles/paymentForm.scss'
 import { useNavigate } from "react-router";
+import { DataContext } from "../context/dataContext";
 
 
 const CARD_OPTIONS = {
@@ -32,6 +33,9 @@ export default function PaymentForm() {
   const elements = useElements();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const dataState = useContext(DataContext);
+
+  console.log(dataState.user)
   
 
   const handleSubmit = async (e) => {
