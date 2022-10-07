@@ -78,10 +78,10 @@ router.post("/remove", (req, res) => {
 });
 
 router.post("/last", (req, res) => {
-  console.log(req.body)
+
   orderQueries.getLastOrderByUserID(req.body.id)
   .then((order) => {
-    console.log(order);
+
     return res.json(order)
   })
   .catch((err) => {
