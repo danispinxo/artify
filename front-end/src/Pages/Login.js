@@ -19,7 +19,7 @@ export default function Login() {
   
   const onSubmit = (data) => {
     axios.post('/login', {data})
-    .then((res) => {console.log('Logged in successfully!', res.data)
+    .then((res) => {
     dataState.setUser(res.data)
     navigate('/')})
     .catch((err) => setError(err.response.data.message))

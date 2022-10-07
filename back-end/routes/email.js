@@ -15,7 +15,7 @@ router.post("/", (req, res) => {
   sgMail
     .send(msg)
     .then((response) => {return res.json('Successfully sent email')})
-    .catch((error) => console.log(error.message));
+    .catch((error) => console.error(error.message));
 });
 
 module.exports = router;
