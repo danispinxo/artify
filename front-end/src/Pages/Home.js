@@ -23,6 +23,7 @@ export const Home = () => {
 
   return (
     <div className="homepage-container">
+
       <h1 className='home-page-title'>Explore, collect, and sell ARTs</h1>
 
       {dataState.artworks.length > 0 && (
@@ -58,6 +59,9 @@ export const Home = () => {
           ))}
         </Swiper>
       )}
+
+
+      
 
       <h1 className='home-page-title'>Browse by Category</h1>
       <div className="categories-container">
