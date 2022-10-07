@@ -5,13 +5,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 6%;
 
   h1 {
-    padding: 1rem;
     font-family: $header-font;
     color: $dark-red;
     font-weight: 800;
+    padding-bottom: 3%;
   }
 }
 
