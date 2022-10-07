@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form';
 import '../styles/editprofile.scss';
 
 export default function EditProfile({setMode, user}) {
-
+  const [error, setError] = useState('');
   const [edits, setEdits] = useState({});
   const userEdits = {};
 
@@ -39,6 +39,11 @@ export default function EditProfile({setMode, user}) {
     const form = event.currentTarget;
     const fileUploadInput = form.querySelector("#change-avatar");
     const fileUpload = fileUploadInput.files[0];
+
+    if (fileUpload.size >= 10000000) {
+      setError("This file size is too large. Maximum file size: 10MB.")
+      return;
+    }
     
     // This part creates a FormData object, it includes 2 things: 1. text (the user.id), 2. the file
     const formData = new FormData();
@@ -59,8 +64,13 @@ export default function EditProfile({setMode, user}) {
     const form = event.currentTarget;
     const fileUploadInput = form.querySelector("#change-cover");
     const fileUpload = fileUploadInput.files[0];
-    const formData = new FormData();
 
+    if (fileUpload.size >= 10000000) {
+      setError("This file size is too large. Maximum file size: 10MB.")
+      return;
+    }
+
+    const formData = new FormData();
     formData.append("userID", user.id);
     formData.append("cover", fileUpload);
    
@@ -96,10 +106,13 @@ export default function EditProfile({setMode, user}) {
             {user.avatar_image &&
               <Image src={user.avatar_image} alt={user.first_name + user.last_name} className="edit-form-avatar-img" roundedCircle="true" />            
             }
-            <Form.Control type="file" className="edit-form-control"/>
+            <Form.Control type="file" className="edit-form-control" required/>
           </Form.Group>
 
           <Button message="Upload New Avatar" variant="primary" type="submit" />
+          <div className="error-messages">
+            {error && <p className="error-message">{error}</p>}
+          </div>
         </Form>
       </div>
 
@@ -110,11 +123,14 @@ export default function EditProfile({setMode, user}) {
             {user.cover_image && 
               <Image src={user.cover_image} alt={user.first_name + "cover image"} className="edit-form-cover-img" />
             }
-            <Form.Control type="file" className="edit-form-control"/>
+            <Form.Control type="file" className="edit-form-control" required/>
             <p className="recommendation">We recommend a minimum image size of 800px wide for cover images.</p>
           </Form.Group>
 
           <Button message="Upload New Cover" variant="primary" type="submit" />
+          <div className="error-messages">
+            {error && <p className="error-message">{error}</p>}
+          </div>
         </Form>
       </div>
 
@@ -123,7 +139,7 @@ export default function EditProfile({setMode, user}) {
           <Form.Group className="mb-3" controlId="change-password">
             <h2>Change Your Password</h2>
             <Form.Label>Your New Password</Form.Label>
-            <Form.Control className="edit-form-control" name="password" type="password" placeholder="Change Your Password" onChange={(event => event.preventDefault)} />
+            <Form.Control className="edit-form-control" name="password" type="password" placeholder="Change Your Password" onChange={(event => event.preventDefault)} required/>
           </Form.Group>
 
           <Button message="Change Your Password" variant="primary" type="submit" />

@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useContext} from "react";
+import { DataContext } from "../context/dataContext";
 import axios from "axios";
 import '../styles/button.scss';
-import Form from 'react-bootstrap/Form';
-import { DataContext } from "../context/dataContext";
 import '../styles/addartwork.scss';
+import Form from 'react-bootstrap/Form';
 
 export default function AddArtwork({setMode, user}) {
   const dataState = useContext(DataContext);
@@ -21,7 +21,6 @@ export default function AddArtwork({setMode, user}) {
 
   const submitArtwork = event => {
     event.preventDefault();
-    setIsLoading(true)
     // This part retrieves the file from the change-avatar form
     const form = event.currentTarget;
     const categoryID = form.querySelector("#category").value;
@@ -29,8 +28,13 @@ export default function AddArtwork({setMode, user}) {
     const priceCents = form.querySelector("#price").value * 100;
     const description = form.querySelector("#description").value;
     const fileUpload = form.querySelector("#add-artwork").files[0];
-    console.log("File size: ", fileUpload.size);
-    // if check which would return and setErrorMessages
+
+    if (fileUpload.size >= 10000000) {
+      setError("This file size is too large. Maximum file size: 10MB.")
+      return;
+    }
+
+    setIsLoading(true)
     
     // This part creates a FormData object, it includes 2 things: 1. text (the user.id), 2. the file
     const formData = new FormData();
@@ -51,20 +55,19 @@ export default function AddArtwork({setMode, user}) {
       .catch((err) => setError(err.response.data.message));
   };
 
-  console.log(isLoading)
   return (
     <div className="add-artwork-container">
       <h1>Add New Artwork</h1>
       
         <Form onSubmit={submitArtwork} className="add-artwork-form">
-          <Form.Group className="mb-3" controlId="add-artwork">
+          <Form.Group className="mb-3" controlId="add-artwork" >
             <Form.Label>Upload Image:</Form.Label>
-            <Form.Control type="file" className="add-artwork-form-control" required="true"/>
-            {/* {check bootstrap for form error messages} */}
+            <Form.Control type="file" className="add-artwork-form-control" required />
+            <Form.Control.Feedback type="invalid">Please upload your artwork image file.</Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label className="add-artwork-label">Category</Form.Label>
+            <Form.Label className="add-artwork-label">Category: </Form.Label>
             <Form.Select id="category" className="add-artwork-form-select" >
               {categories.map((category) => 
                 <option key={category.id} value={category.id}>{category.name}</option>
@@ -77,13 +80,13 @@ export default function AddArtwork({setMode, user}) {
             <Form.Control name="title" type="name" className="add-artwork-form-control"/>
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="price">
-            <Form.Label className="add-artwork-label">Price:</Form.Label>
+          <Form.Group className="price-group" controlId="price">
+            <Form.Label className="add-artwork-label">Price: </Form.Label>
             <Form.Control name="price" type="number" min="0.00" max="10000.00" step="0.01" defaultValue="10.00" className="add-artwork-form-control"/>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="description">
-            <Form.Label className="add-artwork-label">Artwork Description</Form.Label>
+            <Form.Label className="add-artwork-label">Artwork Description:</Form.Label>
             <Form.Control as="textarea" className="add-artwork-form-control"/>
           </Form.Group>
         
@@ -100,7 +103,6 @@ export default function AddArtwork({setMode, user}) {
           </div>
          
         </Form>
-      
     </div>
   )
-              }      
+}      

@@ -20,18 +20,21 @@
   display: flex;
   justify-content: center;
   color: $dark-red;
- padding: 10px;
+  padding: 10px;
 }
+
 .card-title2 h5{
   font-family: $body-font;
   font-weight: 800; 
 }
+
 .card-link:hover{
   cursor: pointer;
   text-decoration: none;
   font-family: $body-font;
   color: $darkest-brown;
 }
+
 .card-image{
   width: 100%;
   height: 350px;
