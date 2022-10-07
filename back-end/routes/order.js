@@ -78,6 +78,11 @@ router.post("/remove", (req, res) => {
 });
 
 router.post("/last", (req, res) => {
+
+  // orderQueries.getLastOrderByUserID(req.body.id)
+  // .then((order) => {
+
+  //   return res.json(order)
   orderQueries.getLastOrderByUserID(req.body.id)
   .then((order) => {
     const lastOrder = [];

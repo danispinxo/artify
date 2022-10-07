@@ -32,7 +32,7 @@ export default function PaymentForm({cart, setCart}) {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const dataState = useContext(DataContext);
-  const user = dataState.user; // context for current user
+  const currentUser = dataState.user
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,6 +42,15 @@ export default function PaymentForm({cart, setCart}) {
     })
 
     setIsLoading(true);
+
+    axios.post('/receipt', {cart, currentUser})
+    .then((res) => {
+      console.log('Success')
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+
 
       if(!error) {
         try {
@@ -71,7 +80,7 @@ export default function PaymentForm({cart, setCart}) {
         ])
         .then((res) => {
             const orderInfo = {};
-            orderInfo.userID = user.id;
+            orderInfo.userID = currentUser.id;
            
               axios.post(`order/api/cart`, orderInfo)
                 .then((res) => {
@@ -92,7 +101,7 @@ export default function PaymentForm({cart, setCart}) {
         <CardElement options={CARD_OPTIONS} />
       </div>
     </fieldset>
-    {!isLoading && <button >Pay</button>}
+    {!isLoading && <button>Pay</button>}
     {isLoading && <button disabled>
       <i className="fas fa-spinner fa-spin"></i>
       PAYING</button>}
