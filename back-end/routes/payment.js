@@ -12,7 +12,6 @@ router.post("/", async (req, res) => {
       payment_method: id,
       confirm:true
     })
-
     res.json({
       message:"Payment Successful",
       success: true

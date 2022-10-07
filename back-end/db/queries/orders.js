@@ -112,8 +112,7 @@ const getLastOrderByUserID = (user_id) => {
   JOIN orders ON orders.id = line_items.order_id
   JOIN artworks ON line_items.artwork_id = artworks.id
   WHERE orders.customer_id = $1
-  ORDER BY order_date DESC
-  LIMIT 1;
+  ORDER BY order_date DESC;
 `, [user_id])
   .then((data) => {
     return data.rows;
