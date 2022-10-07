@@ -17,9 +17,6 @@
   }
 
   .button {
-    // padding: 1.5em 5em;
-    padding-top: 10px;
-    padding-bottom: 10px;
     background: #efefef;
     border: none;
     border-radius: .5rem;
@@ -54,12 +51,10 @@
                 inset 2px 2px 4px rgba(0, 0, 0, .15);
   }
   
-
-
   .form-control{
-  height: 50px;
-  margin-top: 15px;
-  margin-left: 15px;
+    height: 10%;
+    margin-top: 15px;
+    margin-left: 15px;
   }
 
   .nav-icon{
