@@ -95,7 +95,6 @@ router.put("/add", upload.single('artwork'), (req, res) => {
   const description = req.body.description;
   const image = req.file.path;
   const sold = false;
-
   (async () => {
 
     try {
@@ -131,7 +130,6 @@ router.post("/delete", (req, res) => {
 });
 
 router.post("/artwork", (req, res) => {
-  console.log("This is the artwork id: ", req.body.id);
   artQueries.getArtworkById(req.body.id)
   .then((artwork) => {
     return res.json(artwork)  

@@ -45,7 +45,6 @@ export const Gallery = ({cart, setCart}) => {
       setTimeout(() => {
         setModal(!modal)
       }, 3000)
-      console.log(res.data)
     })
   }
 
@@ -57,7 +56,7 @@ export const Gallery = ({cart, setCart}) => {
       setUserData(all[0].data[0]);
       setUserGallery(all[1].data);
 
-      for (const art of all[1].data) {
+      for (let i = 0; i <= all[1].data.length; i++) {
         setShowPurchased((prev) => [...prev, false])
       }
     });
@@ -112,15 +111,11 @@ export const Gallery = ({cart, setCart}) => {
           />
         </div>
         <div className="user-name">
-          <h2>
-            {userData.first_name} {userData.last_name}
-          </h2>
+          <h2>{userData.first_name} {userData.last_name}</h2>
+          <button onClick={toggleModal} className="btn-modal">Message This Artist</button>            
         </div>
 
         <>
-          <div className="modal-btn-container">
-            <button onClick={toggleModal} className="btn-modal">Message This Artist</button>            
-          </div>
 
         {modal && !isLoading && (
           <div className="message-modal">
