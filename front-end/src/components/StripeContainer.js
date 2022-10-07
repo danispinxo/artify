@@ -11,7 +11,7 @@ export default function StripeContainer() {
   const [stripePromise, setStripePromise] = useState(() => loadStripe(PUBLIC_KEY))
 
   return (
-    <Elements stripe={stripePromise}>
+    <Elements stripe={stripePromise} setStripePromise={setStripePromise}>
       <PaymentForm />
     </Elements>
   )

@@ -6,6 +6,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Container from "react-bootstrap/Container";
+import Image from 'react-bootstrap/Image';
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -136,7 +137,7 @@ export default function Header({cart, setCart}) {
               className="text-decoration-none text-black"
               to={"/profile/" + dataState.user.id}
             >
-             Your Profile
+              <Image src={dataState.user.avatar_image} alt={dataState.user.first_name + dataState.user.last_name} className="edit-form-avatar-img" roundedCircle="true" width="20px" /> Profile
             </Nav.Link>
             }
 

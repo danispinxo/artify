@@ -3,12 +3,25 @@
 .search-artwork-container{
   display: flex;
   flex-direction: column;
-  width: 100%;
   justify-content: center;
   align-items: center;
+  width: 100%;
   gap: 30px 30px;
   margin-top: 8%;
   margin-bottom: 4%;
+
+  h1 {
+    font-family: $header-font;
+    color: $dark-red;
+    font-weight: 800;
+  }
+
+  h3 {
+    font-family: $body-font;
+    color: $darkest-brown;
+    font-weight: 500;
+  }
+
   .search-artwork-unit{
     display: flex;
     flex-direction: row;
@@ -16,12 +29,28 @@
     @include glassbg;
     box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.1) !important;
     border-radius: 10px;
+
+    .search-artwork-info{
+      padding: 20px;
+      font-size: 1rem;
+
+      h4 {
+        font-family: $header-font;
+        color: $dark-brown;
+      }
+
+      p {
+        font-family: $body-font;
+      }
+    }
   }
+
   .null-search {
     display: flex;
     align-items: center;
     height:700px
   }
+
   .search-artwork-result-image{
     width: 300px;
     height: 350px;
@@ -29,8 +58,5 @@
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
   }
-  .search-artwork-info{
-    padding: 20px;
-    font-size: 18px;
-  }
+
 }
