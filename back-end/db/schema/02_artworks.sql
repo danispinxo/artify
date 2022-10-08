@@ -8,8 +8,6 @@ CREATE TABLE artworks (
   price_cents INTEGER, 
   description TEXT, 
   image VARCHAR(255), 
-  sold BOOLEAN
+  sold BOOLEAN,
+  in_cart BOOLEAN DEFAULT false
 );
-
-
-
