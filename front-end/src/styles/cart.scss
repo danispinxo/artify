@@ -27,6 +27,16 @@
     flex-direction: row;
     justify-content: space-around;
     margin-bottom: 5em
+
+  }
+
+  .empty-cart-message{
+    display:flex;
+    justify-content: center;
+    margin-top: 4em;
+    font-size: 30px;
+    font-weight: 600;
+    
   }
 
   @media only screen and  (max-width: 980px ) {
@@ -43,6 +53,11 @@
       margin-left: 0;
       margin-left: 2em;
       margin-top: 0em;
+    }
+
+    .empty-cart-message{
+      margin-left: 3em;
+      margin-bottom: 3em;
     }
 
     @media only screen and (max-width: 980px) {
@@ -82,6 +97,8 @@
     .cart-totals{
       margin-right: em;
     }
+
+    
   }
 
 

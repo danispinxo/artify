@@ -68,7 +68,7 @@ export default function Cart({cart, setCart}) {
         <div className='cart-content'>
           <div className='cart-line-items'>
                 {cart.length === 0 &&
-                <p>Your cart is empty.</p>
+                <p className="empty-cart-message">Your cart is empty.</p>
                 }
             <Table striped>
               <tbody>
