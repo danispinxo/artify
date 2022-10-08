@@ -18,7 +18,7 @@ const searchInput = searchParams.get('search') ;
     .catch((err) => {
     })
   }, [searchInput])
-
+  console.log(artResult)
   return (
     <div>
       { artResult.length && 
