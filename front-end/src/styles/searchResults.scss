@@ -22,6 +22,7 @@
     font-weight: 500;
   }
 
+
   .search-artwork-unit{
     display: flex;
     flex-direction: row;
@@ -36,7 +37,8 @@
 
       h4 {
         font-family: $header-font;
-        color: $dark-brown;
+        color: $medium-brown;
+        font-size: 35px;
       }
 
       p {
@@ -45,11 +47,7 @@
     }
   }
 
-  .null-search {
-    display: flex;
-    align-items: center;
-    height:700px
-  }
+
 
   .search-artwork-result-image{
     width: 300px;
@@ -60,3 +58,22 @@
   }
 
 }
+
+.no-search-result-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 5em ;
+  
+  .face{
+    margin-bottom: 0.25em;
+    font-size: 400px;
+    color:$dark-brown
+  }
+  
+  .null-search{
+    margin-bottom: 5em;
+  }
+
+} 

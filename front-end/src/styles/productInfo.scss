@@ -8,6 +8,7 @@
  width: 100%;
  margin-bottom: 4%;
  
+ 
  .product-description-body{
   width: 65%;
   height: 100%;
@@ -15,6 +16,7 @@
   flex-direction: row;
   @include glassbg;
   border-radius: 10px;
+  
 
  }
   .product-description-image-container{
@@ -50,7 +52,7 @@
  }
  
  .product-description-name{
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 700;
   color: $dark-red;
   font-family: $header-font;
