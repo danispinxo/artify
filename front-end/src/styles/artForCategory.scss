@@ -16,8 +16,8 @@
 
 .cat-container{
   @include grid3col
-    
 }
+
 .category-unit{
   margin: 0px;
   padding: 0px;
@@ -31,6 +31,8 @@
 
 .cat-avatar-img{
   width: 150px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   border: 8px solid $beige;
   margin-top: -80px;
 }

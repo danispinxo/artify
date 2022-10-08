@@ -60,7 +60,7 @@ export default function Cart({cart, setCart}) {
       <div className='logged-in-user-cart'>
 
         <div className='cart-header'>
-          <Image src={user.avatar_image} alt="User's Name" roundedCircle="true" width="75px" />
+          <Image className='avatar' src={user.avatar_image} alt="User's Name" roundedCircle="true" />
           <h1>{user.first_name}'s Cart</h1>        
         </div>
 

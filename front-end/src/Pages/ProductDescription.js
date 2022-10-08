@@ -54,39 +54,36 @@ export default function ProductDescription({cart, setCart}) {
 
   return (
     <div className="product-description-container">
-      
       <div className="product-description-body">
-      <div className="product-description-image-container" >
-        {product.image && <img className="product-description-image" src={product.image} alt={product.image} />}
-      </div>
+        <div className="product-description-image-container" >
+          {product.image && <img className="product-description-image" src={product.image} alt={product.image} />}
+        </div>
 
       <div className="product-description-info">
-      <div className="product-description-name">
-        <p>{product.name} </p>
-      </div>
-      <div className="product-description-description">
-        <p>{product.description}</p>
-      </div>
-
-      <div className="product-description-price">
-        <p><Currency value={product.price_cents/100.00} currency="CAD" /></p>
-      </div>
+        <div className="product-description-name">
+          <p>{product.name} </p>
+        </div>
+        <div className="product-description-description">
+          <p>{product.description}</p>
+        </div>
+        <div className="product-description-price">
+          <p><Currency value={product.price_cents/100.00} currency="CAD" /></p>
+        </div>
       
-      {!product.sold && dataState.user.id && 
-      <div className="product-description-button-cont">
+        {!product.sold && dataState.user.id && 
+        <div className="product-description-button-cont">
 
-        <button className="product-description-add-to-cart-button" onClick={handleAddToCart}>
-          <FontAwesomeIcon icon={faCartPlus} />
-          Add to Cart
-        </button>
+          <button className="product-description-add-to-cart-button" onClick={handleAddToCart}>
+            <FontAwesomeIcon icon={faCartPlus} /> Add to Cart
+          </button>
 
-        <ToastContainer position={'middle-center'}>
-          <Toast show={addedToCart} >
-            <Toast.Body className="toast-body">Added To Cart</Toast.Body>
-          </Toast>          
-        </ToastContainer>
-      </div>      
-      }
+          <ToastContainer position={'middle-center'}>
+            <Toast show={addedToCart} >
+              <Toast.Body className="toast-body">Added To Cart</Toast.Body>
+            </Toast>          
+          </ToastContainer>
+        </div>      
+        }
 
       {!product.sold && !dataState.user.id && 
       <div className="product-description-button-cont">

@@ -28,7 +28,7 @@ export default function ArtistItem(props) {
         setRating(total / res.data.length);
 
       })
-  }, []);
+  }, [id]);
 
   return (
     <div>

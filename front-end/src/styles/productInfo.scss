@@ -37,15 +37,25 @@
   gap: 20px 20px;
   padding: 60px 20px 20px 20px;
   align-self: center;
-
+  font-family: $body-font;
  }
+ 
  .product-description-name{
   font-size: 30px;
   font-weight: 700;
   color: $dark-red;
+  font-family: $header-font;
  }
- .product-description-button-cont{
+ .product-description-button-cont {
   width: 250px;
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 15px;
+  }
  }
  .product-description-add-to-cart-button{
   margin-left: 0px;
