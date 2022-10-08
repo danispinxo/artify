@@ -26,24 +26,23 @@ export default function ProductDescription({cart, setCart}) {
   }, [addedToCart, setCart, user]);
 
   useEffect(() => {
-    axios
-      .get(`/api/product`, { params: { id: id } })
+    axios.get(`/api/product`, { params: { id: id } })
       .then((res) => setProduct(res.data))
   }, [id]);
 
   const handleAddToCart = event => {
     event.preventDefault();
 
-    if (!user.id) {
-      alert("You can't add to cart without signing in!")
-    }
+    if (!user.id) {alert("You can't add to cart without signing in!")}
 
     const orderInfo = {};
     orderInfo.userID = user.id;
     orderInfo.artworkID = product.id;
     orderInfo.price = product.price_cents;
-
-    axios.put("/order/api/add", orderInfo)
+    Promise.all([
+      axios.put("/order/api/add", orderInfo),
+      axios.post("/api/product/add-to-cart", {artwork_id: product.id})
+    ])
     .then((all) => {
       setAddedToCart(true);
       setTimeout(() => {

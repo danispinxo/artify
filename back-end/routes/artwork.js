@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/add-to-cart", (req, res) => {
-  orderQueries.addArtworkToCart(req.body)
+  orderQueries.addArtworkToCart(req.body.artwork_id)
   .then((artwork) => {
     return res.json(artwork)  
   })
@@ -23,7 +23,7 @@ router.post("/add-to-cart", (req, res) => {
 });
 
 router.post("/rem-from-cart", (req, res) => {
-  orderQueries.removeArtworkFromCart(req.body)
+  orderQueries.removeArtworkFromCart(req.body.artwork_id)
   .then((artwork) => {
     return res.json(artwork)  
   })

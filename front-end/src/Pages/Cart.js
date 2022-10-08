@@ -39,10 +39,14 @@ export default function Cart({cart, setCart}) {
   const HST = showSubtotal * 0.13;
   const total = showSubtotal + HST;
 
-  const handleDelete = (lineItemID) => {
+  const handleDelete = (lineItemID, artwork_id) => {
     const itemInfo = {};
     itemInfo.lineItemID = lineItemID;
-    axios.post(`order/api/remove`, itemInfo)
+
+    Promise.all([
+      axios.post(`order/api/remove`, itemInfo),
+      axios.post("/api/product/rem-from-cart", {artwork_id: artwork_id})
+    ])
     .then((res) => {
       const orderInfo = {};
       orderInfo.userID = user.id;
@@ -79,7 +83,7 @@ export default function Cart({cart, setCart}) {
                     </td>
                     <td>{item.name}</td>
                     <td> <Currency value={item.price_cents /100} currency="CAD" /> </td>
-                    <td><button className="cart-line-delete" message="Remove" onClick={() => handleDelete(item.line_id)}>Remove</button></td>
+                    <td><button className="cart-line-delete" message="Remove" onClick={() => handleDelete(item.line_id, item.artwork_id)}>Remove</button></td>
                   </tr>      
                 ))}
               </tbody>

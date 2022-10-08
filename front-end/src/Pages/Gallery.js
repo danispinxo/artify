@@ -100,7 +100,11 @@ export const Gallery = ({ cart, setCart }) => {
     orderInfo.artworkID = artwork.id;
     orderInfo.price = artwork.price_cents;
 
-    axios.put("/order/api/add", orderInfo).then((all) => {
+    Promise.all([
+      axios.put("/order/api/add", orderInfo),
+      axios.post("/api/product/add-to-cart", {artwork_id: artwork.id})
+    ])
+    .then((all) => {
       setShowPurchased((prev) => {
         prev[i] = true;
         return [...prev];
@@ -118,31 +122,24 @@ export const Gallery = ({ cart, setCart }) => {
 
   return (
     <div className="gallery">
-      
-      
       <div className="profile-gallery">
-
-      <Image className="profile-gallery-cover-image" src={userData.cover_image} fluid={true}/>
-
-
-      <div className="profile-gallery-header">
-
-      <Image
-            src={userData.avatar_image}
-            alt={userData.first_name + " " + userData.last_name}
-            roundedCircle="true"
-            width="150px"
-            className="profile-gallery-avatar"
-        />
-
-        <div className="user-name">
-          <h2>
-            {userData.first_name} {userData.last_name}
-          </h2>
-          <button onClick={toggleModal} className="send-message-btn">
-            Message This Artist
-          </button>
-        </div>
+        <Image className="profile-gallery-cover-image" src={userData.cover_image} fluid={true}/>
+        <div className="profile-gallery-header">
+          <Image
+                src={userData.avatar_image}
+                alt={userData.first_name + " " + userData.last_name}
+                roundedCircle="true"
+                width="150px"
+                className="profile-gallery-avatar"
+            />
+          <div className="user-name">
+            <h2>
+              {userData.first_name} {userData.last_name}
+            </h2>
+            <button onClick={toggleModal} className="send-message-btn">
+              Message This Artist
+            </button>
+          </div>
 
         <div className="user-bio">
           {userData.bio && <p>{userData.bio}</p>}
