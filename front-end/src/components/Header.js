@@ -137,7 +137,7 @@ export default function Header({cart, setCart}) {
               className="text-decoration-none text-black"
               to={"/profile/" + dataState.user.id}
             >
-              <Image src={dataState.user.avatar_image} alt={dataState.user.first_name + dataState.user.last_name} className="edit-form-avatar-img" roundedCircle="true" width="20px" /> Profile
+              <Image src={dataState.user.avatar_image} alt={dataState.user.first_name + dataState.user.last_name} className="header-avatar-img" roundedCircle="true" /> Profile
             </Nav.Link>
             }
 

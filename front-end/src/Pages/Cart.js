@@ -2,7 +2,6 @@ import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import "../styles/cart.scss";
 import Image from 'react-bootstrap/Image';
-import Button from '../components/Button';
 import Table from 'react-bootstrap/Table';
 import { DataContext } from "../context/dataContext";
 import { Currency } from 'react-tender';
@@ -40,10 +39,14 @@ export default function Cart({cart, setCart}) {
   const HST = showSubtotal * 0.13;
   const total = showSubtotal + HST;
 
-  const handleDelete = (lineItemID) => {
+  const handleDelete = (lineItemID, artwork_id) => {
     const itemInfo = {};
     itemInfo.lineItemID = lineItemID;
-    axios.post(`order/api/remove`, itemInfo)
+
+    Promise.all([
+      axios.post(`order/api/remove`, itemInfo),
+      axios.post("/api/product/rem-from-cart", {artwork_id: artwork_id})
+    ])
     .then((res) => {
       const orderInfo = {};
       orderInfo.userID = user.id;
@@ -61,7 +64,7 @@ export default function Cart({cart, setCart}) {
       <div className='logged-in-user-cart'>
 
         <div className='cart-header'>
-          <Image src={user.avatar_image} alt="User's Name" roundedCircle="true" width="75px" />
+          <Image className='avatar' src={user.avatar_image} alt="User's Name" roundedCircle="true" />
           <h1>{user.first_name}'s Cart</h1>        
         </div>
 
@@ -80,7 +83,7 @@ export default function Cart({cart, setCart}) {
                     </td>
                     <td>{item.name}</td>
                     <td> <Currency value={item.price_cents /100} currency="CAD" /> </td>
-                    <td className="delete-line-item"><button className="cart-line-delete" message="Remove" onClick={() => handleDelete(item.line_id)}>Remove</button></td>
+                    <td><button className="cart-line-delete" message="Remove" onClick={() => handleDelete(item.line_id, item.artwork_id)}>Remove</button></td>
                   </tr>      
                 ))}
               </tbody>

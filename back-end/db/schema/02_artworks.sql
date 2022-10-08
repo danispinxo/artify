@@ -9,8 +9,6 @@ CREATE TABLE artworks (
   description TEXT, 
   image VARCHAR(255), 
   public_image VARCHAR(255),
-  sold BOOLEAN
+  sold BOOLEAN,
+  in_cart BOOLEAN DEFAULT false
 );
-
-
-

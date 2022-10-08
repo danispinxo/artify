@@ -31,6 +31,7 @@
   height: 100%;
   object-fit: cover;
  }
+
  .product-description-info{
   width: 50%;
   display: flex;
@@ -39,16 +40,33 @@
   gap: 20px 20px;
   padding: 60px 20px 20px 20px;
   align-self: center;
-  font-size: 20px;
+  font-family: $body-font;
+
+  h2 {
+    color: $dark-red;
+    font-family: $header-font;
+    font-size: 20px;
+    font-weight: 300;
+  }
 
  }
+ 
  .product-description-name{
   font-size: 40px;
   font-weight: 700;
   color: $dark-red;
+  font-family: $header-font;
  }
- .product-description-button-cont{
+ .product-description-button-cont {
   width: 250px;
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 15px;
+  }
  }
  .product-description-add-to-cart-button{
   margin-left: 0px;

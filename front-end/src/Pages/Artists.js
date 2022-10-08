@@ -33,7 +33,7 @@ export default function Artists(props) {
   return (
     <div className="artists-page-container">
 
-      <h1 id="artists-title">Explore All the Artify Artists</h1>
+      <h1>Explore All the Artify Artists</h1>
       <div className="artists-page-list">
         {users.map((artist) => (
           getSampleArtwork(artist.user_id) && 
