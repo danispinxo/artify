@@ -2,7 +2,6 @@ import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import "../styles/cart.scss";
 import Image from 'react-bootstrap/Image';
-import Button from '../components/Button';
 import Table from 'react-bootstrap/Table';
 import { DataContext } from "../context/dataContext";
 import { Currency } from 'react-tender';

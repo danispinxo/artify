@@ -88,7 +88,7 @@ export const Gallery = ({ cart, setCart }) => {
         setRating(total / res.data.length);
 
       })
-  }, []);
+  }, [id]);
 
   const handleAddToCart = (artwork, i) => {
     if (!user.id) {
@@ -146,7 +146,7 @@ export const Gallery = ({ cart, setCart }) => {
 
         <div className="user-bio">
           {userData.bio && <p>{userData.bio}</p>}
-          <StyledRating name="simple-controlled" value={4} readOnly />
+          <StyledRating name="simple-controlled" value={rating} readOnly />
         </div>
 
       </div>
@@ -258,7 +258,6 @@ export const Gallery = ({ cart, setCart }) => {
                     />
                   </Card.Text>
                   {!artwork.sold && user.id && (
-                    // <FontAwesomeIcon onClick={() => handleAddToCart(artwork, i)}  icon={faCartPlus} className="add-to-cart" />
                     <h5
                       className="add-to-cart"
                       onClick={() => handleAddToCart(artwork, i)}
