@@ -116,8 +116,8 @@ export default function Cart({cart, setCart}) {
       {!user.id &&
       <div className='unauthorized-cart'>
         <h1>Unauthorized Cart</h1>
-        <div className='message'>
-          <p>It looks like you're not logged in! Only registered and logged-in users can purchase artworks at Artify!</p>
+        <div className='unauthorized-cart-message'>
+          <p>It looks like you're not logged in! Register or log in to purchase artworks.</p>
         </div>
       </div>
       }
