@@ -28,7 +28,7 @@ export default function ProductDescription({cart, setCart}) {
   useEffect(() => {
     axios.get(`/api/product`, { params: { id: id } })
       .then((res) => setProduct(res.data))
-  }, [id]);
+  }, [id, addedToCart]);
 
   const handleAddToCart = event => {
     event.preventDefault();
@@ -54,50 +54,42 @@ export default function ProductDescription({cart, setCart}) {
   return (
     <div className="product-description-container">
       <div className="product-description-body">
+
         <div className="product-description-image-container" >
           {product.image && <img className="product-description-image" src={product.image} alt={product.image} />}
         </div>
 
-      <div className="product-description-info">
-        <div className="product-description-name">
-          <p>{product.name} </p>
-        </div>
-        <div className="product-description-description">
-          <p>{product.description}</p>
-        </div>
-        <div className="product-description-price">
-          <p><Currency value={product.price_cents/100.00} currency="CAD" /></p>
-        </div>
-      
-        {!product.sold && dataState.user.id && 
-        <div className="product-description-button-cont">
+        <div className="product-description-info">
+          <div className="product-description-name"><p>{product.name}</p></div>
+          <div className="product-description-description"><p>{product.description}</p></div>
 
-          <button className="product-description-add-to-cart-button" onClick={handleAddToCart}>
-            <FontAwesomeIcon icon={faCartPlus} /> Add to Cart
-          </button>
+          <div className="product-description-price">
+            <p><Currency value={product.price_cents/100.00} currency="CAD" /></p>
+          </div>
 
-          <ToastContainer position={'middle-center'}>
-            <Toast show={addedToCart} >
-              <Toast.Body className="toast-body">Added To Cart</Toast.Body>
-            </Toast>          
-          </ToastContainer>
-        </div>      
-        }
+          {product.sold && <h2>This image has already been purchased!</h2>}
+          {product.in_cart && <h2>This product is already in someone's cart.</h2>}
 
-      {!product.sold && !dataState.user.id && 
-      <div className="product-description-button-cont">
-        <p>You must be logged in to add this item to your cart. Please log in or register a new account to shop at Artify!</p>
-      </div>      
-      }
+          {!product.sold && !product.in_cart && !dataState.user.id && <div className="product-description-button-cont">
+            <h2>You must be logged in to add this item to your cart. Please log in or register a new account to shop at Artify!</h2>
+          </div>}
+        
+          {!product.sold && dataState.user.id && !product.in_cart &&
+          <div className="product-description-button-cont">
+
+            <button className="product-description-add-to-cart-button" onClick={handleAddToCart}>
+              <FontAwesomeIcon icon={faCartPlus} /> Add to Cart
+            </button>
+
+            <ToastContainer position={'middle-center'}>
+              <Toast show={addedToCart} >
+                <Toast.Body className="toast-body">Added To Cart</Toast.Body>
+              </Toast>          
+            </ToastContainer>
+
+          </div>}
+        </div>
       </div>
-
-
-      </div>
-      
-      {product.sold &&
-        <h2>This image has already been purchased!</h2>
-      }
-
     </div>
   );
 }

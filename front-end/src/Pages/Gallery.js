@@ -5,7 +5,7 @@ import Image from "react-bootstrap/Image";
 import "../styles/gallery.scss";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTag, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import { faTag, faCircleXmark, faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { Currency } from "react-tender";
 import { DataContext } from "../context/dataContext";
 import ToastContainer from "react-bootstrap/ToastContainer";
@@ -71,6 +71,16 @@ export const Gallery = ({ cart, setCart }) => {
   }, [id]);
 
   useEffect(() => {
+    Promise.all([
+      axios.get(`/api/profile`, { params: { id: id } }),
+      axios.get(`/api/gallery`, { params: { id: id } }),
+    ]).then((all) => {
+      setUserData(all[0].data[0]);
+      setUserGallery(all[1].data);
+    });
+  }, [id, showPurchased]);
+
+  useEffect(() => {
     const orderInfo = {};
     orderInfo.userID = user.id;
     axios.post("/order/api/cart", orderInfo).then((res) => {
@@ -91,9 +101,7 @@ export const Gallery = ({ cart, setCart }) => {
   }, [id]);
 
   const handleAddToCart = (artwork, i) => {
-    if (!user.id) {
-      alert("You can't add to cart without signing in!");
-    }
+    if (!user.id) {alert("You can't add to cart without signing in!");}
 
     const orderInfo = {};
     orderInfo.userID = user.id;
@@ -254,7 +262,7 @@ export const Gallery = ({ cart, setCart }) => {
                       currency="CAD"
                     />
                   </Card.Text>
-                  {!artwork.sold && user.id && (
+                  {!artwork.sold && !artwork.in_cart && user.id && (
                     <h5
                       className="add-to-cart"
                       onClick={() => handleAddToCart(artwork, i)}
@@ -266,6 +274,12 @@ export const Gallery = ({ cart, setCart }) => {
                   {artwork.sold && (
                     <div className="after">
                       <FontAwesomeIcon icon={faTag} /> SOLD{" "}
+                    </div>
+                  )}
+
+                  {artwork.in_cart && (
+                    <div className="in-cart">
+                      <FontAwesomeIcon icon={faCartArrowDown} /> IN CART{" "}
                     </div>
                   )}
                 </Card.Body>
