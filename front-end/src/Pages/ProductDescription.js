@@ -57,7 +57,7 @@ export default function ProductDescription({cart, setCart}) {
 
         <div className="product-description-image-container" >
           {product.image && <img className="product-description-image" src={product.image} alt={product.image} />}
-          <div className="watermark"></div>
+          <div className="watermark-prevent-copy"></div>
         </div>
 
         <div className="product-description-info">
