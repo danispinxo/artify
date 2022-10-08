@@ -8,13 +8,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTag, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { Currency } from "react-tender";
 import { DataContext } from "../context/dataContext";
-import ToastContainer from 'react-bootstrap/ToastContainer';
-import Toast from 'react-bootstrap/Toast';
+import ToastContainer from "react-bootstrap/ToastContainer";
+import Toast from "react-bootstrap/Toast";
 import "../styles/modal.scss";
-import { styled } from '@mui/material/styles';
-import Rating from '@mui/material/Rating';
+import { styled } from "@mui/material/styles";
+import Rating from "@mui/material/Rating";
 
-export const Gallery = ({cart, setCart}) => {
+export const Gallery = ({ cart, setCart }) => {
   const { id } = useParams();
   const [userData, setUserData] = useState({});
   const [userGallery, setUserGallery] = useState([]);
@@ -26,14 +26,14 @@ export const Gallery = ({cart, setCart}) => {
   const [rating, setRating] = useState([]);
 
   const StyledRating = styled(Rating)({
-    '& .MuiRating-iconFilled': {
-      color: '#d6a00a',
-    }
+    "& .MuiRating-iconFilled": {
+      color: "#d6a00a",
+    },
   });
 
   const toggleModal = () => {
     setModal(!modal);
-    setIsLoading(false)
+    setIsLoading(false);
   };
 
   if (modal) {
@@ -44,18 +44,17 @@ export const Gallery = ({cart, setCart}) => {
 
   const sendEmail = async (e) => {
     e.preventDefault();
-    const name = e.target[0].value
-    const email = e.target[1].value
-    const message = e.target[2].value
-  
-    axios.post('/email', {name, email, message})
-    .then((res) => {
-      setIsLoading(true)
+    const name = e.target[0].value;
+    const email = e.target[1].value;
+    const message = e.target[2].value;
+
+    axios.post("/email", { name, email, message }).then((res) => {
+      setIsLoading(true);
       setTimeout(() => {
-        setModal(!modal)
-      }, 3000)
-    })
-  }
+        setModal(!modal);
+      }, 3000);
+    });
+  };
 
   useEffect(() => {
     Promise.all([
@@ -66,7 +65,7 @@ export const Gallery = ({cart, setCart}) => {
       setUserGallery(all[1].data);
 
       for (let i = 0; i <= all[1].data.length; i++) {
-        setShowPurchased((prev) => [...prev, false])
+        setShowPurchased((prev) => [...prev, false]);
       }
     });
   }, [id]);
@@ -74,10 +73,9 @@ export const Gallery = ({cart, setCart}) => {
   useEffect(() => {
     const orderInfo = {};
     orderInfo.userID = user.id;
-    axios.post("/order/api/cart", orderInfo)
-      .then((res) => {
-        setCart(res.data);
-      })
+    axios.post("/order/api/cart", orderInfo).then((res) => {
+      setCart(res.data);
+    });
   }, [showPurchased, setCart, user]);
 
   useEffect(() => {
@@ -94,7 +92,7 @@ export const Gallery = ({cart, setCart}) => {
 
   const handleAddToCart = (artwork, i) => {
     if (!user.id) {
-      alert("You can't add to cart without signing in!")
+      alert("You can't add to cart without signing in!");
     }
 
     const orderInfo = {};
@@ -102,12 +100,11 @@ export const Gallery = ({cart, setCart}) => {
     orderInfo.artworkID = artwork.id;
     orderInfo.price = artwork.price_cents;
 
-    axios.put("/order/api/add", orderInfo)
-    .then((all) => {
+    axios.put("/order/api/add", orderInfo).then((all) => {
       setShowPurchased((prev) => {
-        prev[i] = true; 
-        return [...prev]
-      })
+        prev[i] = true;
+        return [...prev];
+      });
 
       setTimeout(() => {
         setShowPurchased((prev) => {
@@ -121,51 +118,92 @@ export const Gallery = ({cart, setCart}) => {
 
   return (
     <div className="gallery">
+      
+      
       <div className="profile-gallery">
-        <div className="profile-cover-gallery">
-          <Image className="image" src={userData.cover_image} />
-        </div>
 
-        <div className="profile-header-gallery">
-          <Image
+      <Image className="profile-gallery-cover-image" src={userData.cover_image} fluid={true}/>
+
+
+      <div className="profile-gallery-header">
+
+      <Image
             src={userData.avatar_image}
             alt={userData.first_name + " " + userData.last_name}
             roundedCircle="true"
             width="150px"
-          />
-        </div>
+            className="profile-gallery-avatar"
+        />
+
         <div className="user-name">
-          <h2>{userData.first_name} {userData.last_name}</h2>
-          <button onClick={toggleModal} className="btn-modal">Message This Artist</button>            
+          <h2>
+            {userData.first_name} {userData.last_name}
+          </h2>
+          <button onClick={toggleModal} className="send-message-btn">
+            Message This Artist
+          </button>
         </div>
 
-        <>
+        <div className="user-bio">
+          {userData.bio && <p>{userData.bio}</p>}
+          <StyledRating name="simple-controlled" value={4} readOnly />
+        </div>
 
-        {modal && !isLoading && (
-          <div className="message-modal">
-            <div className="overlay" onClick={toggleModal}>
+      </div>
+
+        {/* Modal stuff */}
+        <div>
+          {modal && !isLoading && (
+            <div className="message-modal">
+              <div className="overlay" onClick={toggleModal}></div>
+              <div className="message-modal-content">
+                <div className="message-modal-head-cross">
+                  <h4>Send this Artist an Email</h4>
+                  <FontAwesomeIcon
+                    icon={faCircleXmark}
+                    onClick={toggleModal}
+                    className="message-close-modal"
+                  />
+                </div>
+
+                <div className="modal-form-container">
+                  <form onSubmit={sendEmail} className="modal-form">
+                    <label className="modal-form-label">Your name:</label>
+                    <br />
+                    <input
+                      className="name-email-input"
+                      type="text"
+                      placeholder="Name"
+                      name="name"
+                    />
+                    <br />
+                    <label className="modal-form-label">Your email:</label>
+                    <br />
+                    <input
+                      className="name-email-input"
+                      type="email"
+                      placeholder="Email"
+                      name="email"
+                    />
+                    <br />
+                    <label className="modal-form-label">Your message:</label>
+                    <br />
+                    <textarea
+                      className="message-input"
+                      type="text"
+                      placeholder="Message"
+                      name="message"
+                    />
+                    <br />
+                    <button className="message-submit" type="submit">
+                      Submit
+                    </button>
+                    <br />
+                  </form>
+                </div>
+              </div>
             </div>
-            <div className="message-modal-content">
-              <div className="message-modal-head-cross">
-              <h4>Send this Artist an Email</h4>
-              <FontAwesomeIcon icon={faCircleXmark} onClick={toggleModal} className="message-close-modal"/>
-              </div>
-               
-              <div className="modal-form-container">
-                <form onSubmit={sendEmail} className="modal-form">
-                  <label className="modal-form-label">Your name:</label><br/>
-                  <input className="name-email-input" type="text" placeholder="Name" name="name" /><br/>
-                  <label className="modal-form-label">Your email:</label><br/>
-                  <input className="name-email-input" type="email" placeholder="Email" name="email" /><br/>
-                  <label className="modal-form-label">Your message:</label><br/>
-                  <textarea className="message-input" type="text" placeholder="Message" name="message" /><br/>
-                  <button className="message-submit" type="submit">Submit</button><br/>
-                </form>
-              </div>
-            </div> 
-          </div>
-        )}
-
+          )}
 
           {modal && isLoading && (
             <div className="message-modal">
@@ -173,28 +211,28 @@ export const Gallery = ({cart, setCart}) => {
               <div className="message-modal-content">
                 <div className="modal-form-container">
                   <form onSubmit={sendEmail}>
-                    <button className="message-submit" type="submit">Sending <i className="fas fa-spinner fa-spin"></i></button>
-                    <br/>
+                    <button className="message-submit" type="submit">
+                      Sending <i className="fas fa-spinner fa-spin"></i>
+                    </button>
+                    <br />
                   </form>
                 </div>
-                <button onClick={toggleModal} className="message-close-modal">Close</button> 
-              </div> 
+                <button onClick={toggleModal} className="message-close-modal">
+                  Close
+                </button>
+              </div>
             </div>
           )}
-
-      </>
-        <div className="user-bio">
-          {userData.bio && <p>{userData.bio}</p>}
-          <StyledRating name="simple-controlled" value={rating} readOnly />
         </div>
 
+        
       </div>
 
-      <div className="list">
+      <div className="Gallery-list">
         {userGallery.length > 0 &&
           userGallery.map((artwork, i) => (
-            <div className="list-item" key={i}>
-              <Card>
+            
+              <Card className="Gallery-list-item" key={i}>
                 <div className="card-image2">
                   <ToastContainer className="toast-container" position={'middle-center'}>
                     <Toast show={showPurchased.length > 0 && showPurchased[i]} >
@@ -207,25 +245,36 @@ export const Gallery = ({cart, setCart}) => {
                       variant="top"
                       src={artwork.image}
                       alt="avatar"
+                      fluid={true}
                     />
-                   </a>
-                                  
+                  </a>
                 </div>
                 <Card.Body>
                   <Card.Title>{artwork.name}</Card.Title>
-                  <Card.Text><Currency value={artwork.price_cents / 100.0} currency="CAD" /></Card.Text>
-                  {!artwork.sold && user.id &&
-                      // <FontAwesomeIcon onClick={() => handleAddToCart(artwork, i)}  icon={faCartPlus} className="add-to-cart" />
-                      <h5 className="add-to-cart" onClick={() => handleAddToCart(artwork, i)} >Add to cart</h5>
-                    }       
+                  <Card.Text>
+                    <Currency
+                      value={artwork.price_cents / 100.0}
+                      currency="CAD"
+                    />
+                  </Card.Text>
+                  {!artwork.sold && user.id && (
+                    // <FontAwesomeIcon onClick={() => handleAddToCart(artwork, i)}  icon={faCartPlus} className="add-to-cart" />
+                    <h5
+                      className="add-to-cart"
+                      onClick={() => handleAddToCart(artwork, i)}
+                    >
+                      Add to cart
+                    </h5>
+                  )}
 
-                  {artwork.sold && 
-                    <div className="after"><FontAwesomeIcon icon={faTag} /> SOLD </div>
-                  }
-
+                  {artwork.sold && (
+                    <div className="after">
+                      <FontAwesomeIcon icon={faTag} /> SOLD{" "}
+                    </div>
+                  )}
                 </Card.Body>
               </Card>
-            </div>
+            
           ))}
       </div>
     </div>

@@ -23,12 +23,13 @@ export const Home = () => {
 
   return (
     <div className="homepage-container">
+
       <h1 className='home-page-title'>Explore, collect, and sell ARTs</h1>
 
       {dataState.artworks.length > 0 && (
         <Swiper
           slidesPerView={5}
-          spaceBetween={15}
+          spaceBetween={12}
           slidesPerGroup={5}
           loop={true}
           autoplay={{
@@ -58,6 +59,9 @@ export const Home = () => {
           ))}
         </Swiper>
       )}
+
+
+      
 
       <h1 className='home-page-title'>Browse by Category</h1>
       <div className="categories-container">
