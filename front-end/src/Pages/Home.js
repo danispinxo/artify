@@ -28,7 +28,7 @@ export const Home = () => {
 
       {dataState.artworks.length > 0 && (
         <Swiper
-          slidesPerView={5}
+          slidesPerView={4}
           spaceBetween={12}
           slidesPerGroup={5}
           loop={true}
