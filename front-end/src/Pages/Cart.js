@@ -80,7 +80,7 @@ export default function Cart({cart, setCart}) {
                     </td>
                     <td>{item.name}</td>
                     <td> <Currency value={item.price_cents /100} currency="CAD" /> </td>
-                    <td><Button message="Remove" onClick={() => handleDelete(item.line_id)}/></td>
+                    <td><button className="cart-line-delete" message="Remove" onClick={() => handleDelete(item.line_id)}>Remove</button></td>
                   </tr>      
                 ))}
               </tbody>

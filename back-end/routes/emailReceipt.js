@@ -9,13 +9,13 @@ router.post("/", (req, res) => {
   const lastName = user.last_name
   const fullName = `${firstName} ${lastName}`
   const cart = req.body.cart
-
+  console.log(cart)
   
   const receiptMessage = (cart, fullName ) => {
     
     let message = `Thank you ${fullName}!\nYou ordered `
     for (const item of cart) {
-      message+= `| Item: ${item.name} Price: $${item.price_cents/100} | `
+      message+= `| Item: ${item.name} Price: $${item.price_cents/100} Full Quality Artwork Link: ${item.image}| `
     }
     message+= `\nDate: ${cart[0].order_date} | \nYour newly purchased artwork is now available in your gallery. \nThank you for using Artify!`
     return message;

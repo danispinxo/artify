@@ -55,9 +55,11 @@ const addNewArtwork = (user_id, category_id, name, price_cents, description, ima
 const getArtworkBySearch = (search) => {
   return db
     .query(
-      `SELECT * FROM artworks 
-      WHERE LOWER(artworks.name) LIKE LOWER('%'||$1||'%')
-      OR LOWER(artworks.description) LIKE LOWER('%'||$1||'%')
+      `SELECT * FROM artworks JOIN users on artworks.user_id = users.id
+      WHERE LOWER(artworks.name) LIKE LOWER('%' || $1 || '%')
+      OR LOWER(artworks.description) LIKE LOWER('%' || $1 || '%')
+      OR LOWER(users.first_name) LIKE LOWER('%'|| $1 || '%')
+      OR LOWER(users.last_name) LIKE LOWER('%'|| $1 || '%')
       ;`, [search])
     .then((data) => {
       return data.rows;
@@ -104,3 +106,5 @@ const editArtworkDetails = (editedArtwork) => {
 
 
 module.exports = { getArtworkByRandom, getCategories, getArtworkById, getArtworkByCategoryId, addNewArtwork, getArtworkBySearch, deleteArtworkByID, editArtworkDetails, soldArtworkByOrderId };
+
+
