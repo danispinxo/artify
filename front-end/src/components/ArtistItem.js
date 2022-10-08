@@ -39,8 +39,8 @@ export default function ArtistItem(props) {
           <Card.Title className="artistitem-card-title">
             <Image src={image} alt={name + "'s Avatar"} roundedCircle="true" className="artistitem-card-avatar-img"/>
             <div className="artist-name-and-rating">
-            <h5>{name}</h5>
-            <StyledRating name="simple-controlled" value={rating} readOnly />              
+              <h5>{name}</h5>
+              <StyledRating name="simple-controlled" value={rating} readOnly />              
             </div>
           </Card.Title>
         </Card.Body>
