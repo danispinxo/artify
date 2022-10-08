@@ -45,7 +45,7 @@ export default function Profile(props) {
       <div className='profile-header-container'>
         <div className='profile-header'>
           {userData.avatar_image && 
-          <Image src={userData.avatar_image} alt={userData.first_name + " " + userData.last_name} className="profile-header-"roundedCircle="true" width="75px" />}
+          <Image src={userData.avatar_image} alt={userData.first_name + " " + userData.last_name} className="avatar" roundedCircle="true" />}
           <h1 onClick={() => setMode(VIEW)}>{userData.first_name} {userData.last_name}'s Profile</h1><br/>
         </div>
         <div className='profile-bio'>

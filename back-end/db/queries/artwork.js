@@ -80,7 +80,7 @@ const deleteArtworkByID = (id) => {
 const soldArtworkByOrderId = (order_id) => {
   return db
   .query(`
-  UPDATE artworks SET sold = true
+  UPDATE artworks SET sold = true, in_cart = false
   FROM line_items
   WHERE line_items.artwork_id =  artworks.id
   AND line_items.order_id = $1; 
