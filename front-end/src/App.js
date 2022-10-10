@@ -22,13 +22,13 @@ import Confirmation from "./Pages/Confirmation";
 
 export default function App() {
   const [cart, setCart] = useState(0);
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(false);
 
   const handleHeader = () => {
     if(expanded) {
-      setExpanded(false)
+      setExpanded(false);
     }
-  }
+  };
 
   return (
     <DataContextProvider>

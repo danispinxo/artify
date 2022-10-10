@@ -18,6 +18,30 @@ $body-font: 'Lato', sans-serif;
   background-color: rgba(255, 255, 255, 0.52);
 }
 
+@mixin grid1col {
+  width: 96%;
+  display: grid;
+  grid-template-columns: 1fr  ;
+  grid-template-rows: 1fr  ;
+  gap: 25px 25px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ".";
+}
+
+
+@mixin grid2col {
+  width: 96%;
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+  grid-template-rows: 1fr 1fr ;
+  gap: 25px 25px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". . "
+    ". . ";
+}
+
 @mixin grid3col {
   width: 96%;
   display: grid;
