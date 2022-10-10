@@ -83,11 +83,10 @@ export default function EditArtwork(props) {
   return (
     <div className="edit-artwork-container">
 
-
-      <h1>Edit This Artwork's Details</h1>
-
       <Image className="edit-artwork-img" src={existingArt.image} alt={existingArt.name}/>
       
+      <div className="edit-artwork-h1-form">
+      <h1>Edit Artwork's Details</h1>
       <Form onSubmit={editArtwork} className="edit-artwork-form">
 
           <Form.Group className="mb-3">
@@ -117,6 +116,8 @@ export default function EditArtwork(props) {
 
           <Button message="Edit this Artwork" variant="primary" type="submit" />
         </Form>
+      </div>
+      
       
     </div>
   )
