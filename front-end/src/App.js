@@ -22,12 +22,19 @@ import Confirmation from "./Pages/Confirmation";
 
 export default function App() {
   const [cart, setCart] = useState(0);
+  const [expanded, setExpanded] = useState(false)
+
+  const handleHeader = () => {
+    if(expanded) {
+      setExpanded(false)
+    }
+  }
 
   return (
     <DataContextProvider>
-      <div className="App">
+      <div className="App" onClick={handleHeader} >
         <BrowserRouter>
-          <Header cart={cart} setCart={setCart}/>
+          <Header cart={cart} setCart={setCart} expanded={expanded} setExpanded={setExpanded}/>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/gallery/:id" element={<Gallery cart={cart} setCart={setCart}/>} />
@@ -36,7 +43,7 @@ export default function App() {
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/product/:id" element={<ProductDescription cart={cart} setCart={setCart}/>} />
             <Route path="/category/:id" element={<Category />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login />}  />
             <Route path="/register" element={<Register />} />
             <Route path="/cart" element={<Cart cart={cart} setCart={setCart}/>} />
             <Route path="/results" element={<SearchResults />} />
