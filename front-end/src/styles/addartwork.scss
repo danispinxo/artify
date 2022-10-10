@@ -10,6 +10,14 @@
     font-weight: 700;
   }
 
+  @media screen and (max-width:550px) {
+    h1{
+      margin-top: 2em;
+      margin-left: 0.8em;
+      margin-bottom: 1.5em
+    }   
+  }
+
   .add-artwork-form {
     @include glassbg;
     box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.1) !important;
