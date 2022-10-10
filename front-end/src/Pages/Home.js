@@ -102,6 +102,7 @@ export default function Home() {
                     name="simple-controlled"
                     value={topUser.rating}
                     readOnly
+                    className="rating-starts"
                   />
                 </td>
               </tr>

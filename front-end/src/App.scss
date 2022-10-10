@@ -10,3 +10,25 @@
 }
 
 
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .App {
+    padding-top: 15%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: $beige2;
+  
+  }
+}
+
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  .App {
+    padding-top: 38%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: $beige2;
+  
+  }
+}
