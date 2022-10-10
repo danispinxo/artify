@@ -191,3 +191,534 @@
 }
   
 
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+
+  .gallery{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    
+    
+    .profile-gallery{
+      
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+      .profile-gallery-cover-image {
+        background-size: cover;
+        height: 440px;
+        width: 100%;
+        object-position: center;
+        object-fit: cover;
+        margin-top: -3.8%;
+      }
+      .profile-gallery-header{
+         width: 96%;
+  
+        .profile-gallery-avatar{
+          margin-top: -5%;
+          width: 12%;
+          aspect-ratio: 1 / 1;
+          object-fit: cover;
+        }
+        
+        .user-name {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 2%;
+          margin-top: 1%;
+          height: 15%;
+          
+    
+          h2 {
+  
+            font-family: $header-font;
+            font-weight: 600;
+            color: $dark-red;
+            padding: 0;
+            margin: 0;
+            font-size: 1.7rem;
+          }
+    
+          .send-message-btn {
+            width: 18%;
+            margin: 0;
+            padding: 0;
+            font-size: 0.8rem;
+            background-color: $dark-red;
+            height: 100%;
+            color: $beige;
+            box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.4) !important;
+          }
+        }
+    
+        .user-bio{
+          padding: 1.5%;
+          font-size: 1.2rem;
+          font-family: $body-font;
+          border-radius: 10px;
+          @include glassbg;
+          box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.2) !important;
+        }
+      }
+    }
+  }
+  .Gallery-list{
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    gap: 25px 25px; 
+    grid-template-areas: 
+      ". ."
+      ". .";  
+    width: 96%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    .Gallery-list-item{
+      width: 100%;
+      height: 100%;
+      border: none !important;
+      box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.2) !important;
+      z-index: 1;
+  
+      .after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        color: $beige;
+        font-family: $header-font;
+        font-size: 1.8rem;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: $dark-brown;
+        opacity: 0.6;
+      }
+  
+      .in-cart {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        color: $beige;
+        font-family: $header-font;
+        font-size: 1.4rem;
+        border-radius: 5px;
+        display: flex;
+        justify-content: flex-end;
+        align-content: flex-end;
+        align-items: flex-end;
+        background: $light-brown;
+        opacity: 0.3;
+        padding-right: 5%;
+        padding-bottom: 5%;
+      }
+    
+      .add-to-cart {
+        cursor: pointer; 
+        box-shadow: 0.4rem;
+        display: flex;
+        justify-content: center;
+        color: $dark-brown;
+        font-family: $header-font;
+        font-size: 1.4rem;
+        background:$dark-red;
+        padding: 20px;
+        border-radius: 5px;
+        color:white;
+        position:absolute;
+        bottom: 23px;
+        right: 1px;
+        width: 100%;
+        visibility: hidden;
+      }
+      &:hover {
+        .add-to-cart {
+       visibility: visible;
+        }  
+    }
+      
+      
+  
+    .card-img{
+      width: 100%;
+      object-fit: cover;
+    }
+    
+    .card-image2{
+    
+      .card-img2{
+        width: 100%;
+        height: 40vw;
+        object-fit: cover;
+        
+      } 
+      .toast-body{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        height: 3em;
+        font-size: xx-large;
+        background: $dark-red;
+        border-radius: 5px;
+        border:0;
+        font-weight: 500;
+        color:white;
+        opacity: 0.6;
+        font-family: $header-font;
+      }
+   
+    }
+  
+  }
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  .gallery{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    
+    
+    .profile-gallery{
+      
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+      .profile-gallery-cover-image {
+        background-size: cover;
+        height: 340px;
+        width: 100%;
+        object-position: center;
+        object-fit: cover;
+        margin-top: -3.8%;
+      }
+      .profile-gallery-header{
+         width: 96%;
+  
+        .profile-gallery-avatar{
+          margin-top: -8%;
+          width: 16%;
+          aspect-ratio: 1 / 1;
+          object-fit: cover;
+        }
+        
+        .user-name {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 2%;
+          margin-top: 1%;
+          height: 15%;
+          
+    
+          h2 {
+  
+            font-family: $header-font;
+            font-weight: 600;
+            color: $dark-red;
+            padding: 0;
+            margin: 0;
+            font-size: 1.2rem;
+          }
+    
+          .send-message-btn {
+            width: 33%;
+            margin: 0;
+            padding: 0;
+            font-size: 0.6rem;
+            background-color: $dark-red;
+            height: 70%;
+            color: $beige;
+            box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.4) !important;
+          }
+        }
+    
+        .user-bio{
+          padding: 1.5%;
+          font-size: 1rem;
+          font-family: $body-font;
+          border-radius: 10px;
+          @include glassbg;
+          box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.2) !important;
+        }
+      }
+    }
+  }
+  .Gallery-list{
+    display: grid; 
+    grid-template-columns: 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    gap: 25px 25px; 
+    grid-template-areas: 
+      "."
+      ".";  
+    width: 96%;
+    margin-top: 8%;
+    margin-bottom: 3%;
+    .Gallery-list-item{
+      width: 100%;
+      height: 100%;
+      border: none !important;
+      box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.2) !important;
+      z-index: 1;
+  
+      .after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        color: $beige;
+        font-family: $header-font;
+        font-size: 1.8rem;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: $dark-brown;
+        opacity: 0.6;
+      }
+  
+      .in-cart {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        color: $beige;
+        font-family: $header-font;
+        font-size: 1.4rem;
+        border-radius: 5px;
+        display: flex;
+        justify-content: flex-end;
+        align-content: flex-end;
+        align-items: flex-end;
+        background: $light-brown;
+        opacity: 0.3;
+        padding-right: 5%;
+        padding-bottom: 5%;
+      }
+    
+      .add-to-cart {
+        cursor: pointer; 
+        box-shadow: 0.4rem;
+        display: flex;
+        justify-content: center;
+        color: $dark-brown;
+        font-family: $header-font;
+        font-size: 1.4rem;
+        background:$dark-red;
+        padding: 20px;
+        border-radius: 5px;
+        color:white;
+        position:absolute;
+        bottom: 23px;
+        right: 1px;
+        width: 100%;
+        visibility: hidden;
+      }
+      &:hover {
+        .add-to-cart {
+       visibility: visible;
+        }  
+    }
+      
+      
+  
+    .card-img{
+      width: 100%;
+      object-fit: cover;
+    }
+    
+    .card-image2{
+    
+      .card-img2{
+        width: 100%;
+        height: 40vw;
+        object-fit: cover;
+        
+      } 
+      .toast-body{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        height: 3em;
+        font-size: xx-large;
+        background: $dark-red;
+        border-radius: 5px;
+        border:0;
+        font-weight: 500;
+        color:white;
+        opacity: 0.6;
+        font-family: $header-font;
+      }
+   
+    }
+  
+  }
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1450px) {
+  .gallery{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    
+    
+    .profile-gallery{
+      
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+      .profile-gallery-cover-image {
+        background-size: cover;
+        height: 550px;
+        width: 100%;
+        object-position: center;
+        object-fit: cover;
+        margin-top: -3.8%;
+      }
+      .profile-gallery-header{
+         width: 96%;
+  
+        .profile-gallery-avatar{
+          margin-top: -3%;
+          width: 8%;
+          aspect-ratio: 1 / 1;
+          object-fit: cover;
+        }
+        
+        .user-name {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 2%;
+          margin-top: 1%;
+          height: 15%;
+    
+          h2 {
+  
+            font-family: $header-font;
+            font-weight: 600;
+            color: $dark-red;
+            padding: 0;
+            margin: 0;
+          }
+    
+          .send-message-btn {
+            width: 18%;
+            margin: 0;
+            padding: 0;
+            font-size: larger;
+            background-color: $dark-red;
+            height: 100%;
+            color: $beige;
+            box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.4) !important;
+          }
+        }
+    
+        .user-bio{
+          padding: 1%;
+          font-size: 1.5rem;
+          font-family: $body-font;
+          border-radius: 10px;
+          @include glassbg;
+          box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.2) !important;
+        }
+      }
+    }
+  }
+}
+
+
+@media only screen and (min-width: 1451px) and (max-width: 1839px) {
+  .gallery{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    
+    
+    .profile-gallery{
+      
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+      .profile-gallery-cover-image {
+        background-size: cover;
+        height: 550px;
+        width: 100%;
+        object-position: center;
+        object-fit: cover;
+        margin-top: -3.8%;
+      }
+      .profile-gallery-header{
+         width: 96%;
+  
+        .profile-gallery-avatar{
+          margin-top: -3%;
+          width: 8%;
+          aspect-ratio: 1 / 1;
+          object-fit: cover;
+        }
+        
+        .user-name {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 2%;
+          margin-top: 1%;
+          height: 15%;
+    
+          h2 {
+  
+            font-family: $header-font;
+            font-weight: 600;
+            color: $dark-red;
+            padding: 0;
+            margin: 0;
+          }
+    
+          .send-message-btn {
+            width: 14%;
+            margin: 0;
+            padding: 0;
+            font-size: larger;
+            background-color: $dark-red;
+            height: 100%;
+            color: $beige;
+            box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.4) !important;
+          }
+        }
+    
+        .user-bio{
+          padding: 1%;
+          font-size: 1.5rem;
+          font-family: $body-font;
+          border-radius: 10px;
+          @include glassbg;
+          box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.2) !important;
+        }
+      }
+    }
+  }
+}
