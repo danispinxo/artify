@@ -11,6 +11,7 @@
   top: 0px;
   z-index: 999;
   font-family: $body-font;
+  font-size: 20px;
   
   .brand {
     font-family: $logo-font;
@@ -57,9 +58,14 @@
     margin-left: 15px;
   }
 
-  .nav-icon{
-  font-size:x-large
+  .nav-icon {
+    font-size:x-large
   }
 
+  .header-avatar-img {
+    width: 20px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
 }
 

@@ -118,4 +118,29 @@ const getLastOrderByUserID = (user_id) => {
     return data.rows;
   });
 };
-module.exports = { getAllSoldByUser, getAllPurchasedByUser, addArtworkToOrderByID, getOrderByUserID, getOrderInProgress, createNewOrder, deleteLineItem, emptyCart, getLastOrderByUserID };
+
+const addArtworkToCart = (artwork_id) => {
+  return db
+  .query(`
+  UPDATE artworks
+  SET in_cart = true
+  WHERE id = $1;
+`, [artwork_id])
+  .then((data) => {
+    return data.rows;
+  });
+};
+
+const removeArtworkFromCart = (artwork_id) => {
+  return db
+  .query(`
+  UPDATE artworks
+  SET in_cart = false
+  WHERE id = $1;
+`, [artwork_id])
+  .then((data) => {
+    return data.rows;
+  });
+};
+
+module.exports = { getAllSoldByUser, getAllPurchasedByUser, addArtworkToOrderByID, getOrderByUserID, getOrderInProgress, createNewOrder, deleteLineItem, emptyCart, getLastOrderByUserID, addArtworkToCart, removeArtworkFromCart };

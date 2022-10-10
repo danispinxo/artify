@@ -80,7 +80,7 @@ export default function AddArtwork({setMode, user}) {
             <Form.Control name="title" type="name" className="add-artwork-form-control"/>
           </Form.Group>
 
-          <Form.Group className="price-group" controlId="price">
+          <Form.Group className="mb-3" controlId="price">
             <Form.Label className="add-artwork-label">Price: </Form.Label>
             <Form.Control name="price" type="number" min="0.00" max="10000.00" step="0.01" defaultValue="10.00" className="add-artwork-form-control"/>
           </Form.Group>

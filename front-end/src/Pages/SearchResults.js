@@ -3,6 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import '../styles/searchResults.scss'
 import axios from 'axios';
 import { Currency } from 'react-tender';
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 
 export default function SearchResults() {
 const [searchParams] = useSearchParams();
@@ -21,7 +22,7 @@ const searchInput = searchParams.get('search') ;
 
   return (
     <div>
-      { artResult.length && 
+      { artResult.length >= 1 && 
       <div className="search-artwork-container">
         <h1>Search Results:</h1>
         <h3>Returned the following results for search term: <strong>"{searchInput}"</strong></h3>
@@ -39,8 +40,12 @@ const searchInput = searchParams.get('search') ;
         )}
       </div> }
 
-      {!artResult.length && <h1 className="null-search">No artwork found matching your search</h1>}
-    </div>
+      {!artResult.length && 
+      <div className="no-search-result-container">
+      <SentimentVeryDissatisfiedIcon className="face"></SentimentVeryDissatisfiedIcon>
+      <h1 className="null-search">Sorry, we couldn't find a match for "{searchInput}"</h1>
+      </div>}
 
+    </div>
   )
 }

@@ -5,7 +5,7 @@ import Image from "react-bootstrap/Image";
 import "../styles/gallery.scss";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTag, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import { faTag, faCircleXmark, faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { Currency } from "react-tender";
 import { DataContext } from "../context/dataContext";
 import ToastContainer from "react-bootstrap/ToastContainer";
@@ -71,6 +71,16 @@ export const Gallery = ({ cart, setCart }) => {
   }, [id]);
 
   useEffect(() => {
+    Promise.all([
+      axios.get(`/api/profile`, { params: { id: id } }),
+      axios.get(`/api/gallery`, { params: { id: id } }),
+    ]).then((all) => {
+      setUserData(all[0].data[0]);
+      setUserGallery(all[1].data);
+    });
+  }, [id, showPurchased]);
+
+  useEffect(() => {
     const orderInfo = {};
     orderInfo.userID = user.id;
     axios.post("/order/api/cart", orderInfo).then((res) => {
@@ -88,19 +98,21 @@ export const Gallery = ({ cart, setCart }) => {
         setRating(total / res.data.length);
 
       })
-  }, []);
+  }, [id]);
 
   const handleAddToCart = (artwork, i) => {
-    if (!user.id) {
-      alert("You can't add to cart without signing in!");
-    }
+    if (!user.id) {alert("You can't add to cart without signing in!");}
 
     const orderInfo = {};
     orderInfo.userID = user.id;
     orderInfo.artworkID = artwork.id;
     orderInfo.price = artwork.price_cents;
 
-    axios.put("/order/api/add", orderInfo).then((all) => {
+    Promise.all([
+      axios.put("/order/api/add", orderInfo),
+      axios.post("/api/product/add-to-cart", {artwork_id: artwork.id})
+    ])
+    .then((all) => {
       setShowPurchased((prev) => {
         prev[i] = true;
         return [...prev];
@@ -118,35 +130,28 @@ export const Gallery = ({ cart, setCart }) => {
 
   return (
     <div className="gallery">
-      
-      
       <div className="profile-gallery">
-
-      <Image className="profile-gallery-cover-image" src={userData.cover_image} fluid={true}/>
-
-
-      <div className="profile-gallery-header">
-
-      <Image
-            src={userData.avatar_image}
-            alt={userData.first_name + " " + userData.last_name}
-            roundedCircle="true"
-            width="150px"
-            className="profile-gallery-avatar"
-        />
-
-        <div className="user-name">
-          <h2>
-            {userData.first_name} {userData.last_name}
-          </h2>
-          <button onClick={toggleModal} className="send-message-btn">
-            Message This Artist
-          </button>
-        </div>
+        <Image className="profile-gallery-cover-image" src={userData.cover_image} fluid={true}/>
+        <div className="profile-gallery-header">
+          <Image
+                src={userData.avatar_image}
+                alt={userData.first_name + " " + userData.last_name}
+                roundedCircle="true"
+                width="150px"
+                className="profile-gallery-avatar"
+            />
+          <div className="user-name">
+            <h2>
+              {userData.first_name} {userData.last_name}
+            </h2>
+            <button onClick={toggleModal} className="send-message-btn">
+              Message This Artist
+            </button>
+          </div>
 
         <div className="user-bio">
           {userData.bio && <p>{userData.bio}</p>}
-          <StyledRating name="simple-controlled" value={4} readOnly />
+          <StyledRating name="simple-controlled" value={rating} readOnly />
         </div>
 
       </div>
@@ -257,8 +262,7 @@ export const Gallery = ({ cart, setCart }) => {
                       currency="CAD"
                     />
                   </Card.Text>
-                  {!artwork.sold && user.id && (
-                    // <FontAwesomeIcon onClick={() => handleAddToCart(artwork, i)}  icon={faCartPlus} className="add-to-cart" />
+                  {!artwork.sold && !artwork.in_cart && user.id && (
                     <h5
                       className="add-to-cart"
                       onClick={() => handleAddToCart(artwork, i)}
@@ -270,6 +274,12 @@ export const Gallery = ({ cart, setCart }) => {
                   {artwork.sold && (
                     <div className="after">
                       <FontAwesomeIcon icon={faTag} /> SOLD{" "}
+                    </div>
+                  )}
+
+                  {artwork.in_cart && (
+                    <div className="in-cart">
+                      <FontAwesomeIcon icon={faCartArrowDown} /> IN CART{" "}
                     </div>
                   )}
                 </Card.Body>
