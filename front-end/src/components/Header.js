@@ -15,7 +15,7 @@ import { DataContext } from "../context/dataContext";
 import axios from "axios";
 import { useNavigate } from "react-router";
 
-export default function Header({cart, setCart}) {
+export default function Header({cart, setCart, expanded, setExpanded}) {
   const dataState = useContext(DataContext);
   const [searchParams] = useSearchParams();
   const [searchInput, setSearchInput] = useState(searchParams.get('search'));
@@ -56,9 +56,9 @@ export default function Header({cart, setCart}) {
     const data = e.target.value
     setSearchInput(data)
   };
-
+  console.log(expanded)
   return (
-    <Navbar className="navbar" expand="lg">
+    <Navbar className="navbar" expand="lg" expanded={expanded} >
       <Container fluid>
         <div className="brand">
         <Navbar.Brand>
@@ -68,7 +68,7 @@ export default function Header({cart, setCart}) {
           </Link>
         </Navbar.Brand>          
         </div>
-        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Toggle aria-controls="navbarScroll" onClick={() => setExpanded(expanded ? false : "expanded")}/>
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" >
 
