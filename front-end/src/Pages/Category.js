@@ -46,11 +46,9 @@ export default function Category(props) {
                     <Link className="cat-link" to={`/gallery/${artwork.user_id}`}>{artwork.firstname} {artwork.lastname}</Link>
                     
                   </Card.Title>
-                  <Card.Text>
-                    <p>{artwork.artworkname}</p>
-                    <p>{artwork.description}</p>
-                    <p><Currency value={artwork.price_cents / 100.0} currency="CAD" /></p>
-                  </Card.Text>
+                  <Card.Text>"{artwork.artworkname}" </Card.Text>
+                  <Card.Text>{artwork.description} </Card.Text>
+                  <Card.Text><Currency value={artwork.price_cents / 100.0} currency="CAD" /></Card.Text>
                 </Card.Body>
               </Card>
             </div>

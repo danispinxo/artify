@@ -65,7 +65,7 @@ export default function ProductDescription({cart, setCart}) {
           <div className="product-description-description"><p>{product.description}</p></div>
 
           <div className="product-description-price">
-            <p><Currency value={product.price_cents/100.00} currency="CAD" /></p>
+            <Currency value={product.price_cents/100.00} currency="CAD" />
           </div>
 
           {product.sold && <h2>This image has already been purchased!</h2>}

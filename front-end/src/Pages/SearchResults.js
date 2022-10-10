@@ -34,7 +34,7 @@ const searchInput = searchParams.get('search') ;
             <div className="search-artwork-info">
               <h4>{artwork.name}</h4>
               <p>{artwork.description}</p>
-              <p><Currency value={artwork.price_cents / 100} currency="CAD" /></p>
+              <Currency value={artwork.price_cents / 100} currency="CAD" />
             </div>
           </div>
         )}

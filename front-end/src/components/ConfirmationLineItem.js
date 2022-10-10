@@ -6,7 +6,7 @@ import { styled } from '@mui/material/styles';
 import Rating from '@mui/material/Rating';
 
 
-export default function ConfirmationLineItem({key, image, name, price_cents, artist, customer}) {
+export default function ConfirmationLineItem({index, image, name, price_cents, artist, customer}) {
   const [rating, setRating] = useState(0);
 
   const StyledRating = styled(Rating)({
@@ -28,11 +28,11 @@ export default function ConfirmationLineItem({key, image, name, price_cents, art
   }
 
   return (
-    <div className="confirmation-line-item" key={key}>
+    <div className="confirmation-line-item" key={index}>
       <img className="line-item-image" src={image} alt={name}></img>
       <div className="line-item-info">
         <h4>{name}</h4>
-        <p><Currency value={price_cents / 100} currency="CAD" /></p>
+        <Currency value={price_cents / 100} currency="CAD" />
           <StyledRating name="simple-controlled" value={rating} onChange={(event, newValue) => ratingHandler(newValue)} />
       </div>
     </div>
