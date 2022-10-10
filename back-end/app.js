@@ -51,6 +51,7 @@ const changePasswordRoute = require("./routes/changePassword");
 const profileAuthRoute = require("./routes/profileAuth");
 const emailReceiptRoute = require("./routes/emailReceipt");
 const ratingsRoutes = require("./routes/ratings");
+const topratingsRoutes = require("./routes/topratings");
 
 // Mount all resource routes
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
@@ -74,6 +75,7 @@ app.use("/password/reset", changePasswordRoute);
 app.use("/profile/auth", profileAuthRoute);
 app.use("/receipt", emailReceiptRoute);
 app.use("/api/ratings", ratingsRoutes);
+app.use("/api/topratings", topratingsRoutes);
 
 //Home page
 app.get("/", (req, res) => {

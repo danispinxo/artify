@@ -21,12 +21,12 @@
     font-weight: 700;
   }
 
-  .swiper {
+  .mySwiper-multi {
     width: 96%;
     height: 100%;
     margin: 0;
   
-    .swiper-slide {
+    .swiper-slide-multi {
       background: #fff;
       /* Center slide text vertically */
       display: -webkit-box;
@@ -55,7 +55,7 @@
         aspect-ratio: 1 / 1;
         object-fit: cover;
         box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.2) !important;
-
+        border-radius: 15px !important;
         &:hover{
           -webkit-transform: scale(1.0);
           -ms-transform: scale(0);
@@ -67,6 +67,7 @@
     }
   }
 
+
   .categories-container {  
     display: grid; 
     grid-template-columns: 1fr 1fr 1fr; 
@@ -76,5 +77,96 @@
       ". . ."
       ". . ."; 
     width: 96%;
+  }
+
+  .toprating-container{
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr; 
+    gap: 25px 25px; 
+    grid-template-areas: 
+      ". ."; 
+      width: 85%;
+   
+    margin-top: 5%;
+    margin-bottom: 3%;
+  }
+
+  .home-page-top-table{
+    width: 100%;
+    margin-top: 3%;
+    
+    
+  }
+  .home-page-top-table td, .home-page-top-table th {
+    border: none !important;
+}
+  .home-page-top-heading{
+    font-size: 1.5vw;
+    font-family: $header-font;
+    color: $dark-red;
+    
+  }
+  .home-page-top-img{
+    width: 38%;
+    height: 100%;
+    border-radius: 10px;
+    
+    
+  }
+  .home-page-top-td{
+   width: 33.33%;
+   box-shadow: none !important;
+  }
+  .home-page-top-td-name{
+    padding-top: 5%;
+    box-shadow: none !important;
+    font-size: 0.8vw;
+  }
+  
+
+
+
+
+
+  .mySwiper-single {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  
+    .swiper-slide-single {
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -ms-flex-align: center;
+
+      -webkit-justify-content: center;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+
+
+      border-radius: 15px;
+      overflow: hidden;
+      perspective: 1px;
+      .home-page-artwork-single {
+        display: block;
+        width: 100%;
+        height: 40vw;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.2) !important;
+        border-radius: 15px !important;
+      }
+      
+    }
   }
 }
