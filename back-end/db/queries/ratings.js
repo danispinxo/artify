@@ -21,6 +21,7 @@ const getRatingsByUserID = (user_id) => {
       return data.rows;
     });
 };
+
 const getUsersByRating = () => {
   return db
     .query(`

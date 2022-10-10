@@ -13,14 +13,14 @@ import Image from "react-bootstrap/Image";
 import { styled } from "@mui/material/styles";
 import Rating from "@mui/material/Rating";
 
-export const Home = () => {
+export default function Home() {
   const dataState = useContext(DataContext);
   const [topRatingsUsers, setTopRatingsUsers] = useState([]);
 
   const StyledRating = styled(Rating)({
     "& .MuiRating-iconFilled": {
       color: "#d6a00a",
-    },
+    }
   });
 
   useEffect(() => {
@@ -28,14 +28,12 @@ export const Home = () => {
       dataState.setArtworks(dataState.artworks);
       dataState.setCategories(dataState.categories);
     }
+    axios.get("/api/topratings")
+      .then((res) => {
+        setTopRatingsUsers(res.data);
+      });
   }, [dataState]);
 
-  useEffect(() => {
-    axios.get("/api/topratings").then((res) => {
-      setTopRatingsUsers(res.data);
-    });
-  }, []);
-  console.log(topRatingsUsers);
   return (
     <div className="homepage-container">
       <h1 className="home-page-title">Explore, collect, and sell ARTs</h1>
@@ -44,7 +42,7 @@ export const Home = () => {
         <Swiper
           slidesPerView={4}
           spaceBetween={12}
-          slidesPerGroup={5}
+          slidesPerGroup={4}
           loop={true}
           autoplay={{
             delay: 5000,
