@@ -2,7 +2,7 @@ import "./App.scss";
 import React, {useState} from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { DataContextProvider } from "./context/dataContext";
-import { Home } from "./Pages/Home";
+import Home from "./Pages/Home";
 import Header from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Gallery } from "./Pages/Gallery";
@@ -20,7 +20,7 @@ import StripeContainer from "./components/StripeContainer";
 import Confirmation from "./Pages/Confirmation";
 
 
-function App() {
+export default function App() {
   const [cart, setCart] = useState(0);
 
   return (
@@ -49,6 +49,4 @@ function App() {
       </div>
     </DataContextProvider>
   );
-}
-
-export default App;
+};

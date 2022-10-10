@@ -16,12 +16,11 @@ export default function Register() {
   } = useForm();
 
   const onSubmit = (data) => {
-    axios.post('/register', {
-      data
-    })
-    .then((res) => 
-    {dataState.setUser(res.data)
-    navigate('/') })
+    axios.post('/register', { data })
+      .then((res) => {
+        dataState.setUser(res.data);
+        navigate('/')
+      })
   };
 
   return (
