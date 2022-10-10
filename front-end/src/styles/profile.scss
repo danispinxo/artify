@@ -12,7 +12,7 @@
   }
 
   h1{
-    font-family: $body-font;
+    font-family: $header-font;
     padding-bottom: 2%;
     padding-top: 3%;
     color: $dark-red;
@@ -34,10 +34,11 @@
   }
   .view-profile-card-buttons {
     padding-right: 8px;
-    color: $medium-brown;
+    color: $dark-red;
+    cursor: pointer;
   }
   .view-profile-card-buttons:hover{
-    color: $dark-red;
+    color: $light-brown;
   }
   .view-profile-card-img{
   
@@ -109,6 +110,8 @@
 
   h1 {
     font-family: $header-font;
+      color: $dark-red;
+      font-weight: 700;
   }
   
   .profile-buttons {
