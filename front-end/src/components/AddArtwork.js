@@ -36,7 +36,7 @@ export default function AddArtwork({setMode, user}) {
 
     setIsLoading(true)
     
-    // This part creates a FormData object, it includes 2 things: 1. text (the user.id), 2. the file
+    // This part creates a FormData object, it includes 2 things: 1. details from the artwork, 2. the file
     const formData = new FormData();
     formData.append("userID", user.id);
     formData.append("categoryID", categoryID);

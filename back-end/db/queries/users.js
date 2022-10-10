@@ -1,5 +1,9 @@
 const db = require('../../configs/db.config');
 
+/**
+ * This function gets all users in the database 
+ * @returns USers
+ */
 const getUsers = () => {
   return db
     .query(
