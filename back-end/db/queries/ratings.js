@@ -21,5 +21,18 @@ const getRatingsByUserID = (user_id) => {
       return data.rows;
     });
 };
+const getUsersByRating = () => {
+  return db
+    .query(`
+    SELECT users.first_name as firstName, users.last_name as lastName, users.id as user_id, users.avatar_image as avatarImage, rating
+    FROM users JOIN ratings ON artist_id = users.id
+    GROUP BY firstName, lastName, avatarImage, user_id, rating
+    HAVING rating = $1
+    LIMIT $2;
+      `, [5, 6])
+    .then((data) => {
+      return data.rows;
+    });
+};
 
-module.exports = { addRating, getRatingsByUserID };
+module.exports = { addRating, getRatingsByUserID, getUsersByRating };
