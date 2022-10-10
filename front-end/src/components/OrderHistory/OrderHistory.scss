@@ -15,6 +15,20 @@
     padding-top: 3%;
     color: $dark-red;
     font-weight: 700;
+    display: flex;
+    justify-content: center;
+  }
+
+  @media only screen and (max-width: 800px){
+    h1{
+      margin-top: 1em;
+    }
+  }
+
+  @media only screen and (max-width: 500px){
+    h1{
+      font-size: 1.5em;
+    }
   }
 
   .order-history-list {
@@ -41,6 +55,29 @@
       }
     }
   }
+
+  @media only screen and (max-width:800px) {
+    .order-history-list{
+      @include grid3col;
+      margin-left:1em
+    }
+  }
+
+  @media only screen and (max-width:650px) {
+    .order-history-list{
+      @include grid2col;
+      margin-left:1em
+    }
+  }
+
+  @media only screen and (max-width:500px) {
+    .order-history-list{
+      @include grid1col;
+      margin-left:1em;
+      margin-bottom: 1em;
+    }
+  }
+
 }
 
 
