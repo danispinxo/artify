@@ -84,9 +84,9 @@ Images are internally watermarked for artist protection. Upon successful checkou
 
 All user information is stored in our PostgreSQL database. User passwords are stored usign bcrypt authentication (hash and salt) and are not included where other user data is stored (cookies or context). Again, this seems pretty standard, but took a long time to implement. 
 
-### Search By Art Title and Description
+### Search By Art Title, Description, Category, and Artist Name
 
-Artify lets you search its art database! In the navbar, type in a search query and be redirected to a page of search results containing all art that has your term in the title or description! Each result is a link so you can visit that artwork's product description page and add that baby to your cart! 
+Artify lets you search its art database! In the navbar, type in a search query and be redirected to a page of search results containing all art that has your term in the title or description, the category, or the artist's name! Each result is a link so you can visit that artwork's product description page and add that baby to your cart! 
 
 ## Known Bugs
 
@@ -95,10 +95,6 @@ Artify lets you search its art database! In the navbar, type in a search query a
 At this time, the rating option appears as a redirect after successful checkout. This doesn't really give the user time to view or use the art before rating. A better approach would be to add a link to the email receipt with an option to rate later. 
 
 ## Future Development
-
-### Currently No Search By Artist
-
-Currently, the search function only searches title and description of artwork. A potential additional search function could be the ability to search by artist. 
 
 ### Socket and Internal Messaging
 
