@@ -20,6 +20,8 @@ const searchInput = searchParams.get('search') ;
     })
   }, [searchInput])
 
+
+console.log(artResult[0])
   return (
     <div>
       { artResult.length >= 1 && 

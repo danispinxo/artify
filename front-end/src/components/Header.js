@@ -34,7 +34,7 @@ export default function Header({cart, setCart, expanded, setExpanded}) {
         main: '#595443',
       },
       secondary: {
-        main: '#8C3503',
+        main: '#8C3503', 
       },
     },
   });
@@ -106,7 +106,7 @@ export default function Header({cart, setCart, expanded, setExpanded}) {
               to="/cart"
             >
               <ThemeProvider theme={theme}>
-                <Badge badgeContent={cart.length && cart.length} color="primary">
+                <Badge badgeContent={cart.length && cart.length} color="secondary">
                   <ShoppingCartIcon color="action" />
                 </Badge>                  
               </ThemeProvider>
