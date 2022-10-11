@@ -56,7 +56,7 @@ export default function Header({cart, setCart, expanded, setExpanded}) {
     const data = e.target.value
     setSearchInput(data)
   };
-  console.log(expanded)
+  
   return (
     <Navbar className="navbar" expand="lg" expanded={expanded} >
       <Container fluid>

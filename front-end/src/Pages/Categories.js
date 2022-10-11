@@ -16,9 +16,9 @@ export default function Categories() {
   return (
     <div className="homepage-container">
 
-      <h1>Explore All the Artify Categories</h1>
+      <h1 className="categories-page-header" >Explore All the Artify Categories</h1>
 
-      <div className="categories-container">
+      <div className="categories-container">      
         {dataState.categories.map((category, i) => (
           <CategoryItem
             key={i}
