@@ -69,3 +69,174 @@
   }
 }
 
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .navbar {
+    width: 100%;
+    height: 10vw;
+    backdrop-filter: blur(16px) saturate(187%);
+    -webkit-backdrop-filter: blur(16px) saturate(187%);
+    background-color: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.27);
+    position: fixed;
+    top: 0px;
+    z-index: 999;
+    font-family: $body-font;
+    font-size: 20px;
+
+    .toggle-btn{
+      @include glassbg;
+      width: 10%;
+      padding-top: 0;
+      margin-top: 0;
+    }
+    .navbar-collapse{
+      backdrop-filter: blur(16px) saturate(187%);
+      -webkit-backdrop-filter: blur(16px) saturate(187%);
+      background-color: rgba(255, 255, 255, 0.94);
+      margin-top: 4%;
+      padding: 2%;
+     
+    }
+    .brand {
+      font-family: $logo-font;
+    }
+  
+    .button {
+      background: #efefef;
+      border: none;
+      border-radius: .5rem;
+      width: 200px;
+      color: #444;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: $body-font;
+      letter-spacing: .05rem;
+      text-align: center;
+      outline: none;
+      margin-top: 15px;
+      margin-left: 15px;
+      margin-bottom: 17px;
+      cursor: pointer;
+      transition: .2s ease-in-out;
+      box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
+                  -6px -6px 10px rgba(255, 255, 255, .5),
+                  6px 6px 8px rgba(255, 255, 255, .075),
+                  6px 6px 10px rgba(0, 0, 0, .15);
+    }
+    button:hover {
+      box-shadow: -2px -2px 6px rgba(255, 255, 255, .6),
+                  -2px -2px 4px rgba(255, 255, 255, .4),
+                  2px 2px 2px rgba(255, 255, 255, .05),
+                  2px 2px 4px rgba(0, 0, 0, .1);
+    }
+    button:active {
+      box-shadow: inset -2px -2px 6px rgba(255, 255, 255, .7),
+                  inset -2px -2px 4px rgba(255, 255, 255, .5),
+                  inset 2px 2px 2px rgba(255, 255, 255, .075),
+                  inset 2px 2px 4px rgba(0, 0, 0, .15);
+    }
+    
+    .form-control{
+      height: 10%;
+      margin-top: 20px;
+      margin-left: 15px;
+    }
+  
+    .nav-icon {
+      font-size:x-large
+    }
+  
+    .header-avatar-img {
+      width: 20px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+  }
+}
+
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  .navbar {
+    width: 100%;
+    height: 20vw;
+    backdrop-filter: blur(16px) saturate(187%);
+    -webkit-backdrop-filter: blur(16px) saturate(187%);
+    background-color: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.27);
+    position: fixed;
+    top: 0px;
+    z-index: 999;
+    font-family: $body-font;
+    font-size: 20px;
+
+    .toggle-btn{
+      @include glassbg;
+      width: 22%;
+      padding-top: 0;
+      margin-top: 0;
+    }
+    .navbar-collapse{
+      backdrop-filter: blur(16px) saturate(187%);
+      -webkit-backdrop-filter: blur(16px) saturate(187%);
+      background-color: rgba(255, 255, 255, 0.94);
+      margin-top: 4%;
+      padding: 2%;
+     
+    }
+    .brand {
+      font-family: $logo-font;
+    }
+  
+    .button {
+      background: #efefef;
+      border: none;
+      border-radius: .5rem;
+      width: 200px;
+      color: #444;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: $body-font;
+      letter-spacing: .05rem;
+      text-align: center;
+      outline: none;
+      margin-top: 15px;
+      margin-left: 15px;
+      margin-bottom: 17px;
+      cursor: pointer;
+      transition: .2s ease-in-out;
+      box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
+                  -6px -6px 10px rgba(255, 255, 255, .5),
+                  6px 6px 8px rgba(255, 255, 255, .075),
+                  6px 6px 10px rgba(0, 0, 0, .15);
+    }
+    button:hover {
+      box-shadow: -2px -2px 6px rgba(255, 255, 255, .6),
+                  -2px -2px 4px rgba(255, 255, 255, .4),
+                  2px 2px 2px rgba(255, 255, 255, .05),
+                  2px 2px 4px rgba(0, 0, 0, .1);
+    }
+    button:active {
+      box-shadow: inset -2px -2px 6px rgba(255, 255, 255, .7),
+                  inset -2px -2px 4px rgba(255, 255, 255, .5),
+                  inset 2px 2px 2px rgba(255, 255, 255, .075),
+                  inset 2px 2px 4px rgba(0, 0, 0, .15);
+    }
+    
+    .form-control{
+      height: 10%;
+      margin-top: 20px;
+      margin-left: 15px;
+    }
+  
+    .nav-icon {
+      font-size:x-large
+    }
+  
+    .header-avatar-img {
+      width: 20px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+  }
+}
