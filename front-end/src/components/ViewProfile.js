@@ -65,10 +65,10 @@ export default function ViewProfile() {
           
         )}
 
-        {userGallery.length === 0 &&
-        <p>You do not currently have any artworks in your gallery.</p>
-        }
       </div>
+        {userGallery.length === 0 &&
+        <p className="user-gallery-no-artwork" >You do not currently have any artworks in your gallery.</p>
+        }
     </div>
   )
 }
