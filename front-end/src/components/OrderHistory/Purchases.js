@@ -37,10 +37,10 @@ export default function Purchases({user}) {
         </Card>
       )}
 
-      {purchasedArtworks.length === 0 && <p>
-        It doesn't look like you've made any purchases yet! Why not check out some of our featured artists on the homepage!?
-      </p>}
       </div>
+      {purchasedArtworks.length === 0 && <p className="no-bought-artwork-message" >
+        It doesn't look like you've made any purchases yet! Why not check out some of our featured artists on the homepage.
+      </p>}
     </div>
   )
 }

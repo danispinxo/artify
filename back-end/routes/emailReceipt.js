@@ -17,7 +17,7 @@ router.post("/", (req, res) => {
     for (const item of cart) {
       message+= `| Item: ${item.name} Price: $${item.price_cents/100} Full Quality Artwork Link: ${item.public_image} | `
     }
-    message+= `\nDate: ${cart[0].order_date} | \nYour newly purchased artwork is now available in your gallery. \nThank you for using Artify!`
+    message+= `\nDate: ${cart[0].order_date} | \nYour newly purchased artwork is now available in your purchased artworks tab. \nThank you for using Artify!`
     return message;
   }
 
