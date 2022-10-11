@@ -113,10 +113,8 @@
   }
   .home-page-top-img{
     width: 38%;
-    height: 100%;
+    aspect-ratio: 1 / 1;
     border-radius: 10px;
-    
-    
   }
   .home-page-top-td{
    width: 33.33%;
@@ -127,11 +125,6 @@
     box-shadow: none !important;
     font-size: 0.8vw;
   }
-  
-
-
-
-
 
   .mySwiper-single {
     width: 100%;

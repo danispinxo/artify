@@ -25,12 +25,11 @@ const getRatingsByUserID = (user_id) => {
 const getUsersByRating = () => {
   return db
     .query(`
-    SELECT users.first_name as firstName, users.last_name as lastName, users.id as user_id, users.avatar_image as avatarImage, rating
+    SELECT AVG(ratings.rating) as avg, users.first_name as firstName, users.last_name as lastName, users.id as user_id, users.avatar_image as avatarImage
     FROM users JOIN ratings ON artist_id = users.id
-    GROUP BY firstName, lastName, avatarImage, user_id, rating
-    HAVING rating = $1
-    LIMIT $2;
-      `, [5, 6])
+    GROUP BY users.id
+    ORDER BY avg DESC
+    LIMIT 6;`)
     .then((data) => {
       return data.rows;
     });
