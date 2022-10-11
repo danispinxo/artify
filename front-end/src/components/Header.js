@@ -68,7 +68,7 @@ export default function Header({cart, setCart, expanded, setExpanded}) {
           </Link>
         </Navbar.Brand>          
         </div>
-        <Navbar.Toggle aria-controls="navbarScroll" onClick={() => setExpanded(expanded ? false : "expanded")}/>
+        <Navbar.Toggle className="toggle-btn" aria-controls="navbarScroll" onClick={() => setExpanded(expanded ? false : "expanded")}/>
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" >
 
