@@ -8,7 +8,15 @@ Team members: Mohammed Abbas, Jeffrey Ho, and Dani Spinosa.
 
 ## Screenshots
 
-This is where we'll put screenshots when the design is completed. 
+![Homepage](https://github.com/ynot9042/Finals/blob/master/front-end/public/images/screenshots/Homepage.png "Artify Homepage")
+![Edit Profile](https://github.com/ynot9042/Finals/blob/master/front-end/public/images/screenshots/Edit.png "Artify Edit Profile Page")
+![Search Results](https://github.com/ynot9042/Finals/blob/master/front-end/public/images/screenshots/Search.png "Artify Search Results for Term 'Try'")
+![Cart](https://github.com/ynot9042/Finals/blob/master/front-end/public/images/screenshots/Cart.png "Artify Cart Page")
+![Confirmation](https://github.com/ynot9042/Finals/blob/master/front-end/public/images/screenshots/Confirmation.png "Artify Confirmation Page After Successful Checkout")
+![Gallery Page](https://github.com/ynot9042/Finals/blob/master/front-end/public/images/screenshots/Gallery.png "Artify Artist Gallery")
+![Artists Page](https://github.com/ynot9042/Finals/blob/master/front-end/public/images/screenshots/Artists.png "Artify Artists Directory")
+![Category Page](https://github.com/ynot9042/Finals/blob/master/front-end/public/images/screenshots/Categories.png "Artify Category Directory")
+
 
 ## Dependencies
 
