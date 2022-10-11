@@ -28,7 +28,7 @@ cloudinary.config({
 });
 
 // Log the configuration
-// console.log(cloudinary.config());
+console.log(cloudinary.config());
 
 // Separated Routes for each Resource
 const galleryRoute = require("./routes/gallery");

@@ -7,13 +7,12 @@
   justify-content: center;
   align-items: center;
   
-  
   .profile-gallery{
-    
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
+
     .profile-gallery-cover-image {
       background-size: cover;
       height: 550px;
@@ -40,7 +39,6 @@
         height: 15%;
   
         h2 {
-
           font-family: $header-font;
           font-weight: 600;
           color: $dark-red;
@@ -152,42 +150,37 @@
       .add-to-cart {
      visibility: visible;
       }  
-  }
-    
-    
-
-  .card-img{
-    width: 100%;
-    object-fit: cover;
-  }
-  
-  .card-image2{
-  
-    .card-img2{
-      width: 100%;
-      height: 40vw;
-      object-fit: cover;
-      
-    } 
-    .toast-body{
-      display:flex;
-      justify-content: center;
-      align-items: center;
-      height: 3em;
-      font-size: xx-large;
-      background: $dark-red;
-      border-radius: 5px;
-      border:0;
-      font-weight: 500;
-      color:white;
-      opacity: 0.6;
-      font-family: $header-font;
     }
- 
+
+    .card-img{
+      width: 100%;
+      object-fit: cover;
+    }
+  
+    .card-image2{
+    
+      .card-img2{
+        width: 100%;
+        height: 40vw;
+        object-fit: cover;
+      } 
+      
+      .toast-body{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        height: 3em;
+        font-size: xx-large;
+        background: $dark-red;
+        border-radius: 5px;
+        border:0;
+        font-weight: 500;
+        color:white;
+        opacity: 0.6;
+        font-family: $header-font;
+      }
+    }
   }
-
-}
-
 }
   
 

@@ -100,7 +100,7 @@ export default function Home() {
                 <td className="home-page-top-td-name">
                   <StyledRating
                     name="simple-controlled"
-                    value={topUser.rating}
+                    value={topUser.avg}
                     readOnly
                     className="rating-starts"
                   />
