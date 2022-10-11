@@ -57,10 +57,12 @@ const getArtworkBySearch = (search) => {
     .query(
       `SELECT artworks.id, artworks.name, artworks.price_cents, artworks.description, artworks.image, artworks.public_image, artworks.sold, artworks.in_cart FROM artworks
       JOIN users ON users.id = user_id
+      JOIN categories ON categories.id = category_id
       WHERE LOWER(artworks.name) LIKE LOWER('%' || $1 || '%')
       OR LOWER(artworks.description) LIKE LOWER('%' || $1 || '%')
       OR LOWER(users.first_name) LIKE LOWER('%' || $1 || '%')
       OR LOWER(users.last_name) LIKE LOWER('%' || $1 || '%')
+      OR LOWER(categories.name) LIKE LOWER('%' || $1 || '%')
       ;`, [search])
     .then((data) => {
       return data.rows;
