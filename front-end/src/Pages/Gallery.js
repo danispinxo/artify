@@ -24,6 +24,7 @@ export const Gallery = ({ cart, setCart }) => {
   const [showPurchased, setShowPurchased] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [rating, setRating] = useState([]);
+  const [currentUser, setCurrentUser] = useState([]);
 
   const StyledRating = styled(Rating)({
     "& .MuiRating-iconFilled": {
@@ -60,10 +61,11 @@ export const Gallery = ({ cart, setCart }) => {
     Promise.all([
       axios.get(`/api/profile`, { params: { id: id } }),
       axios.get(`/api/gallery`, { params: { id: id } }),
+      axios.get('/profile/auth')
     ]).then((all) => {
       setUserData(all[0].data[0]);
       setUserGallery(all[1].data);
-
+      setCurrentUser(all[2].data);
       for (let i = 0; i <= all[1].data.length; i++) {
         setShowPurchased((prev) => [...prev, false]);
       }
@@ -127,7 +129,8 @@ export const Gallery = ({ cart, setCart }) => {
     })
 
   };
-
+  console.log(Number(id), typeof currentUser)
+  
   return (
     <div className="gallery">
       <div className="profile-gallery">
@@ -144,9 +147,12 @@ export const Gallery = ({ cart, setCart }) => {
             <h2>
               {userData.first_name} {userData.last_name}
             </h2>
+
+            { Number(id) !== currentUser &&
             <button onClick={toggleModal} className="send-message-btn">
               Message This Artist
-            </button>
+            </button> }
+
           </div>
 
         <div className="user-bio">
