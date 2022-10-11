@@ -39,10 +39,10 @@ export default function Sold({user}) {
           </Card.Body>
         </Card>        
         )}
-        {soldArtworks.length === 0 && <p>
+      </div>
+        {soldArtworks.length === 0 && <p className="no-sold-artwork-message">
           It doesn't look like you've sold any art, yet. Add some new artwork by clicking "Add to Gallery" above. 
         </p>}
-      </div>
     </div>
   )
 }
