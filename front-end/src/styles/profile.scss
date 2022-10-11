@@ -7,6 +7,8 @@
   align-items: center;
   width: 100%;
 
+  
+
   .view-profile-gallery{
     @include grid4col
   }
@@ -212,6 +214,16 @@
   }
 
 }
+
+.user-gallery-no-artwork{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 7em;
+  font-size: medium;
+  font-weight: 700;
+}
+
+
 
 
 
