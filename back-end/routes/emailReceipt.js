@@ -28,7 +28,7 @@ router.post("/", (req, res) => {
     text: `${receiptMessage(cart, fullName)}`,
     html: `
     
-    <img class="max-width" border="0" style="display:flex; text-align: center; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px;" width="800" alt="" data-proportionally-constrained="true" data-responsive="false" src="http://cdn.mcauto-images-production.sendgrid.net/954c252fedab403f/4ad091f2-00dc-4c89-9ad8-1d7aeaf169c2/600x189.png" height="189">
+    <img class="max-width" border="0" style="display:flex; text-align: center; color:#000000; text-decoration:none; background-size: contain; font-family:Helvetica, arial, sans-serif; font-size:16px;" width="800" alt="" data-proportionally-constrained="true" data-responsive="false" src="http://cdn.mcauto-images-production.sendgrid.net/954c252fedab403f/4ad091f2-00dc-4c89-9ad8-1d7aeaf169c2/600x189.png" height="189">
     <h1 >Order Summary</h1>
     <h2 >Thank you ${fullName} for shopping with us today!</h2>
     <p>${new Date().toISOString().slice(0, 19).replace('T', ' ')} </p>

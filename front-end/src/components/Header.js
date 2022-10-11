@@ -49,6 +49,7 @@ export default function Header({cart, setCart, expanded, setExpanded}) {
     event.preventDefault();
     if(searchInput) {
      navigate(`/results?search=${searchInput}`) 
+     setSearchInput("");
    }
   };
 
