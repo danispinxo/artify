@@ -5,7 +5,7 @@ files:
     destination: /var/www/html/WordPress
 hooks:
   BeforeInstall:
-    - location: back-end/configs/db.config.js
+    - location: npm run db:reset
       timeout: 300
       runas: root
   AfterInstall:
@@ -13,7 +13,6 @@ hooks:
       timeout: 300
       runas: root
   ApplicationStart:
-    - location: back-end/configs/db.config.js
     - location: npm start
       timeout: 300
       runas: root
