@@ -1,0 +1,23 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/html/WordPress
+hooks:
+  BeforeInstall:
+    - location: back-end/configs/cloudinary.js
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: npm run dev
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: back-end/configs/db.config.js
+    - location: npm start
+      timeout: 300
+      runas: root
+  ApplicationStop:
+    - location: npm stop
+      timeout: 300
+      runas: root
