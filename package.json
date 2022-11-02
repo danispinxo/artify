@@ -4,6 +4,10 @@
   "proxy": "http://localhost:8080",
   "private": true,
   "main": "app.js",
+  "engines" : { 
+    "npm" : ">=8.0.0 <9.0.0",
+    "node" : ">=12.0.0 <14.0.0"
+  },
   "scripts": {
     "server start": "node server",
     "dev": "nodemon server",
