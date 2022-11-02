@@ -3,7 +3,34 @@
   "version": "0.1.0",
   "proxy": "http://localhost:8080",
   "private": true,
+  "main": "app.js",
+  "scripts": {
+    "server start": "node server",
+    "dev": "nodemon server",
+    "db:reset": "node db/scripts/resetdb.js",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "cypress": "cypress open"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "chalk": "^5.0.1",
+    "cloudinary": "^1.32.0",
+    "cookie-session": "^2.0.0",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.20",
+    "pg": "^8.8.0",
+    "stripe": "^10.12.0",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
@@ -37,13 +64,6 @@
     "sass": "^1.55.0",
     "swiper": "^8.4.2",
     "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "cypress": "cypress open"
   },
   "eslintConfig": {
     "extends": [
