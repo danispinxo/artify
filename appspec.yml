@@ -2,21 +2,20 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/www/html/WordPress
 hooks:
   BeforeInstall:
-    - location: npm run db:reset
+    - location: back-end/db/scripts/resetdb.js
       timeout: 300
       runas: root
   AfterInstall:
-    - location: npm run dev
+    - location: front-end/src/index.js
       timeout: 300
       runas: root
   ApplicationStart:
-    - location: npm start
+    - location: front-end/src/index.js
       timeout: 300
       runas: root
   ApplicationStop:
-    - location: npm stop
+    - location: front-end/src/index.js
       timeout: 300
       runas: root
