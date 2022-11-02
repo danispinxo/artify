@@ -4,7 +4,7 @@ Welcome to Artify! Artify is an e-commerce application tailored for artists to d
 
 Artify connects artists who want to share their portfolios to make their work available for purchase with clients who can commission other artwork. These clients would include designers of all kinds (graphic/web, book, clothing, printers/printmakers, marketing teams, and so on). 
 
-Team members: Mohammed Abbas, Jeffrey Ho, and Dani Spinosa. 
+Team members: Mohammed Abbas, Jeffrey Ho, and Dani Spinosa. Current update and deployment by Dani. 
 
 ## Screenshots
 
